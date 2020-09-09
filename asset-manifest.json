@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/GG-TMDB/static/css/main.5f361e03.chunk.css",
-    "main.js": "/GG-TMDB/static/js/main.63fdded9.chunk.js",
-    "main.js.map": "/GG-TMDB/static/js/main.63fdded9.chunk.js.map",
-    "runtime-main.js": "/GG-TMDB/static/js/runtime-main.4193149a.js",
-    "runtime-main.js.map": "/GG-TMDB/static/js/runtime-main.4193149a.js.map",
-    "static/js/2.9ddee40e.chunk.js": "/GG-TMDB/static/js/2.9ddee40e.chunk.js",
-    "static/js/2.9ddee40e.chunk.js.map": "/GG-TMDB/static/js/2.9ddee40e.chunk.js.map",
-    "index.html": "/GG-TMDB/index.html",
-    "precache-manifest.4737ad738889c5cf38e9cc85ff730af1.js": "/GG-TMDB/precache-manifest.4737ad738889c5cf38e9cc85ff730af1.js",
-    "service-worker.js": "/GG-TMDB/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/GG-TMDB/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.9ddee40e.chunk.js.LICENSE.txt": "/GG-TMDB/static/js/2.9ddee40e.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/GG-TMDB/static/media/logo.5d5d9eef.svg"
+    "main.css": "/Interview.TMDB/static/css/main.5f361e03.chunk.css",
+    "main.js": "/Interview.TMDB/static/js/main.b99fec91.chunk.js",
+    "main.js.map": "/Interview.TMDB/static/js/main.b99fec91.chunk.js.map",
+    "runtime-main.js": "/Interview.TMDB/static/js/runtime-main.097b4a74.js",
+    "runtime-main.js.map": "/Interview.TMDB/static/js/runtime-main.097b4a74.js.map",
+    "static/js/2.9ddee40e.chunk.js": "/Interview.TMDB/static/js/2.9ddee40e.chunk.js",
+    "static/js/2.9ddee40e.chunk.js.map": "/Interview.TMDB/static/js/2.9ddee40e.chunk.js.map",
+    "index.html": "/Interview.TMDB/index.html",
+    "precache-manifest.2f90d2d49fa4072c53960d77478487f9.js": "/Interview.TMDB/precache-manifest.2f90d2d49fa4072c53960d77478487f9.js",
+    "service-worker.js": "/Interview.TMDB/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/Interview.TMDB/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.9ddee40e.chunk.js.LICENSE.txt": "/Interview.TMDB/static/js/2.9ddee40e.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/Interview.TMDB/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.4193149a.js",
+    "static/js/runtime-main.097b4a74.js",
     "static/js/2.9ddee40e.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.63fdded9.chunk.js"
+    "static/js/main.b99fec91.chunk.js"
   ]
 }
