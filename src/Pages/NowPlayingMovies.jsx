@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '../config';
 import Navbar from '../components/Navbar/Navbar';
-import Card from '../components/Card/Card'
+import MoviesListings from '../components/MoviesListings'
 import {useSelector, useDispatch} from 'react-redux';
 import {APPEND_MOVIES, TRUNCATE_MOVIES} from '../Store/actions/Action'
 
@@ -43,7 +43,7 @@ function NowPlaying() {
             <section className="Results">
                 {/* Movie Refiner by Genre Drop Down */}
                 <div>
-                    {<Card props={moviesValue}/>}
+                    {<MoviesListings props={useSelector(state => state.movies)}/>}
                 </div>
             </section>
             <section className="FetchMore">
