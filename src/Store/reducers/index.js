@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import counterReducer from './counter';
+import moviesReducer from './MoviesReducer.jsx';
 import movieReducer from './MovieReducer';
 
 const allReducers = combineReducers({
-    counter: counterReducer,
+    movies: moviesReducer,
     movie: movieReducer
 });
 

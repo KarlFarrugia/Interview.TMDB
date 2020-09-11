@@ -49,14 +49,14 @@ function Navbar (){
             </GridItem>
             <GridItem xs={12}>
                 {FetchMovies(useSelector(state => state.movie)),moviesValue}
-                <div className="Search-Box">
+                {/*<div className="Search-Box">
                     <div className="Search-Box-item">
                         item
                     </div>
                     <div className="Search-Box-item">
                         item
                     </div>
-                </div>
+                </div>*/}
             </GridItem>
         </GridContainer >
     );

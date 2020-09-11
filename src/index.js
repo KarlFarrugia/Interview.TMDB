@@ -9,12 +9,16 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import './index.css';
-import App from './App';
-import Movie from './Pages/Movie';
 import * as serviceWorker from './serviceWorker';
 import { createBrowserHistory } from "history";
 import allReducer from './Store/reducers'
 import thunk from 'redux-thunk';
+
+//Pages
+import App from './App';
+import Movie from './Pages/Movie';
+import LatestMovie from './Pages/LatestMovie';
+import NowPlaying from './Pages/NowPlayingMovies';
 
 const hist = createBrowserHistory();
 
@@ -34,6 +38,14 @@ ReactDOM.render(
             <Route
               path="/Movie/:moviename"
               component={Movie}
+            />
+            <Route
+              path="/Latest"
+              component={LatestMovie}
+            />
+            <Route
+              path="/NowPlaying"
+              component={NowPlaying}
             />
             <Route
               path="/"

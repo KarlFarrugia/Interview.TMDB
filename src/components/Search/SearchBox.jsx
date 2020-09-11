@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import InputStyle from "../../assets/InputStyle";
-import {connect} from "react-redux";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -10,7 +9,6 @@ import Input from "@material-ui/core/Input";
 import { Col, Row } from 'react-bootstrap';
 import {useSelector, useDispatch} from 'react-redux';
 import {MOVIE_SEARCH} from '../../Store/actions/Action'
-import {increment} from '../../Store/actions/increment'
 
 function Search() {
   const [searchValue, setSearchValue] = useState(useSelector(state => state.movie));
