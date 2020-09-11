@@ -5,20 +5,30 @@ import "react-app-polyfill/stable";
 // React Components
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import './index.css';
-import Store from './Store'
 import App from './App';
 import Movie from './Pages/Movie';
 import * as serviceWorker from './serviceWorker';
 import { createBrowserHistory } from "history";
+import allReducer from './Store/reducers'
+import thunk from 'redux-thunk';
 
 const hist = createBrowserHistory();
 
+const store = createStore(
+  allReducer,
+  compose(
+      applyMiddleware(thunk),        
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={Store}>
+    <Provider store={store}>
       <BrowserRouter history={hist}>
           <Switch>
             <Route

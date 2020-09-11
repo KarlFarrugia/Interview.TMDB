@@ -9,7 +9,7 @@ For future deployments use `yarn run deploy`
 
 ____
 
-Commit Batch 2 10/09/2020 
+Commit Batch 2 11/09/2020 
 
 Added bootstrap
 Added some styling assets from a personal project
@@ -20,3 +20,8 @@ Created a config file
 Added axios
 Registered an API key
 Setup Redux
+
+____
+
+Fixed redux bugs
+Created send query to search with redux
