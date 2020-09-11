@@ -1,10 +1,10 @@
 import React, {Component, useState} from 'react';
 import { Link } from "react-router-dom";
 import SearchBox from '../Search/SearchBox';
-import { Col, Row, Container  } from 'react-bootstrap';
+import Search from '../../api/Search'
 import {useSelector, useDispatch} from 'react-redux';
 import config from '../../config';
-import Card from '../Card/Card'
+import Card from '../Card/MovieSearchCard'
 import axios from 'axios';
 
 // core components
@@ -13,13 +13,23 @@ import GridContainer from "../../assets/GridContainer.jsx";
 
 function Navbar (){
     const [moviesValue, setMoviesValue] = useState("");
+    const [currentMovie, setCurrentMovie] = useState("");
 
-    async function GetMovies(moviename) {
-        await axios.get(`${config.TMDB.API_ROOT_URL}/search/movie?api_key=${config.TMDB.API_KEY}&query=${moviename}&page=1`)
-        .then(res => {
-            let movies = res.data.results;
-            console.log(movies);
-            setMoviesValue(movies.map((prop, key) => <Card props={prop}/>));
+    function FetchMovies(movieName){
+        if(movieName !== currentMovie){
+            GetMovies(Search(movieName));
+            setCurrentMovie(movieName);
+        }
+    }
+
+    async function GetMovies(movie_list) {
+        movie_list.
+        then(movies => {
+            if (movies !== ""){
+                setMoviesValue(movies.map((prop, key) => <Card props={prop} key={key}/>));
+            }else{
+                setMoviesValue("");
+            }
         });
     }
 
@@ -38,7 +48,7 @@ function Navbar (){
                 </div>
             </GridItem>
             <GridItem xs={12}>
-                {GetMovies(useSelector(state => state.movie)),moviesValue}
+                {FetchMovies(useSelector(state => state.movie)),moviesValue}
                 <div className="Search-Box">
                     <div className="Search-Box-item">
                         item

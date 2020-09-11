@@ -7,7 +7,6 @@ import Card from '../components/Card/Card'
 import {MOVIE_SEARCH} from "../Store/actions/Action"
 
 function MoviePage(props) {
-
     const [moviesValue, setMoviesValue] = useState("");
 
     const GetMovies = async () => {
