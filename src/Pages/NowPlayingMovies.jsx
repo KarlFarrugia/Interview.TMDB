@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import config from '../config';
 import Navbar from '../components/Navbar/Navbar';
 import MoviesListings from '../components/MoviesListings'
 import {useSelector, useDispatch} from 'react-redux';
 import {APPEND_MOVIES, TRUNCATE_MOVIES} from '../Store/actions/Action'
+import {Api_NowPlaying} from '../api'
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
@@ -14,12 +13,7 @@ function NowPlaying() {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
 
-    const GetMovies = async () => {
-        await axios.get(`${config.TMDB.API_ROOT_URL}/movie/now_playing?api_key=${config.TMDB.API_KEY}&page=${page}`)
-        .then(res => {
-            dispatch(APPEND_MOVIES(res.data.results));
-        });
-    }
+    const GetMovies = async () => Api_NowPlaying(dispatch,APPEND_MOVIES,page,"en-EN");
     
     const FetchMore = () => {
         setPage(page + 1);

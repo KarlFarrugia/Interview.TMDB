@@ -1,7 +1,8 @@
 export const TMDB_EN = {
     translation: {
         common :{
-            hello: "Hello"
+            hello: "Hello",
+            locale: "en-EN"
         }
     }
 }

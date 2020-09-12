@@ -1,7 +1,7 @@
 import React, {Component, useState} from 'react';
 import { Link } from "react-router-dom";
 import SearchBox from '../Search/SearchBox';
-import Search from '../../api/Search'
+import {Api_Search} from '../../api/'
 import {useSelector, useDispatch} from 'react-redux';
 import Card from '../Card/MovieSearchCard'
 
@@ -19,7 +19,7 @@ function Navbar (){
 
     function FetchMovies(movieName){
         if(movieName !== currentMovie){
-            GetMovies(Search(movieName));
+            GetMovies(Api_Search(movieName, t("common:locale")));
             setCurrentMovie(movieName);
         }
     }
