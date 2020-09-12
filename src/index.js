@@ -21,7 +21,6 @@ import LatestMovie from './Pages/LatestMovie';
 import NowPlaying from './Pages/NowPlayingMovies';
 
 const hist = createBrowserHistory();
-
 const store = createStore(
   allReducer,
   compose(

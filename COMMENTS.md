@@ -27,3 +27,8 @@ Fixed redux bugs
 Created send query to search with redux
 Created pages for latest movies, now playing, etc
 Created redux elements to add and remove movie arrays
+Created BootStrapped Elements to display data
+
+____
+
+Added genres and a genre drop down to refine
