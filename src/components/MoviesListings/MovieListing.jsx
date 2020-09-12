@@ -5,7 +5,7 @@ import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
 function MovieListing(movie){
-  console.log(movie);
+  //console.log(movie);
   return(
     <GridContainer direction="row" className="header">
         <GridItem xs={12}>

@@ -14,6 +14,9 @@ import { createBrowserHistory } from "history";
 import allReducer from './Store/reducers'
 import thunk from 'redux-thunk';
 
+// Multi Langauge Support
+import "./i18n";
+
 //Pages
 import App from './App';
 import Movie from './Pages/Movie';

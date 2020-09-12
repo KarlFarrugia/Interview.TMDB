@@ -32,6 +32,7 @@ function MoviePage(props) {
                     {moviesValue}
                 </div>
             </section>
+            {/* Get Keywords Movies */}
             {/* Get Similar Movies */}
         </div>
     );

@@ -32,3 +32,9 @@ Created BootStrapped Elements to display data
 ____
 
 Added genres and a genre drop down to refine
+
+____
+
+Commit Batch 3 12/09/2020 
+
+Added MultiLanguage Support
