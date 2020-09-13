@@ -42,4 +42,6 @@ ____
 
 Commit Batch 4 13/09/2020 
 
-Added MultiLanguage Support
+Synced the language with redux
+Made multilanguage update the currently rendered bodies
+Moved the current page number into redux
