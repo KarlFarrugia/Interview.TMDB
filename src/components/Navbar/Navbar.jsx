@@ -77,10 +77,17 @@ function Navbar (){
                     {t("common:hello")}
                 </div>
             </GridItem>
-            <GridItem xs={4}>
+            <GridItem xs={2}>
                 <div className="title">
                     <Link to={"/"}>
                         <span>TMDB</span>
+                    </Link>
+                </div>
+            </GridItem>
+            <GridItem xs={2}>
+                <div className="title">
+                    <Link to={"/Latest"}>
+                        <span>Latest</span>
                     </Link>
                 </div>
             </GridItem>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import MoviesListings from '../components/MoviesListings'
+import MoviesListings from '../components/MoviesListings';
 import {useSelector, useDispatch} from 'react-redux';
 import {APPEND_MOVIES, TRUNCATE_MOVIES, INCREMENT_MOVIE_PAGE, DECREMENT_MOVIE_PAGE} from '../Store/actions/Action'
 import {Api_NowPlaying} from '../api'
@@ -19,7 +19,6 @@ function NowPlaying() {
     const GetMovies = async () => Api_NowPlaying(dispatch,APPEND_MOVIES,page,t("common:locale"));
     
     const FetchMore = () => {
-        console.log(page);
         dispatch(INCREMENT_MOVIE_PAGE());
         GetMovies();
     }
@@ -41,7 +40,7 @@ function NowPlaying() {
             <section className="Results">
                 {/* Movie Refiner by Genre Drop Down */}
                 <div>
-                    {<MoviesListings props={useSelector(state => state.movies)}/>}
+                    {<MoviesListings props={useSelector(state => state.movies)} />}
                 </div>
             </section>
             <section className="FetchMore">

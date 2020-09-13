@@ -14,51 +14,56 @@ import MenuItem from "@material-ui/core/MenuItem";
 import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
-function MoviesListings(movies){
+function MoviesListings(movie_props){
   const [genresValue, setGenresValue] = useState(useSelector(state => state.genres));
   const [currentGenreReducer, setCurrentGenreReducer] = useState(useSelector(state => state.genre));
   const dispatch = useDispatch();
+  const renderGenrePicker = !window.location.pathname.toLowerCase().includes("latest");
   function change(event){
     dispatch(UPDATE_GENRE(event.target.value));
     setCurrentGenreReducer(event.target.value);
   };
 
   return(
-    movies.props ? (
+    movie_props.props ? (
       <div>
         <GridContainer direction="row" className="header">
-            <GridItem xs={12}>
-              <FormControl>
-                {/* The drop down list section */}
-                <Select
-                  MenuProps={{}}
-                  value={currentGenreReducer}
-                  inputProps={{
-                    name: "genre",
-                    id: "genre",
-                    onChange: event => change(event)
-                  }}
-                >
-                  <MenuItem
-                    disabled
-                  >
-                    <span className="menu_item">
-                      Genre
-                    </span>
-                  </MenuItem>
-                  {genresValue.map((props) => {
-                    return(
+            {
+              renderGenrePicker ? (
+                <GridItem xs={12}>
+                  <FormControl>
+                    {/* The drop down list section */}
+                    <Select
+                      MenuProps={{}}
+                      value={currentGenreReducer}
+                      inputProps={{
+                        name: "genre",
+                        id: "genre",
+                        onChange: event => change(event)
+                      }}
+                    >
                       <MenuItem
-                        value={props.id}
+                        disabled
                       >
-                        <span>{props.name}</span>
+                        <span className="menu_item">
+                          Genre
+                        </span>
                       </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </GridItem>
-            {movies.props.map((prop, key) => {
+                      {genresValue.map((props) => {
+                        return(
+                          <MenuItem
+                            value={props.id}
+                          >
+                            <span>{props.name}</span>
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </GridItem>
+              ) : (<> </>)
+            }            
+            {movie_props.props.map((prop, key) => {
               return(
                 <GridItem xs={12} md={4} lg={3}>
                   <MovieListing movie={prop} />
