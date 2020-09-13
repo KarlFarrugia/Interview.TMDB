@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {config} from '../../config';
+import {genreRetriever} from '../../helpers'
 
-import {MovieCardPoster, MovieCardTitle, MovieCardItem, MovieRating} from "../../assets/StyledComponents/MovieCard";
+import {MovieCardPoster, MovieCardTitle, MovieCardItem, MovieRating, MovieCardGenre, MovieCardGenres} from "../../assets/StyledComponents/MovieCard";
 
 import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
 
@@ -31,15 +32,8 @@ function MovieListing(movie){
                     <div className={MovieRatingClass}>{movie.movie.vote_average}/10</div>
                   </MovieRating>
                   <MovieCardPoster src={ImageSource}></MovieCardPoster>
-                </div>
-                <span className="overview">{movie.movie.overview}</span>
-            
-                <div className="additional-details">
-                <GridContainer direction="row" alignItems="baseline">
-                    <GridItem xs={12}>
-                    <span className="genre-list">genre</span>
-                    </GridItem>
-                </GridContainer >
+                  <br />
+                  <MovieCardGenres>{movie.movie.genre_ids.map(genre => <MovieCardGenre><i>{genreRetriever(genre)}</i></MovieCardGenre>)}</MovieCardGenres>
                 </div>
               </MovieCardItem>
           </GridItem>

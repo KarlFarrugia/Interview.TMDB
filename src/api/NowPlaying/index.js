@@ -20,5 +20,6 @@ export default async function Latest (dispatch, action, page, locale, genre = ""
         }
     });
     dispatch(action(result.data.results));
+    return result.data.total_pages;
   }catch (e){}
 }

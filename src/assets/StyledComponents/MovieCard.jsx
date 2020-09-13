@@ -69,3 +69,13 @@ export const MovieRating = styled.div`
         margin: 20px 0 0 5px;
     }
 `
+
+export const MovieCardGenres = styled.span`
+    margin-left: -25px;
+`
+
+export const MovieCardGenre = styled.span`
+    color: white;
+    font-size: 16px;
+    padding-left: 25px;
+`

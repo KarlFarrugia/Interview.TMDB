@@ -14,10 +14,15 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 
 function NowPlaying() {
-    let page = useSelector(state => state.page);
+    const [maxPage, SetMaxPage] = useState(1);
     const { t } = useTranslation("");
     const dispatch = useDispatch();
-    useEffect(() => {Api_NowPlaying(dispatch,APPEND_MOVIES,page,t("common:locale"))},[])
+
+    async function GetMovies(){
+        SetMaxPage(await Api_NowPlaying(dispatch,APPEND_MOVIES,1,t("common:locale")));
+    }
+
+    useEffect(() => {GetMovies()},[])
 
     return (
         <div className="App">
@@ -32,7 +37,7 @@ function NowPlaying() {
                 </div>
             </section>
             <section className="Paging">
-                <Paging max_page={52}/>
+                <Paging max_page={maxPage}/>
             </section>
         </div>
     );

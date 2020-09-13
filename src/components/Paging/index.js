@@ -9,7 +9,6 @@ import {Api_NowPlaying} from '../../api';
 import { useTranslation } from "react-i18next";
 
 function Paging({...props}) {
-    console.log(props);
     const max_page = props.max_page;
     const dispatch = useDispatch();
     const { t } = useTranslation("");
