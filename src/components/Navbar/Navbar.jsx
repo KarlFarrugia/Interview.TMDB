@@ -4,8 +4,10 @@ import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search, Api_NowPlaying} from '../../api/'
 import {useSelector, useDispatch} from 'react-redux';
-import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
+import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT, MOVIE_SEARCH} from '../../Store/actions/Action'
 import Card from '../Card/MovieSearchCard'
+import {LogoImg} from '../../assets/StyledComponents/MovieCard'
+import site_logo from "../../assets/images/site_logo.png"
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
@@ -58,10 +60,11 @@ function Navbar (){
         UpdateMovies();
     }
 
-    function UpdateMovies(){
+    function UpdateMovies(search){
         dispatch(CLEAR_ALL_MOVIES());
         // from 'http://localhost:3000/NowPlaying/additionalStrings' get nowplaying
         const path = window.location.pathname.split("/")[1].toLowerCase();
+        dispatch(MOVIE_SEARCH(""));
         switch(path){
             case 'nowplaying':
                 for (let index = 1; index <= page; index++) {
@@ -74,26 +77,12 @@ function Navbar (){
 
     return (
         <GridContainer direction="row" alignItems="baseline" className="header">
-            <GridItem xs={2}>
-                <div className="greeting">
-                    {t("common:hello")}
-                </div>
+            <GridItem xs={3}>
+                <Link to={"/"}>
+                    <LogoImg src={site_logo}/> Movie Library
+                </Link>
             </GridItem>
-            <GridItem xs={2}>
-                <div className="title">
-                    <Link to={"/"}>
-                        <span>TMDB</span>
-                    </Link>
-                </div>
-            </GridItem>
-            <GridItem xs={2}>
-                <div className="title">
-                    <Link to={"/Latest"}>
-                        <span>Latest</span>
-                    </Link>
-                </div>
-            </GridItem>
-            <GridItem xs={2}>
+            <GridItem xs={3}>
                 <div className="Search">
                     <SearchBox />
                 </div>

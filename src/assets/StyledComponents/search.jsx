@@ -4,6 +4,7 @@ export const SearchError = styled.div`
     text-align: center;
     margin-top: 15px;
 `
+
 export const SearchItemTitle = styled.span`
     font-weight: bold;
 `
@@ -14,12 +15,13 @@ export const SearchItemDate = styled.span`
 
 export const SearchItemGenre = styled.span`
     color: 324967;
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 25px;
 `
 
-export const SearchItemOverview = styled.span`
-    font-size: 14px;
+export const SearchItemOverview = styled.p`
+    font-size: 12px;
+    line-height: 1.5;
 `
 
 export const SearchBoxItem = styled.div`
@@ -35,6 +37,7 @@ export const SearchBoxItem = styled.div`
         border: 1px solid black;
     }
 `
+
 export const SearchBoxContainer = styled.div`    
     border: 1px solid #000000;
     position: absolute;
@@ -47,7 +50,9 @@ export const SearchBoxContainer = styled.div`
     font-size: calc(10px + 1vmin);
     color: white;
     text-align: left;
+    z-index: 2;
 `
+
 export const SearchBoxImg = styled.img`    
     vertical-align: -webkit-baseline-middle;
     margin: 5px 0;

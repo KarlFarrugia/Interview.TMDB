@@ -3,6 +3,7 @@ import MovieListing from './MovieListing';
 import {UPDATE_GENRE, CLEAR_ALL_MOVIES, APPEND_MOVIES} from '../../Store/actions/Action'
 import {useSelector, useDispatch} from 'react-redux';
 import {Api_NowPlaying} from "../../api";
+import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -38,7 +39,7 @@ function MoviesListings(movie_props){
 
   return(
     movie_props.props ? (
-      <div>
+      <MovieCardContainer>
         <GridContainer direction="row" className="header">
             {
               renderGenrePicker ? (
@@ -83,7 +84,7 @@ function MoviesListings(movie_props){
               );
             })}
         </GridContainer >
-      </div>
+      </MovieCardContainer>
     ): (<div>Empty</div>)
   );
 }

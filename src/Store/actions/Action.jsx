@@ -3,12 +3,14 @@ import {
   ADD_MOVIES,
   CLEAR_MOVIES,
   REMOVE_MOVIES,
+  REPLACE_MOVIES,
   GET_GENRES,
   SET_GENRE,
   SET_LANGUAGE,
   INCREMENT_PAGE,
   DECREMENT_PAGE,
-  TOGGLE_ADULT
+  TOGGLE_ADULT,
+  SET_PAGE
 } from "./Types";
 
 export const MOVIE_SEARCH = (query) => {
@@ -27,6 +29,13 @@ export const ACTION_TOGGLE_ADULT = () => {
 export const APPEND_MOVIES = (movies) => {
   return {
       type: ADD_MOVIES,
+      payload: movies 
+  }
+};
+
+export const ACTION_REPLACE_MOVIES = (movies) => {
+  return {
+      type: REPLACE_MOVIES,
       payload: movies 
   }
 };
@@ -75,3 +84,10 @@ export const DECREMENT_MOVIE_PAGE = () =>{
     type: DECREMENT_PAGE
   }
 };
+
+export const ACTION_SET_PAGE = (page) => {
+  return{
+    type: SET_PAGE,
+    payload: page
+  }
+}

@@ -28,7 +28,6 @@ function SearchBox({...props}) {
   }else{
     isEmpty = movieList.length < 1;
   }
-  console.log(movieList);
   return (
     isEmpty ? 
     (
@@ -43,7 +42,6 @@ function SearchBox({...props}) {
       <SearchBoxContainer>
           {movieList.map((prop,key) => {
             let movie_props = prop.props.props;
-            console.log(movie_props);
             return(
               <Link to={`/Movie/${movie_props.id}`}>
                 <SearchBoxItem>
