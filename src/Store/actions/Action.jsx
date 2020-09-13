@@ -7,13 +7,20 @@ import {
   SET_GENRE,
   SET_LANGUAGE,
   INCREMENT_PAGE,
-  DECREMENT_PAGE
+  DECREMENT_PAGE,
+  TOGGLE_ADULT
 } from "./Types";
 
 export const MOVIE_SEARCH = (query) => {
   return{ 
     type: GET_MOVIE_SEARCH, 
     payload: query 
+  };
+};
+
+export const ACTION_TOGGLE_ADULT = () => {
+  return{ 
+    type: TOGGLE_ADULT
   };
 };
 

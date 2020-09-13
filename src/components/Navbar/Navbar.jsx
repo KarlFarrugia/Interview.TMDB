@@ -1,9 +1,10 @@
 import React, {Component, useState} from 'react';
 import { Link } from "react-router-dom";
-import SearchBox from '../Search/SearchBox';
+import SearchBox from '../SearchBox/SearchBox';
+import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search, Api_NowPlaying} from '../../api/'
 import {useSelector, useDispatch} from 'react-redux';
-import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES} from '../../Store/actions/Action'
+import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
 import Card from '../Card/MovieSearchCard'
 
 // multilanguage component
@@ -13,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
+import Switch from '@material-ui/core/Switch';
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -21,7 +23,7 @@ import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
 function Navbar (){
-    const [moviesValue, setMoviesValue] = useState("");
+    const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
     const { t, i18n } = useTranslation("");
     let page = useSelector(state => state.page);
@@ -32,9 +34,9 @@ function Navbar (){
     ];
     const dispatch = useDispatch();
 
-    function FetchMovies(movieName){
+    function FetchMovies(movieName, adult){
         if(movieName !== currentMovie){
-            GetMovies(Api_Search(movieName, t("common:locale")));
+            GetMovies(Api_Search(movieName, t("common:locale"), adult));
             setCurrentMovie(movieName);
         }
     }
@@ -91,7 +93,7 @@ function Navbar (){
                     </Link>
                 </div>
             </GridItem>
-            <GridItem xs={4}>
+            <GridItem xs={2}>
                 <div className="Search">
                     <SearchBox />
                 </div>
@@ -127,16 +129,20 @@ function Navbar (){
                     </Select>
               </FormControl>
             </GridItem>
+            <GridItem xs={2}>
+                {t("common:adult")}
+                <Switch
+                    checked={useSelector(state => state.adult)}
+                    onChange={() => dispatch(ACTION_TOGGLE_ADULT())}
+                    name="Adults"
+                    inputProps={
+                        { 'aria-label': 'primary checkbox' }
+                    }
+                />
+            </GridItem>
             <GridItem xs={12}>
-                {FetchMovies(useSelector(state => state.movie)),moviesValue}
-                {/*<div className="Search-Box">
-                    <div className="Search-Box-item">
-                        item
-                    </div>
-                    <div className="Search-Box-item">
-                        item
-                    </div>
-                </div>*/}
+                {FetchMovies(useSelector(state => state.movie), useSelector(state => state.adult))}
+                <SearchResults movieList={moviesValue} />
             </GridItem>
         </GridContainer >
     );

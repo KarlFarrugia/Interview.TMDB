@@ -5,5 +5,6 @@ export const SET_LANGUAGE = "SET_LANGUAGE";
 export const ADD_MOVIES = "ADD_MOVIES";
 export const REMOVE_MOVIES = "REMOVE_MOVIES";
 export const CLEAR_MOVIES = "CLEAR_MOVIES";
+export const TOGGLE_ADULT = "TOGGLE_ADULT";
 export const INCREMENT_PAGE = "INCREMENT_PAGE";
 export const DECREMENT_PAGE = "DECREMENT_PAGE";

@@ -45,3 +45,14 @@ Commit Batch 4 13/09/2020
 Synced the language with redux
 Made multilanguage update the currently rendered bodies
 Moved the current page number into redux
+added keywords and similar movie apis
+cleaned axios
+made genre filtering
+____
+
+Commit Batch 5 13/09/2020 
+
+Added Styled Components
+Applied style to search
+Search Routes to movie page
+Started centralising some constants

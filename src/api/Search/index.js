@@ -1,9 +1,10 @@
 import axios from 'axios';
-import config from '../../config';
+import { config } from '../../config';
+import {useSelector, useDispatch} from 'react-redux';
 
 let axiosRequest;
 
-export default async function Search (moviename, locale) {
+export default async function Search (moviename, locale, adult = false) {
   try{
     // Cancel previous request
     if (axiosRequest) {
@@ -19,7 +20,8 @@ export default async function Search (moviename, locale) {
           /*api_key: config.TMDB.API_KEY,*/
           page: 1,
           language: locale,
-          query: moviename
+          query: moviename,
+          include_adult: adult
       }
     });
      return data.results;

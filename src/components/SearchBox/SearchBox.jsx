@@ -10,7 +10,7 @@ import { Col, Row } from 'react-bootstrap';
 import {useSelector, useDispatch} from 'react-redux';
 import {MOVIE_SEARCH} from '../../Store/actions/Action'
 
-function Search() {
+function SearchBox() {
   const [searchValue, setSearchValue] = useState(useSelector(state => state.movie));
   const dispatch = useDispatch();
 
@@ -37,4 +37,4 @@ function Search() {
   );
 }
 
-export default (withStyles(InputStyle), Search);
+export default (withStyles(InputStyle), SearchBox);

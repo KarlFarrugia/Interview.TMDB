@@ -5,6 +5,7 @@ import moviesReducer from './MoviesReducer.jsx';
 import movieReducer from './MovieReducer.jsx';
 import languageReducer from './LanguageReducer.jsx';
 import pageReducer from './PageReducer.jsx';
+import adultReducer from './AdultReducer.jsx';
 
 const allReducers = combineReducers({
     genres: genresReducer,
@@ -12,7 +13,8 @@ const allReducers = combineReducers({
     movies: moviesReducer,
     movie: movieReducer,
     language: languageReducer,
-    page: pageReducer
+    page: pageReducer,
+    adult: adultReducer,
 });
 
 export default allReducers; 

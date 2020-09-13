@@ -14,7 +14,7 @@ import { createBrowserHistory } from "history";
 import allReducer from './Store/reducers'
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import config from './config';
+import { config } from './config';
 
 // Multi Langauge Support
 import "./i18n";
