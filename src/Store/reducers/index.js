@@ -1,14 +1,18 @@
 import { combineReducers } from 'redux';
+import genresReducer from './GenresReducer.jsx';
 import genreReducer from './GenreReducer.jsx';
-import currentGenreReducer from './CurrentGenreReducer.jsx';
 import moviesReducer from './MoviesReducer.jsx';
-import movieReducer from './MovieReducer';
+import movieReducer from './MovieReducer.jsx';
+import languageReducer from './LanguageReducer.jsx';
+import pageReducer from './PageReducer.jsx';
 
 const allReducers = combineReducers({
-    genres: genreReducer,
-    genre: currentGenreReducer,
+    genres: genresReducer,
+    genre: genreReducer,
     movies: moviesReducer,
-    movie: movieReducer
+    movie: movieReducer,
+    language: languageReducer,
+    page: pageReducer
 });
 
 export default allReducers; 

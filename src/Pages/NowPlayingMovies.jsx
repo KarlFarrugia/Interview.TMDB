@@ -2,28 +2,32 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import MoviesListings from '../components/MoviesListings'
 import {useSelector, useDispatch} from 'react-redux';
-import {APPEND_MOVIES, TRUNCATE_MOVIES} from '../Store/actions/Action'
+import {APPEND_MOVIES, TRUNCATE_MOVIES, INCREMENT_MOVIE_PAGE, DECREMENT_MOVIE_PAGE} from '../Store/actions/Action'
 import {Api_NowPlaying} from '../api'
+
+// multilanguage component
+import { useTranslation } from "react-i18next";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 
 function NowPlaying() {
-    const [moviesValue, setMoviesValue] = useState("");
-    const [page, setPage] = useState(1);
+    let page = useSelector(state => state.page);
+    const { t } = useTranslation("");
     const dispatch = useDispatch();
 
-    const GetMovies = async () => Api_NowPlaying(dispatch,APPEND_MOVIES,page,"en-EN");
+    const GetMovies = async () => Api_NowPlaying(dispatch,APPEND_MOVIES,page,t("common:locale"));
     
     const FetchMore = () => {
-        setPage(page + 1);
+        console.log(page);
+        dispatch(INCREMENT_MOVIE_PAGE());
         GetMovies();
     }
 
     const Remove = () => {
-        if(page > 1){
-            setPage(page - 1);
+        if(useSelector(state => state.page) > 1){
             dispatch(TRUNCATE_MOVIES());
+            dispatch(DECREMENT_MOVIE_PAGE());
         }
     }
 

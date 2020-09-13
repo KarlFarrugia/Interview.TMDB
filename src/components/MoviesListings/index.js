@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import MovieListing from './MovieListing';
 import {UPDATE_GENRE} from '../../Store/actions/Action'
+import {useSelector, useDispatch} from 'react-redux';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import {useSelector, useDispatch} from 'react-redux';
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -19,7 +19,6 @@ function MoviesListings(movies){
   const [currentGenreReducer, setCurrentGenreReducer] = useState(useSelector(state => state.genre));
   const dispatch = useDispatch();
   function change(event){
-    debugger;
     dispatch(UPDATE_GENRE(event.target.value));
     setCurrentGenreReducer(event.target.value);
   };
