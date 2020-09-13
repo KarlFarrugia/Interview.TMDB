@@ -14,7 +14,14 @@ export default async function Search (moviename, locale) {
     }else{
      // creates a new token for upcomming ajax (overwrite the previous one)
      axiosRequest = axios.CancelToken.source();  
-     const { data } = await axios.get(`${config.TMDB.API_ROOT_URL}/search/movie?api_key=${config.TMDB.API_KEY}&query=${moviename}&page=1&language=${locale}`);
+     const { data } = await axios.get(`${config.TMDB.API_ROOT_URL}/search/movie`, {
+      params: {
+          /*api_key: config.TMDB.API_KEY,*/
+          page: 1,
+          language: locale,
+          query: moviename
+      }
+    });
      return data.results;
     }
   }catch (e){}

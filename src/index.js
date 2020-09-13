@@ -13,6 +13,8 @@ import * as serviceWorker from './serviceWorker';
 import { createBrowserHistory } from "history";
 import allReducer from './Store/reducers'
 import thunk from 'redux-thunk';
+import axios from 'axios';
+import config from './config';
 
 // Multi Langauge Support
 import "./i18n";
@@ -22,6 +24,9 @@ import App from './App';
 import Movie from './Pages/Movie';
 import LatestMovie from './Pages/LatestMovie';
 import NowPlaying from './Pages/NowPlayingMovies';
+
+axios.defaults.params = {}
+axios.defaults.params['api_key'] = config.TMDB.API_KEY;
 
 const hist = createBrowserHistory();
 const store = createStore(

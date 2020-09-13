@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import MovieListing from './MovieListing';
-import {UPDATE_GENRE} from '../../Store/actions/Action'
+import {UPDATE_GENRE, CLEAR_ALL_MOVIES, APPEND_MOVIES} from '../../Store/actions/Action'
 import {useSelector, useDispatch} from 'react-redux';
+import {Api_NowPlaying} from "../../api";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -10,6 +11,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
+// multilanguage component
+import { useTranslation } from "react-i18next";
+
 // core components
 import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
@@ -17,10 +21,18 @@ import GridContainer from "../../assets/GridContainer.jsx";
 function MoviesListings(movie_props){
   const [genresValue, setGenresValue] = useState(useSelector(state => state.genres));
   const [currentGenreReducer, setCurrentGenreReducer] = useState(useSelector(state => state.genre));
-  const dispatch = useDispatch();
   const renderGenrePicker = !window.location.pathname.toLowerCase().includes("latest");
+  const { t, i18n } = useTranslation("");
+  const dispatch = useDispatch();
+
+  function UpdateMovies(){
+    Api_NowPlaying(dispatch,APPEND_MOVIES,1,t("common:locale"),currentGenreReducer);
+  };
+
   function change(event){
     dispatch(UPDATE_GENRE(event.target.value));
+    dispatch(CLEAR_ALL_MOVIES());
+    UpdateMovies();
     setCurrentGenreReducer(event.target.value);
   };
 

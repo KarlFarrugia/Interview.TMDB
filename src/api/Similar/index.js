@@ -11,7 +11,13 @@ export default async function Similar (movie_id, locale) {
     }
     // creates a new token for upcomming ajax (overwrite the previous one)
     axiosSimilarRequest = axios.CancelToken.source();  
-    const result = await axios.get(`${config.TMDB.API_ROOT_URL}/movie/${movie_id}/similar?api_key=${config.TMDB.API_KEY}&page=1&language=${locale}`);
+    const result = await axios.get(`${config.TMDB.API_ROOT_URL}/movie/${movie_id}/similar`, {
+      params: {
+          /*api_key: config.TMDB.API_KEY,*/
+          page: 1,
+          language: locale
+      }
+    });
     return result.data.results;
   }catch (e){}
 }
