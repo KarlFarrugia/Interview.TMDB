@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/Interview.TMDB/static/css/main.5f361e03.chunk.css",
-    "main.js": "/Interview.TMDB/static/js/main.b99fec91.chunk.js",
-    "main.js.map": "/Interview.TMDB/static/js/main.b99fec91.chunk.js.map",
+    "main.css": "/Interview.TMDB/static/css/main.8689c5af.chunk.css",
+    "main.js": "/Interview.TMDB/static/js/main.effc916d.chunk.js",
+    "main.js.map": "/Interview.TMDB/static/js/main.effc916d.chunk.js.map",
     "runtime-main.js": "/Interview.TMDB/static/js/runtime-main.097b4a74.js",
     "runtime-main.js.map": "/Interview.TMDB/static/js/runtime-main.097b4a74.js.map",
-    "static/js/2.9ddee40e.chunk.js": "/Interview.TMDB/static/js/2.9ddee40e.chunk.js",
-    "static/js/2.9ddee40e.chunk.js.map": "/Interview.TMDB/static/js/2.9ddee40e.chunk.js.map",
+    "static/js/2.f9e9153c.chunk.js": "/Interview.TMDB/static/js/2.f9e9153c.chunk.js",
+    "static/js/2.f9e9153c.chunk.js.map": "/Interview.TMDB/static/js/2.f9e9153c.chunk.js.map",
     "index.html": "/Interview.TMDB/index.html",
-    "precache-manifest.2f90d2d49fa4072c53960d77478487f9.js": "/Interview.TMDB/precache-manifest.2f90d2d49fa4072c53960d77478487f9.js",
+    "precache-manifest.273132cd7faa5d37858c0170f429a9a4.js": "/Interview.TMDB/precache-manifest.273132cd7faa5d37858c0170f429a9a4.js",
     "service-worker.js": "/Interview.TMDB/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/Interview.TMDB/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.9ddee40e.chunk.js.LICENSE.txt": "/Interview.TMDB/static/js/2.9ddee40e.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/Interview.TMDB/static/media/logo.5d5d9eef.svg"
+    "static/css/main.8689c5af.chunk.css.map": "/Interview.TMDB/static/css/main.8689c5af.chunk.css.map",
+    "static/js/2.f9e9153c.chunk.js.LICENSE.txt": "/Interview.TMDB/static/js/2.f9e9153c.chunk.js.LICENSE.txt",
+    "static/media/unavailable_movie_poster.jpg": "/Interview.TMDB/static/media/unavailable_movie_poster.b326079b.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.097b4a74.js",
-    "static/js/2.9ddee40e.chunk.js",
-    "static/css/main.5f361e03.chunk.css",
-    "static/js/main.b99fec91.chunk.js"
+    "static/js/2.f9e9153c.chunk.js",
+    "static/css/main.8689c5af.chunk.css",
+    "static/js/main.effc916d.chunk.js"
   ]
 }
