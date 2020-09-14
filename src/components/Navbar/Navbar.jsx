@@ -8,130 +8,70 @@ import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT, M
 import Card from '../Card/MovieSearchCard'
 import {LogoImg} from '../../assets/StyledComponents/MovieCard'
 import site_logo from "../../assets/images/site_logo.png"
+import styled from 'styled-components';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Switch from '@material-ui/core/Switch';
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+import { createMuiTheme } from '@material-ui/core/styles';
 
 // core components
 import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#fff',
+      },
+      secondary: {
+        main: '#fff',
+      },
+    },
+  });
+ 
 function Navbar (){
-    const [moviesValue, setMoviesValue] = useState([]);
-    const [currentMovie, setCurrentMovie] = useState("");
-    const { t, i18n } = useTranslation("");
-    let page = useSelector(state => state.page);
-    const LANGUAGES = [
-        {id: "en", name: "English"},
-        {id: "it", name: "Italiano"},
-        {id: "de", name: "Deutsch"}
-    ];
-    const dispatch = useDispatch();
-
-    function FetchMovies(movieName, adult){
-        if(movieName !== currentMovie){
-            GetMovies(Api_Search(movieName, t("common:locale"), adult));
-            setCurrentMovie(movieName);
-        }
-    }
-
-    async function GetMovies(movie_list) {
-        movie_list.
-        then(movies => {
-            if (movies !== ""){
-                setMoviesValue(movies.map((prop, key) => <Card props={prop} key={key}/>));
-            }else{
-                setMoviesValue("");
-            }
-        });
-    }
-
-    function UpdateLanguage(event) {
-        dispatch(UPDATE_LANGUAGE(event.target.value));
-        i18n.changeLanguage(event.target.value);
-        UpdateMovies();
-    }
-
-    function UpdateMovies(search){
-        dispatch(CLEAR_ALL_MOVIES());
-        // from 'http://localhost:3000/NowPlaying/additionalStrings' get nowplaying
-        const path = window.location.pathname.split("/")[1].toLowerCase();
-        dispatch(MOVIE_SEARCH(""));
-        switch(path){
-            case 'nowplaying':
-                for (let index = 1; index <= page; index++) {
-                    Api_NowPlaying(dispatch,APPEND_MOVIES,index,t("common:locale"));
-                }
-            default:
-                return;
-        }
-    }
-
+    const { t } = useTranslation("");
+    const NavbarTitle = styled.span`
+        margin-left: 5%;
+        font-size: larger;
+    `
     return (
-        <GridContainer direction="row" alignItems="baseline" className="header">
-            <GridItem xs={3}>
-                <Link to={"/"}>
-                    <LogoImg src={site_logo}/> Movie Library
+        <GridContainer 
+            direction="row"
+            justify="flex-end"
+            alignItems="flex-end"
+        >
+            <GridItem xs={12} md={5} lg={7}>
+                <Link onClick={() => window.location.href=`/`} to={"/"}>
+                    <LogoImg src={site_logo}/> <NavbarTitle>{t("common:app_title")}</NavbarTitle>
                 </Link>
             </GridItem>
-            <GridItem xs={3}>
-                <div className="Search">
-                    <SearchBox />
-                </div>
+            <GridItem xs={12} md={7} lg={1}>
+                <Link onClick={() => window.location.href=`/Latest`} to={"/Latest"}>
+                    <span>{t("navigation:latest")}</span>
+                </Link>
             </GridItem>
-            <GridItem xs={2}>
-                <FormControl>
-                    {/* The drop down list section */}
-                    <Select
-                    MenuProps={{}}
-                    value={useSelector(state => state.language)}
-                    inputProps={{
-                        name: "language",
-                        id: "language",
-                        onChange: event => UpdateLanguage(event)
-                    }}
-                    >
-                    <MenuItem
-                        disabled
-                    >
-                        <span className="menu_item">
-                            Language
-                        </span>
-                    </MenuItem>
-                    {LANGUAGES.map((props) => {
-                        return(
-                        <MenuItem
-                            value={props.id}
-                        >
-                            <span>{props.name}</span>
-                        </MenuItem>
-                        );
-                    })}
-                    </Select>
-              </FormControl>
+            <GridItem xs={12} md={7} lg={1}>
+                <Link onClick={() => window.location.href=`/NowPlaying`} to={"/NowPlaying"}>
+                    <span>{t("navigation:now_playing")}</span>
+                </Link>
             </GridItem>
-            <GridItem xs={2}>
-                {t("common:adult")}
-                <Switch
-                    checked={useSelector(state => state.adult)}
-                    onChange={() => dispatch(ACTION_TOGGLE_ADULT())}
-                    name="Adults"
-                    inputProps={
-                        { 'aria-label': 'primary checkbox' }
-                    }
-                />
+            <GridItem xs={12} md={7} lg={1}>
+                <Link onClick={() => window.location.href=`/Upcoming`} to={"/Upcoming"}>
+                    <span>{t("navigation:upcoming")}</span>
+                </Link>
             </GridItem>
-            <GridItem xs={12}>
-                {FetchMovies(useSelector(state => state.movie), useSelector(state => state.adult))}
-                <SearchResults movieList={moviesValue} />
+            <GridItem xs={12} md={7} lg={1}>
+                <Link onClick={() => window.location.href=`/Popular`} to={"/Popular"}>
+                    <span>{t("navigation:popular")}</span>
+                </Link>
+            </GridItem>
+            <GridItem xs={12} md={7} lg={1}>
+                <Link onClick={() => window.location.href=`/TopRated`} to={"/TopRated"}>
+                    <span>{t("navigation:top_rated")}</span>
+                </Link>
             </GridItem>
         </GridContainer >
     );

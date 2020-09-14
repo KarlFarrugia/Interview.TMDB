@@ -22,10 +22,10 @@ function Paging({...props}) {
         <PagingElement>
           <Pagination
             hideDisabled
-            prevPageText='prev'
-            nextPageText='next'
-            firstPageText='first'
-            lastPageText='last'
+            prevPageText={t(`page:previous`)}
+            nextPageText={t(`page:next`)}
+            firstPageText={t(`page:first`)}
+            lastPageText={t(`page:last`)}
             activePage={useSelector(state => state.page)}
             itemsCountPerPage={1}
             totalItemsCount={max_page}

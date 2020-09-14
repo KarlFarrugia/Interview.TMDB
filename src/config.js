@@ -2,7 +2,8 @@ export const config = {
     TMDB: {
         API_ROOT_URL: 'https://api.themoviedb.org/3',
         API_KEY: '9ac50b6cb4e7cc6cff49a3593d73151e',
-        POSTER_ROOT: 'https://image.tmdb.org/t/p/w342'
+        POSTER_ROOT: 'https://image.tmdb.org/t/p/w342',
+        BACKDROP_ROOT: 'https://image.tmdb.org/t/p/original'
     }
 };
 
@@ -22,8 +23,8 @@ export const GENRES = [
     {id: 10402, name: "Music"},
     {id: 9648, name: "Mystery"},
     {id: 10749, name: "Romance"},
-    {id: 878, name: "Science Fiction"},
-    {id: 10770, name: "TV Movie"},
+    {id: 878, name: "ScienceFiction"},
+    {id: 10770, name: "TVMovie"},
     {id: 53, name: "Thriller"},
     {id: 10752, name: "War"},
     {id: 37, name: "Western"}

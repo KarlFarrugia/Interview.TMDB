@@ -10,10 +10,18 @@ export const MovieCardTitle = styled.h1`
     color: white;
     text-align: center;
     z-index: 1;
+    height: 65px;
+`
+
+export const MovieCardElement = styled.div`
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    height: 530px;
+    width: 350px;
 `
 
 export const MovieCardContainer = styled.div`    
-    background-color: #3e434a;
     width: 100%;
     color: white;
     text-align: center;
@@ -34,10 +42,8 @@ export const MovieCardItem = styled.div`
 export const MovieCardPoster = styled.img`    
     border-radius: 25px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 513px;
-    width: 342px;
+    height: 100%;
+    width: 100%;
 `
 
 export const MovieRating = styled.div`    
@@ -76,6 +82,6 @@ export const MovieCardGenres = styled.span`
 
 export const MovieCardGenre = styled.span`
     color: white;
-    font-size: 16px;
+    font-size: 12px;
     padding-left: 25px;
 `

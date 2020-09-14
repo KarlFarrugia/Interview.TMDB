@@ -25,6 +25,7 @@ export const SearchItemOverview = styled.p`
 `
 
 export const SearchBoxItem = styled.div`
+border-radius: 20px;
     margin: 2px;
     background-color: #bbbbbb;
     color: #324967;
@@ -39,21 +40,23 @@ export const SearchBoxItem = styled.div`
 `
 
 export const SearchBoxContainer = styled.div`    
+    border-radius: 20px;
     border: 1px solid #000000;
     position: absolute;
-    background-color: #324967;
     min-height: 6vh;
     width: 98.5%;
+    margin-left: -15px;
     display: flex;
     flex-direction: column;
     align-items: left;
     font-size: calc(10px + 1vmin);
     color: white;
     text-align: left;
-    z-index: 2;
+    z-index: 333;
 `
 
-export const SearchBoxImg = styled.img`    
+export const SearchBoxImg = styled.img`   
+    border-radius: 5px; 
     vertical-align: -webkit-baseline-middle;
     margin: 5px 0;
     width: 75px;

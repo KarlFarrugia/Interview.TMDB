@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import SecondaryNavbar from '../components/Navbar/SecondaryNavbar';
 import MoviesListings from '../components/MoviesListings';
 import Paging from '../components/Paging'
 import {useSelector, useDispatch} from 'react-redux';
@@ -9,9 +7,6 @@ import {Api_NowPlaying} from '../api'
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
-
-import withStyles from "@material-ui/core/styles/withStyles";
-import Button from "@material-ui/core/Button";
 
 function NowPlaying() {
     const [maxPage, SetMaxPage] = useState(1);
@@ -26,10 +21,6 @@ function NowPlaying() {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <Navbar />
-                <SecondaryNavbar />
-            </header>
             <section className="Results">
                 {/* Movie Refiner by Genre Drop Down */}
                 <div>

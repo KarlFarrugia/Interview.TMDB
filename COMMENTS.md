@@ -58,3 +58,5 @@ Search Routes to movie page
 Started centralising some constants
 Added Paging
 Added a second navigation bar
+
+[TODO:: close button in search]

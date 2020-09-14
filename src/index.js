@@ -6,7 +6,7 @@ import "react-app-polyfill/stable";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { StaticRouter, BrowserRouter, Router, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -24,6 +24,8 @@ import App from './App';
 import Movie from './Pages/Movie';
 import LatestMovie from './Pages/LatestMovie';
 import NowPlaying from './Pages/NowPlayingMovies';
+import Navbar from './components/Navbar/Navbar';
+import SecondaryNavbar from './components/Navbar/SecondaryNavbar';
 
 axios.defaults.params = {}
 axios.defaults.params['api_key'] = config.TMDB.API_KEY;
@@ -41,24 +43,28 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter history={hist}>
-          <Switch>
-            <Route
-              path="/Movie/:moviename"
-              component={Movie}
-            />
-            <Route
-              path="/Latest"
-              component={LatestMovie}
-            />
-            <Route
-              path="/NowPlaying"
-              component={NowPlaying}
-            />
-            <Route
-              path="/"
-              component={App}
-            />
-          </Switch>
+        <header className="App-header">
+          <Navbar />
+          <SecondaryNavbar />
+        </header>
+        <Switch>
+          <Route
+            path="/Movie/:movieid"
+            component={Movie}
+          />
+          <Route
+            path="/Latest"
+            component={LatestMovie}
+          />
+          <Route
+            path="/NowPlaying"
+            component={NowPlaying}
+          />
+          <Route
+            path="/"
+            component={NowPlaying}
+          />
+        </Switch>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

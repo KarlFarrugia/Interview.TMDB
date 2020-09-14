@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import SearchStyle from "../../assets/SearchStyle";
 import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchError, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/search";
 import {dateExtractor} from "../../helpers"
@@ -20,8 +20,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 function SearchBox({...props}) {
   let { movieList, ...rest } = props;
-  const { t, i18n } = useTranslation("");
-  const MOVIE_DATE = "(DATE_TO_REPLACE)"
+  const { t } = useTranslation("");
   let isEmpty = false;
   if(movieList === ""){
     movieList = [];
@@ -31,19 +30,14 @@ function SearchBox({...props}) {
   return (
     isEmpty ? 
     (
-      <SearchBoxContainer>
-        <SearchError>
-         {t("search:no_results")}
-        </SearchError>
-      </SearchBoxContainer>
+      <></>
     ) : 
-    movieList.length > 0 ?
     (
       <SearchBoxContainer>
           {movieList.map((prop,key) => {
-            let movie_props = prop.props.props;
+            let movie_props = prop;
             return(
-              <Link to={`/Movie/${movie_props.id}`}>
+              <Link onClick={() => window.location.href=`/Movie/${movie_props.id}`} to={`/Movie/${movie_props.id}`}>
                 <SearchBoxItem>
                   <GridContainer direction="row" alignItems="flex-start" className="header">
                     <GridItem xs={1}>
@@ -67,7 +61,7 @@ function SearchBox({...props}) {
             );
           })}
       </SearchBoxContainer>
-    ) : (<></>)
+    )
   );
 }
 

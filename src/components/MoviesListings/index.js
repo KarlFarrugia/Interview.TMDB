@@ -67,7 +67,7 @@ function MoviesListings(movie_props){
                           <MenuItem
                             value={props.id}
                           >
-                            <span>{props.name}</span>
+                            <span>{t(`genres:${props.name.toLowerCase()}`)}</span>
                           </MenuItem>
                         );
                       })}
@@ -78,7 +78,7 @@ function MoviesListings(movie_props){
             }            
             {movie_props.props.map((prop, key) => {
               return(
-                <GridItem xs={12} md={4} lg={3}>
+                <GridItem xs={12} sm={6} md={4} lg={3}>
                   <MovieListing movie={prop} />
                 </GridItem>
               );

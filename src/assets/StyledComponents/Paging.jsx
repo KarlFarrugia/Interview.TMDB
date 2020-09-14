@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const PagingElement = styled.div`    
-    background-color: #3e434a;
     padding: 30px;
 
     ul {
         list-style: none;
 
         li { 
-            width: 45px;
+            width: 65px;
             display: inline-block;
 
             a {
