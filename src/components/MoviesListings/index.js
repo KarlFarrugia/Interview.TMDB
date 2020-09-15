@@ -40,12 +40,15 @@ function MoviesListings(movie_props){
   return(
     movie_props.props ? (
       <MovieCardContainer>
-        <GridContainer direction="row" className="header">
-            {
+        <GridContainer 
+          direction="row"
+          justify="space-evenly"
+          alignItems="center"
+        >
+            {/*
               renderGenrePicker ? (
                 <GridItem xs={12}>
                   <FormControl>
-                    {/* The drop down list section */}
                     <Select
                       MenuProps={{}}
                       value={currentGenreReducer}
@@ -75,10 +78,10 @@ function MoviesListings(movie_props){
                   </FormControl>
                 </GridItem>
               ) : (<> </>)
-            }            
+            */}            
             {movie_props.props.map((prop, key) => {
               return(
-                <GridItem xs={12} sm={6} md={4} lg={3}>
+                <GridItem xs={12} sm={12} md={6} lg={4} xl={3}>
                   <MovieListing movie={prop} />
                 </GridItem>
               );

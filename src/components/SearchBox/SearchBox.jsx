@@ -23,16 +23,16 @@ function SearchBox() {
   }
 
   return (
-        <FormControl>
-        <InputLabel>
-            {t(`search:title`)}
-        </InputLabel>
-        <Input 
-            autoFocus
-            value={searchValue}
-            onChange={handleChange}
-        />
-        </FormControl>
+    <FormControl>
+    <InputLabel>
+        {t(`search:title`)}
+    </InputLabel>
+    <Input 
+        autoFocus
+        value={searchValue}
+        onChange={handleChange}
+    />
+    </FormControl>
   );
 }
 

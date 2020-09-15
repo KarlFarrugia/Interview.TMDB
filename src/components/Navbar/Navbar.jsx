@@ -8,7 +8,7 @@ import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT, M
 import Card from '../Card/MovieSearchCard'
 import {LogoImg} from '../../assets/StyledComponents/MovieCard'
 import site_logo from "../../assets/images/site_logo.png"
-import styled from 'styled-components';
+import {NavbarTitle} from '../../assets/StyledComponents/Navigation';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
@@ -33,42 +33,39 @@ const theme = createMuiTheme({
  
 function Navbar (){
     const { t } = useTranslation("");
-    const NavbarTitle = styled.span`
-        margin-left: 5%;
-        font-size: larger;
-    `
+
     return (
         <GridContainer 
             direction="row"
-            justify="flex-end"
+            justify="space-between"          
             alignItems="flex-end"
         >
-            <GridItem xs={12} md={5} lg={7}>
+            <GridItem xs={12} sm={6} md={12} lg={7} xl={7}>
                 <Link onClick={() => window.location.href=`/`} to={"/"}>
                     <LogoImg src={site_logo}/> <NavbarTitle>{t("common:app_title")}</NavbarTitle>
                 </Link>
             </GridItem>
-            <GridItem xs={12} md={7} lg={1}>
+            <GridItem xs={12} sm={6} md={2} lg={1}>
                 <Link onClick={() => window.location.href=`/Latest`} to={"/Latest"}>
                     <span>{t("navigation:latest")}</span>
                 </Link>
             </GridItem>
-            <GridItem xs={12} md={7} lg={1}>
+            <GridItem xs={12} sm={6} md={2} lg={1}>
                 <Link onClick={() => window.location.href=`/NowPlaying`} to={"/NowPlaying"}>
                     <span>{t("navigation:now_playing")}</span>
                 </Link>
             </GridItem>
-            <GridItem xs={12} md={7} lg={1}>
+            <GridItem xs={12} sm={6} md={2} lg={1}>
                 <Link onClick={() => window.location.href=`/Upcoming`} to={"/Upcoming"}>
                     <span>{t("navigation:upcoming")}</span>
                 </Link>
             </GridItem>
-            <GridItem xs={12} md={7} lg={1}>
+            <GridItem xs={12} sm={6} md={2} lg={1}>
                 <Link onClick={() => window.location.href=`/Popular`} to={"/Popular"}>
                     <span>{t("navigation:popular")}</span>
                 </Link>
             </GridItem>
-            <GridItem xs={12} md={7} lg={1}>
+            <GridItem xs={12} sm={6} md={2} lg={1}>
                 <Link onClick={() => window.location.href=`/TopRated`} to={"/TopRated"}>
                     <span>{t("navigation:top_rated")}</span>
                 </Link>

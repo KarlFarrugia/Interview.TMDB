@@ -17,7 +17,9 @@ function NowPlaying() {
         SetMaxPage(await Api_NowPlaying(dispatch,APPEND_MOVIES,1,t("common:locale")));
     }
 
-    useEffect(() => {GetMovies()},[])
+    useEffect(() => {
+        GetMovies();
+    },[])
 
     return (
         <div className="App">

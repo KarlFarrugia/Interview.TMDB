@@ -4,8 +4,7 @@ import MoviesListings from '../components/MoviesListings'
 import MovieId from '../components/MovieId';
 import {CLEAR_ALL_MOVIES, APPEND_MOVIES} from '../Store/actions/Action'
 import {useSelector, useDispatch} from 'react-redux';
-import {Api_Latest} from '../api'
-import Card from '../components/Card/Card'
+import {Api_Latest} from '../api';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";

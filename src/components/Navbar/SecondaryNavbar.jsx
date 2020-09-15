@@ -4,7 +4,7 @@ import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search, Api_NowPlaying} from '../../api/'
 import {useSelector, useDispatch} from 'react-redux';
-import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT, MOVIE_SEARCH} from '../../Store/actions/Action'
+import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, UPDATE_GENRE, MOVIE_SEARCH} from '../../Store/actions/Action'
 import Card from '../Card/MovieSearchCard'
 import {LogoImg} from '../../assets/StyledComponents/MovieCard'
 import site_logo from "../../assets/images/site_logo.png"
@@ -32,6 +32,8 @@ import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/sty
 function SecondaryNavbar (){
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
+    const [currentGenreReducer, setCurrentGenreReducer] = useState(useSelector(state => state.genre));
+    const [genresValue, setGenresValue] = useState(useSelector(state => state.genres));
     const { t, i18n } = useTranslation("");
     let page = useSelector(state => state.page);
     const dispatch = useDispatch();
@@ -55,6 +57,13 @@ function SecondaryNavbar (){
     const NavbarContainer = styled.div`
         margin-top: 10px;
     `
+
+    function change(event){
+      dispatch(UPDATE_GENRE(event.target.value));
+      dispatch(CLEAR_ALL_MOVIES());
+      UpdateMovies();
+      setCurrentGenreReducer(event.target.value);
+    };
     
     async function GetMovies(movie_list) {
         movie_list.
@@ -103,12 +112,43 @@ function SecondaryNavbar (){
                 alignItems="flex-end"
             >
                 <br />
-                <GridItem xs={4} md={5} lg={2}>
+                <GridItem xs={6} md={3} lg={2}>
                     <div className="Search">
                         <SearchBox />
                     </div>
                 </GridItem>
-                <GridItem xs={4} md={5} lg={2}>
+                <GridItem xs={6} md={3} lg={2}>
+                    <FormControl>
+                        {/* The drop down list section */}
+                        <Select
+                        MenuProps={{}}
+                        value={currentGenreReducer}
+                        inputProps={{
+                            name: "genre",
+                            id: "genre",
+                            onChange: event => change(event)
+                        }}
+                        >
+                        <MenuItem
+                            disabled
+                        >
+                            <span className="menu_item">
+                            Genre
+                            </span>
+                        </MenuItem>
+                        {genresValue.map((props) => {
+                            return(
+                            <MenuItem
+                                value={props.id}
+                            >
+                                <span>{t(`genres:${props.name.toLowerCase()}`)}</span>
+                            </MenuItem>
+                            );
+                        })}
+                        </Select>
+                    </FormControl>
+                </GridItem>
+                <GridItem xs={6} md={3} lg={2}>
                     <ThemeProvider theme={theme}>
                         <FormControl>
                                 {/* The drop down list section */}
@@ -141,7 +181,7 @@ function SecondaryNavbar (){
                         </FormControl>
                     </ThemeProvider>
                 </GridItem>
-                <GridItem xs={4} md={2} lg={2}>
+                <GridItem xs={6} md={3} lg={2}>
                     <ThemeProvider theme={theme}>
                         <FormControlLabel
                             value="start"

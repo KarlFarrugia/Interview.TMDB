@@ -29,8 +29,6 @@ export const MovieCardContainer = styled.div`
 `
 
 export const MovieCardItem = styled.div`  
-    margin: 10px;
-
     :hover {
         cursor: pointer;
         background: #55585d; 

@@ -42,7 +42,7 @@ function SearchBox({...props}) {
                   <GridContainer direction="row" alignItems="flex-start" className="header">
                     <GridItem xs={1}>
                       {movie_props.poster_path !== null ?
-                        (<SearchBoxImg src={`${config.TMDB.POSTER_ROOT}${movie_props.poster_path}`} />):
+                        (<SearchBoxImg src={`${config.TMDB.POSTER_ROOT_W342}${movie_props.poster_path}`} />):
                         (<SearchBoxImg src={unavailable_poster_image} />)                  
                       }                  
                     </GridItem>

@@ -2,7 +2,9 @@ export const config = {
     TMDB: {
         API_ROOT_URL: 'https://api.themoviedb.org/3',
         API_KEY: '9ac50b6cb4e7cc6cff49a3593d73151e',
-        POSTER_ROOT: 'https://image.tmdb.org/t/p/w342',
+        POSTER_ROOT_W342: 'https://image.tmdb.org/t/p/w342',
+        POSTER_ROOT_W780: 'https://image.tmdb.org/t/p/w780',
+        POSTER_ROOT_ORIGINAL: 'https://image.tmdb.org/t/p/original',
         BACKDROP_ROOT: 'https://image.tmdb.org/t/p/original'
     }
 };

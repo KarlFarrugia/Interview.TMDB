@@ -12,12 +12,11 @@ import unavailable_poster_image from "../../assets/images/unavailable_movie_post
 
 // core components
 import GridItem from "../../assets/GridItem.jsx";
-import GridContainer from "../../assets/GridContainer.jsx";
 
 function MovieListing(movie){
   let MovieRatingClass = "Average";
-  const ImageSource = movie.movie.poster_path === null ? unavailable_poster_image : config.TMDB.POSTER_ROOT+movie.movie.poster_path;
-  const { t, i18n } = useTranslation("");
+  const ImageSource = movie.movie.poster_path === null ? unavailable_poster_image : config.TMDB.POSTER_ROOT_W342+movie.movie.poster_path;
+  const { t } = useTranslation("");
   switch (true){
     case (movie.movie.vote_average <= 4): MovieRatingClass = "Bad"; break;
     case (movie.movie.vote_average < 7): MovieRatingClass = "Average"; break;
@@ -26,7 +25,6 @@ function MovieListing(movie){
   }
   return(
     <Link to={`/Movie/${movie.movie.id}`}>
-      <GridContainer>
         <MovieCardItem>
           <GridItem xs={12}>
           <MovieCardTitle>{movie.movie.original_title}</MovieCardTitle>
@@ -42,7 +40,6 @@ function MovieListing(movie){
             <MovieCardGenres>{movie.movie.genre_ids.map(genre => <MovieCardGenre><i>{t(`genres:${genreRetriever(genre).toLowerCase()}`)}</i></MovieCardGenre>)}</MovieCardGenres>
           </GridItem>
         </MovieCardItem>
-      </GridContainer>
     </Link>
   );
 }

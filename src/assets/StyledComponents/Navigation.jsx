@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const NavbarTitle = styled.span`
+    margin-left: 5%;
+    font-size: larger;
+`
+
 export const NavigationItem = styled.span`    
     margin-right: 50px;
 `;

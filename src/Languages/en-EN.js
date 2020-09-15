@@ -11,7 +11,7 @@ export const TMDB_EN = {
         },
         genres : {
             title: "Genre",
-            none: "None",
+            none: "All",
             action: "Action",
             adventure: "Adventure",
             animation: "Animation",
