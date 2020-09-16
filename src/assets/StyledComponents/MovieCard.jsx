@@ -6,7 +6,7 @@ export const LogoImg = styled.img`
     margin-right: auto;
 `
 
-export const MovieCardTitle = styled.h1`    
+export const MovieCardTitle = styled.h2`    
     color: white;
     text-align: center;
     z-index: 1;
@@ -29,9 +29,10 @@ export const MovieCardContainer = styled.div`
 `
 
 export const MovieCardItem = styled.div`  
+    margin-bottom: 30px;
     :hover {
         cursor: pointer;
-        background: #55585d; 
+        background: #636671; 
         z-index: 2;
         border-radius: 25px;
     }
@@ -55,21 +56,21 @@ export const MovieRating = styled.div`
         background-color: green;
         border-radius: 5px;
         width: 60px;
-        height: 30px;
+        height: 20px;
         margin: 20px 0 0 5px;
     }
     div.Average{
         background-color: grey;
         border-radius: 5px;
         width: 60px;
-        height: 30px;
+        height: 20px;
         margin: 20px 0 0 5px;
     }
     div.Bad{
         background-color: red;
         border-radius: 5px;
         width: 60px;
-        height: 30px;
+        height: 20px;
         margin: 20px 0 0 5px;
     }
 `

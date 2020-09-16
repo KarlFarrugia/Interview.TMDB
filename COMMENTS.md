@@ -62,10 +62,16 @@ ____
 
 Commit Batch 6 14/09/2020 
 
-Added font awesome
+Added fontawesome
 Streamlined some styles
 Added more structure to navigation bar 
 Added more responsiveness
+____
+
+Commit Batch 6 16/09/2020 
+
+Added more structure to the navigation bar
+Styled the individual movie page
 
 [TODO:: close button in search]
 [INVIGATE:: back button issue]

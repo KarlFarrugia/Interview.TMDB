@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import MoviesListings from '../components/MoviesListings';
+import {Api_QueryMovie, Api_Similar, Api_Keywords, Api_Videos} from '../api';
+import { connect } from 'react-redux';
 import MovieId from '../components/MovieId';
 
+// multilanguage component
+import { useTranslation } from "react-i18next";
 
 function MoviePage(props) {
     return (
-        <MovieId movieId={props.match.params.movieid}/>
+        <MovieId movieId={parseInt(props.movieId)}/>
     );
 }
 
-export default MoviePage;
+const mapStateToProps = state => {  
+    return {
+        movieId: window.location.pathname.split("/")[2],
+    }
+}
+  
+/*const mapDispatchToProps = dispatch => ({
+    reducer: () => dispatch(action())
+})*/
+
+export default connect(mapStateToProps, null)(MoviePage);

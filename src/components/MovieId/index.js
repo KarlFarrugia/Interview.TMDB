@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import MoviesListings from '../../components/MoviesListings';
 import {Api_QueryMovie, Api_Similar, Api_Keywords, Api_Videos} from '../../api';
-import {MovieContainer, MovieBody} from '../../assets/StyledComponents/Movie';
+import {MovieContainer, MovieBody, MovieHeader} from '../../assets/StyledComponents/Movie';
 import styled from 'styled-components';
 import {config} from '../../config';
 import {useSelector, useDispatch} from 'react-redux';
@@ -22,11 +22,11 @@ function MoviePage(props) {
     const { t } = useTranslation("");
     const dispatch = useDispatch();
 
-    let MovieBackgroundElement = styled.div`    
+    const MovieBackgroundElement = styled.div`    
         background: url(${config.TMDB.BACKDROP_ROOT}/${moviesValue.backdrop_path}) center center / cover no-repeat fixed;
         position: fixed;
         top: 0px;
-        filter: saturate(0.5) opacity(0.6);
+        filter: saturate(0.5) opacity(0.3);
         width: 100%;
         max-width: 100%;
         height: 100%;
@@ -61,20 +61,18 @@ function MoviePage(props) {
                     </MovieBody> 
                 </GridItem>  
                 <GridItem xs={12}>     
-                </GridItem>  
+                </GridItem>{/*   
                 <GridItem xs={12}>
-                {/* Get Keywords Movies */}
+                Get Keywords Movies 
                 <section className="Keyword">
                     <h1>Keywords</h1>
                     {keywords.map((props) => <div key={props.id}>{props.name}</div>)}
                 </section>
-                </GridItem>
+                </GridItem>*/}
                 <GridItem xs={12}>
-                {/* Get Similar Movies */}
-                <section className="Similar">
-                    <h1>People also saw</h1>
-                    {<MoviesListings props={similarMovies} />}
-                </section>
+                    {/* Get Similar Movies */}
+                    <MovieHeader>{t("movie:similar").replace("{MOVIE}",moviesValue.title)}</MovieHeader>
+                    <MoviesListings props={similarMovies} />
                 </GridItem>
             </GridContainer>
         </MovieContainer>

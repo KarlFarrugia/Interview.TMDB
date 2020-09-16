@@ -8,7 +8,7 @@ import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT, M
 import Card from '../Card/MovieSearchCard'
 import {LogoImg} from '../../assets/StyledComponents/MovieCard'
 import site_logo from "../../assets/images/site_logo.png"
-import {NavbarTitle} from '../../assets/StyledComponents/Navigation';
+import {NavbarTitle, NavbarPosition, NavigationSpacer} from '../../assets/StyledComponents/Navigation';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
@@ -20,57 +20,68 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
-const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#fff',
-      },
-      secondary: {
-        main: '#fff',
-      },
-    },
-  });
- 
 function Navbar (){
     const { t } = useTranslation("");
 
     return (
-        <GridContainer 
-            direction="row"
-            justify="space-between"          
-            alignItems="flex-end"
-        >
-            <GridItem xs={12} sm={6} md={12} lg={7} xl={7}>
-                <Link onClick={() => window.location.href=`/`} to={"/"}>
-                    <LogoImg src={site_logo}/> <NavbarTitle>{t("common:app_title")}</NavbarTitle>
-                </Link>
-            </GridItem>
-            <GridItem xs={12} sm={6} md={2} lg={1}>
-                <Link onClick={() => window.location.href=`/Latest`} to={"/Latest"}>
-                    <span>{t("navigation:latest")}</span>
-                </Link>
-            </GridItem>
-            <GridItem xs={12} sm={6} md={2} lg={1}>
-                <Link onClick={() => window.location.href=`/NowPlaying`} to={"/NowPlaying"}>
-                    <span>{t("navigation:now_playing")}</span>
-                </Link>
-            </GridItem>
-            <GridItem xs={12} sm={6} md={2} lg={1}>
-                <Link onClick={() => window.location.href=`/Upcoming`} to={"/Upcoming"}>
-                    <span>{t("navigation:upcoming")}</span>
-                </Link>
-            </GridItem>
-            <GridItem xs={12} sm={6} md={2} lg={1}>
-                <Link onClick={() => window.location.href=`/Popular`} to={"/Popular"}>
-                    <span>{t("navigation:popular")}</span>
-                </Link>
-            </GridItem>
-            <GridItem xs={12} sm={6} md={2} lg={1}>
-                <Link onClick={() => window.location.href=`/TopRated`} to={"/TopRated"}>
-                    <span>{t("navigation:top_rated")}</span>
-                </Link>
-            </GridItem>
-        </GridContainer >
+        <NavbarPosition>
+            <GridContainer 
+                direction="row"
+                justify="flex-end"          
+                alignItems="flex-end"
+            >
+                <GridItem xs={12} sm={4} lg={7}>
+                    <NavigationSpacer>
+                        <Link to={"/"}>
+                            <LogoImg src={site_logo}/> <NavbarTitle>{t("common:app_title")}</NavbarTitle>
+                        </Link>
+                    </NavigationSpacer>
+                </GridItem>
+                <GridItem xs={12} sm={8} lg={5}>
+                    <GridContainer 
+                        direction="row"
+                        justify="space-between"          
+                        alignItems="flex-end"
+                    >
+                        <GridItem xs={2} sm={1} md={1} lg={1}>
+                            <NavigationSpacer>
+                                <Link to={"/Latest"}>
+                                    <span>{t("navigation:latest")}</span>
+                                </Link>
+                            </NavigationSpacer>
+                        </GridItem>
+                        <GridItem xs={2} sm={1} md={1} lg={1}>
+                            <NavigationSpacer>
+                                <Link to={"/NowPlaying"}>
+                                    <span>{t("navigation:now_playing")}</span>
+                                </Link>
+                            </NavigationSpacer>
+                        </GridItem>
+                        <GridItem xs={2} sm={1} md={1} lg={1}>
+                            <NavigationSpacer>
+                                <Link to={"/Upcoming"}>
+                                    <span>{t("navigation:upcoming")}</span>
+                                </Link>
+                            </NavigationSpacer>
+                        </GridItem>
+                        <GridItem xs={2} sm={1} md={1} lg={1}>
+                            <NavigationSpacer>
+                                <Link to={"/Popular"}>
+                                    <span>{t("navigation:popular")}</span>
+                                </Link>
+                            </NavigationSpacer>
+                        </GridItem>
+                        <GridItem xs={2} sm={1} md={1} lg={1}>
+                            <NavigationSpacer>
+                                <Link onClick={() => window.location.href=`/TopRated`} to={"/TopRated"}>
+                                    <span>{t("navigation:top_rated")}</span>
+                                </Link>
+                            </NavigationSpacer>
+                        </GridItem>
+                    </GridContainer >
+                </GridItem>
+            </GridContainer >
+        </NavbarPosition>
     );
 }
 

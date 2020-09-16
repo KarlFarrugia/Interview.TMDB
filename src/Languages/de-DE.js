@@ -40,9 +40,9 @@ export const TMDB_DE = {
         },
         navigation: {
             latest: "Neueste",
-            now_playing: "Läuft Gerade",
-            upcoming: "Bevorstehende",
-            top_rated: "Bestbewertet",
+            now_playing: "Aktuell",
+            upcoming: "Kommend",
+            top_rated: "Beste",
             popular: "Beliebt"
         },
         language: {
@@ -50,6 +50,16 @@ export const TMDB_DE = {
         },
         search: {
             title: "Suche"
-        }
+        },
+        movie: {
+            similar: "Leute, {MOVIE} gesehen haben, haben sich auch die folgenden Filme angesehen",
+            trailer: "Trailer",
+            voters: "wähler",
+            minutes: "minuten",
+            release: "Veröffentlichung",
+            numbers: "Die Zahlen",
+            budget: "Budget:",
+            revenue: "Einnahmen:"
+        }     
     }
 }

@@ -1,7 +1,11 @@
 import {GENRES} from "../config";
 
 export function genreRetriever (id) {
-    return GENRES.find(genre => genre.id === id).name;
+    try{
+        return GENRES.find(genre => genre.id === id).name;
+    }catch(e){
+        return "";
+    }
 }
 
 export function dateExtractor (date){
@@ -9,5 +13,26 @@ export function dateExtractor (date){
         return date.substring(0,4)
     }catch(e){
         return "";
+    }
+}
+
+export function urlCleaner (url){
+    try{
+        if(url){
+            if(url.slice(url.length - 1) === '/')       
+                url = url.slice(0, -1);
+            return url.replace(/(^\w+:|^)\/\//, '');
+        }
+        return "";
+    }catch(e){
+        return "";
+    }
+}
+
+export function numberLocalisation (number){
+    try{
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }catch(e){
+        return number;
     }
 }

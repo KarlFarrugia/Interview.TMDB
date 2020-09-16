@@ -40,9 +40,9 @@ export const TMDB_EN = {
         },
         navigation: {
             latest: "Latest",
-            now_playing: "Now Playing",
+            now_playing: "Current",
             upcoming: "Upcoming",
-            top_rated: "Top Rated",
+            top_rated: "Best",
             popular: "Popular"
         },
         language: {
@@ -50,6 +50,16 @@ export const TMDB_EN = {
         },
         search: {
             title: "Search"
+        },
+        movie: {
+            similar: "People who saw {MOVIE} also checked out the following movies",
+            trailer: "Trailer",
+            voters: "voters",
+            minutes: "minutes",
+            release: "Release Date",
+            numbers: "The Numbers",
+            budget: "Budget:",
+            revenue: "Revenue:"
         }
     }
 }

@@ -47,24 +47,26 @@ ReactDOM.render(
           <Navbar />
           <SecondaryNavbar />
         </header>
-        <Switch>
-          <Route
-            path="/Movie/:movieid"
-            component={Movie}
-          />
-          <Route
-            path="/Latest"
-            component={LatestMovie}
-          />
-          <Route
-            path="/NowPlaying"
-            component={NowPlaying}
-          />
-          <Route
-            path="/"
-            component={NowPlaying}
-          />
-        </Switch>
+        <div className="padtop">
+          <Switch>
+            <Route
+              path="/Movie/:movieid"
+              component={Movie}
+            />
+            <Route
+              path="/Latest"
+              component={LatestMovie}
+            />
+            <Route
+              path="/NowPlaying"
+              component={NowPlaying}
+            />
+            <Route
+              path="/"
+              component={NowPlaying}
+            />
+          </Switch>
+        </div>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

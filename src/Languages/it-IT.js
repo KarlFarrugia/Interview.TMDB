@@ -39,10 +39,10 @@ export const TMDB_IT = {
             last: "scorsa"
         },
         navigation: {
-            latest: "Più Recente",
-            now_playing: "Ora In esibio",
+            latest: "Recente",
+            now_playing: "Attuale",
             upcoming: "Imminente",
-            top_rated: "Più Votati",
+            top_rated: "Migliore",
             popular: "Popolare"
         },
         language: {
@@ -50,6 +50,16 @@ export const TMDB_IT = {
         },
         search: {
             title: "Cerca"
-        }
+        },
+        movie: {
+            similar: "Persone che hanno visto {MOVIE} hanno anche guardato i seguenti film",
+            trailer: "Trailer",
+            voters: "elettori",
+            minutes: "minuti",
+            release: "Uscita",
+            numbers: "I Numeri",
+            budget: "Budget:",
+            revenue: "Entrate:"
+        }        
     }
 }

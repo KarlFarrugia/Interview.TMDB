@@ -37,6 +37,10 @@ function MoviesListings(movie_props){
     setCurrentGenreReducer(event.target.value);
   };
 
+  useEffect(() => {
+    UpdateMovies();
+  },[]);
+
   return(
     movie_props.props ? (
       <MovieCardContainer>

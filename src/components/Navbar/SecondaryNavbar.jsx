@@ -53,11 +53,6 @@ function SecondaryNavbar (){
         {id: "it", name: "Italiano"},
         {id: "de", name: "Deutsch"}
     ];
-
-    const NavbarContainer = styled.div`
-        margin-top: 10px;
-    `
-
     function change(event){
       dispatch(UPDATE_GENRE(event.target.value));
       dispatch(CLEAR_ALL_MOVIES());
@@ -107,48 +102,50 @@ function SecondaryNavbar (){
     return (
         <>
             <GridContainer 
-                direction="row-reverse" 
-                justify="flex-start"
+                direction="row" 
+                justify="flex-end"
                 alignItems="flex-end"
             >
                 <br />
-                <GridItem xs={6} md={3} lg={2}>
+                <GridItem xs={3} sm={4} md={4}>
                     <div className="Search">
                         <SearchBox />
                     </div>
                 </GridItem>
-                <GridItem xs={6} md={3} lg={2}>
-                    <FormControl>
-                        {/* The drop down list section */}
-                        <Select
-                        MenuProps={{}}
-                        value={currentGenreReducer}
-                        inputProps={{
-                            name: "genre",
-                            id: "genre",
-                            onChange: event => change(event)
-                        }}
-                        >
-                        <MenuItem
-                            disabled
-                        >
-                            <span className="menu_item">
-                            Genre
-                            </span>
-                        </MenuItem>
-                        {genresValue.map((props) => {
-                            return(
-                            <MenuItem
-                                value={props.id}
+                <GridItem xs={3} sm={2} md={1}>
+                    <ThemeProvider theme={theme}>
+                        <FormControl>
+                            {/* The drop down list section */}
+                            <Select
+                            MenuProps={{}}
+                            value={currentGenreReducer}
+                            inputProps={{
+                                name: "genre",
+                                id: "genre",
+                                onChange: event => change(event)
+                            }}
                             >
-                                <span>{t(`genres:${props.name.toLowerCase()}`)}</span>
+                            <MenuItem
+                                disabled
+                            >
+                                <span className="menu_item">
+                                Genre
+                                </span>
                             </MenuItem>
-                            );
-                        })}
-                        </Select>
-                    </FormControl>
+                            {genresValue.map((props) => {
+                                return(
+                                <MenuItem
+                                    value={props.id}
+                                >
+                                    <span>{t(`genres:${props.name.toLowerCase()}`)}</span>
+                                </MenuItem>
+                                );
+                            })}
+                            </Select>
+                        </FormControl>
+                    </ ThemeProvider>
                 </GridItem>
-                <GridItem xs={6} md={3} lg={2}>
+                <GridItem xs={3} sm={2} md={1}>
                     <ThemeProvider theme={theme}>
                         <FormControl>
                                 {/* The drop down list section */}
@@ -181,7 +178,7 @@ function SecondaryNavbar (){
                         </FormControl>
                     </ThemeProvider>
                 </GridItem>
-                <GridItem xs={6} md={3} lg={2}>
+                <GridItem xs={3} sm={2} md={1}>
                     <ThemeProvider theme={theme}>
                         <FormControlLabel
                             value="start"
