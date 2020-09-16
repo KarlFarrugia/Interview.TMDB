@@ -9,6 +9,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {MOVIE_SEARCH} from '../../Store/actions/Action'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt, faStar, faStopwatch, faHandHoldingUsd, faFileInvoice } from '@fortawesome/free-solid-svg-icons'
+import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
@@ -31,7 +32,14 @@ function Movie({...props}) {
         justify="center"
         alignItems="flex-start">
             <GridItem xs={12} sm={12} md={4}>
-                <MoviePoster src={`${config.TMDB.POSTER_ROOT_W780}/${props.movie.poster_path}`} />
+                {(props.movie.poster_path !== "" && props.movie.poster_path !== null) ?
+                    (
+                        <MoviePoster src={`${config.TMDB.POSTER_ROOT_W780}/${props.movie.poster_path}`} />
+                    ) : 
+                    (
+                        <MoviePoster src={unavailable_poster_image} />
+                    )
+                }
             </GridItem>
             <GridItem xs={12} sm={12} md={8}>
                 <GridContainer
@@ -72,18 +80,26 @@ function Movie({...props}) {
                         </MovieOverview>
                     </GridItem>
                     <GridItem xs={12}>
-                        <MovieSectionHeader>{t("movie:release")}</MovieSectionHeader>
-                        <MovieInformation>
-                            <FontAwesomeIcon icon={faCalendarAlt} color="white" /> {props.movie.release_date}
-                        </MovieInformation>
+                        {(props.movie.tagline !== "") ?
+                            (
+                                <>
+                                    <MovieSectionHeader>{t("movie:release")}</MovieSectionHeader>
+                                    <MovieInformation>
+                                        <FontAwesomeIcon icon={faCalendarAlt} color="white" /> {props.movie.release_date}
+                                    </MovieInformation>
+                                </>
+                            ) 
+                            : 
+                            (<></>)
+                        }
                     </GridItem>
                     <GridItem xs={12}>
                         <MovieSectionHeader>{t("movie:numbers")}</MovieSectionHeader>
                             <MovieNumberInformation>
-                                <FontAwesomeIcon icon={faFileInvoice} color="red" /> {t("movie:budget")} €{numberLocalisation(props.movie.budget)}
+                                <FontAwesomeIcon icon={faFileInvoice} color="red" /> {t("movie:budget")} {numberLocalisation(props.movie.budget)}
                             </MovieNumberInformation>
                             <MovieNumberInformation>
-                                <FontAwesomeIcon icon={faHandHoldingUsd} color="lightgreen" /> {t("movie:revenue")} €{numberLocalisation(props.movie.revenue)}
+                                <FontAwesomeIcon icon={faHandHoldingUsd} color="lightgreen" /> {t("movie:revenue")} {numberLocalisation(props.movie.revenue)}
                             </MovieNumberInformation>
                     </GridItem>
                     <GridItem xs={12}>

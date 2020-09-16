@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import InputStyle from "../../assets/InputStyle";
 
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import {useSelector, useDispatch} from 'react-redux';
-import {MOVIE_SEARCH} from '../../Store/actions/Action'
-
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
-function SearchBox() {
+// @material-ui/core components
+import {
+  ThemeProvider,
+  withStyles
+} from '@material-ui/core/styles';
+import FormControl from "@material-ui/core/FormControl";
+import TextField from '@material-ui/core/TextField';
+import {useSelector, useDispatch} from 'react-redux';
+import {MOVIE_SEARCH} from '../../Store/actions/Action'
+import styled from 'styled-components';
+
+function SearchBox(props) {
   const [searchValue, setSearchValue] = useState(useSelector(state => state.movie));
   const dispatch = useDispatch();
   const { t } = useTranslation("");
@@ -22,17 +25,20 @@ function SearchBox() {
     setSearchValue(event.target.value);
   }
 
+  const StyledTextField = styled(TextField)`
+    #search-input,  
+    MuiFormControl-root,
+    label.MuiFormLabel-root{
+      color: white !important;
+    }
+  `;
+  
   return (
-    <FormControl>
-      <InputLabel>
-          {t(`search:title`)}
-      </InputLabel>
-      <Input 
-          autoFocus
-          value={searchValue}
-          onChange={handleChange}
-      />
-    </FormControl>
+    <ThemeProvider>
+      <FormControl>
+        <StyledTextField autoFocus value={searchValue} label="Search" id="search-input" onChange={handleChange} />
+      </FormControl>
+    </ThemeProvider>
   );
 }
 

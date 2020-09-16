@@ -31,7 +31,11 @@ export function urlCleaner (url){
 
 export function numberLocalisation (number){
     try{
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        if(number > 0){
+            return `€${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+        } else{
+            return "Data Not Available";
+        }
     }catch(e){
         return number;
     }

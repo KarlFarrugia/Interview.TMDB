@@ -8,7 +8,8 @@ import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, UPDATE_GENRE, MOVIE_SE
 import Card from '../Card/MovieSearchCard'
 import {LogoImg} from '../../assets/StyledComponents/MovieCard'
 import site_logo from "../../assets/images/site_logo.png"
-import { NavigationItem, NavigationLine } from '../../assets/StyledComponents/Navigation';
+import { SecondNavigationItem } from '../../assets/StyledComponents/Navigation';
+import { LANGUAGES } from '../../config';
 import styled from 'styled-components';
 
 // multilanguage component
@@ -38,6 +39,15 @@ function SecondaryNavbar (){
     let page = useSelector(state => state.page);
     const dispatch = useDispatch();
 
+    const StyledSelect = styled(Select)`
+        .MuiSelect-root,
+        .Mui-focused,
+        input#genre,
+        label.MuiFormLabel-root{
+            color: white !important;
+        }
+    `;
+
     const theme = createMuiTheme({
         palette: {
           primary: {
@@ -48,11 +58,7 @@ function SecondaryNavbar (){
           },
         },
       });
-    const LANGUAGES = [
-        {id: "en", name: "English"},
-        {id: "it", name: "Italiano"},
-        {id: "de", name: "Deutsch"}
-    ];
+
     function change(event){
       dispatch(UPDATE_GENRE(event.target.value));
       dispatch(CLEAR_ALL_MOVIES());
@@ -100,23 +106,24 @@ function SecondaryNavbar (){
     }
 
     return (
-        <>
-            <GridContainer 
-                direction="row" 
-                justify="flex-end"
-                alignItems="flex-end"
-            >
-                <br />
-                <GridItem xs={3} sm={4} md={4}>
-                    <div className="Search">
-                        <SearchBox />
-                    </div>
-                </GridItem>
-                <GridItem xs={3} sm={2} md={1}>
+        <GridContainer 
+            direction="row" 
+            justify="flex-end"
+            alignItems="flex-end"
+        >
+            <br />
+            <GridItem xs={3} sm={4} md={2}>
+                <SecondNavigationItem>
+                    <SearchBox />
+                </SecondNavigationItem>
+            </GridItem>
+            <GridItem xs={3} sm={2} md={1}>
+                <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
                         <FormControl>
                             {/* The drop down list section */}
-                            <Select
+                            <StyledSelect
+                            id="customSelect"
                             MenuProps={{}}
                             value={currentGenreReducer}
                             inputProps={{
@@ -141,15 +148,17 @@ function SecondaryNavbar (){
                                 </MenuItem>
                                 );
                             })}
-                            </Select>
+                            </StyledSelect>
                         </FormControl>
                     </ ThemeProvider>
-                </GridItem>
-                <GridItem xs={3} sm={2} md={1}>
+                </SecondNavigationItem>
+            </GridItem>
+            <GridItem xs={3} sm={2} md={1}>
+                <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
                         <FormControl>
                                 {/* The drop down list section */}
-                                <Select
+                                <StyledSelect
                                 MenuProps={{}}
                                 value={useSelector(state => state.language)}
                                 inputProps={{
@@ -174,29 +183,27 @@ function SecondaryNavbar (){
                                     </MenuItem>
                                     );
                                 })}
-                                </Select>
+                                </StyledSelect>
                         </FormControl>
                     </ThemeProvider>
-                </GridItem>
-                <GridItem xs={3} sm={2} md={1}>
+                </SecondNavigationItem>
+            </GridItem>
+            <GridItem xs={3} sm={2} md={1}>
+                <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
                         <FormControlLabel
-                            value="start"
                             control={<Checkbox />}
                             label={t("common:adult")}
                             labelPlacement="start"
                         />
                     </ThemeProvider>
-                </GridItem>
-                <GridItem xs={12}>
-                    {FetchMovies(useSelector(state => state.movie), useSelector(state => state.adult))}
-                    {console.log(moviesValue)}
-                    <SearchResults movieList={moviesValue} />
-                </GridItem>
-            </GridContainer >
-            <br />
-            <NavigationLine />
-        </>
+                </SecondNavigationItem>
+            </GridItem>
+            <GridItem xs={12}>
+                {FetchMovies(useSelector(state => state.movie), useSelector(state => state.adult))}
+                <SearchResults movieList={moviesValue} />
+            </GridItem>
+        </GridContainer >
     );
 }
 

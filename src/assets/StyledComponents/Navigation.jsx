@@ -25,3 +25,7 @@ export const NavigationLine = styled.div`
 export const NavigationSpacer = styled.div`
     margin-bottom: 10px;
 `;
+
+export const SecondNavigationItem = styled.div`
+    float: right;
+`;

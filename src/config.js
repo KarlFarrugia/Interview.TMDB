@@ -31,3 +31,9 @@ export const GENRES = [
     {id: 10752, name: "War"},
     {id: 37, name: "Western"}
  ];
+
+ export const LANGUAGES = [
+     {id: "en", name: "English"},
+     {id: "it", name: "Italiano"},
+     {id: "de", name: "Deutsch"}
+ ];

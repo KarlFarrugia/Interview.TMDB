@@ -26,6 +26,7 @@ import LatestMovie from './Pages/LatestMovie';
 import NowPlaying from './Pages/NowPlayingMovies';
 import Navbar from './components/Navbar/Navbar';
 import SecondaryNavbar from './components/Navbar/SecondaryNavbar';
+import { NavigationItem, NavigationLine } from './assets/StyledComponents/Navigation';
 
 axios.defaults.params = {}
 axios.defaults.params['api_key'] = config.TMDB.API_KEY;
@@ -46,6 +47,8 @@ ReactDOM.render(
         <header className="App-header">
           <Navbar />
           <SecondaryNavbar />
+          <br />
+          <NavigationLine />
         </header>
         <div className="padtop">
           <Switch>

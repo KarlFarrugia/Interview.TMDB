@@ -47,7 +47,9 @@ function MoviePage(props) {
 
     return (
         <MovieContainer>
-            <MovieBackgroundElement />
+            {(moviesValue.backdrop_path) ? (
+                <MovieBackgroundElement />
+            ): (<></>)}
             <GridContainer
                 direction="row"
                 justify="space-between"
