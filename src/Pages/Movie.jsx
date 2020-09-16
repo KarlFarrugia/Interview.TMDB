@@ -4,9 +4,6 @@ import {Api_QueryMovie, Api_Similar, Api_Keywords, Api_Videos} from '../api';
 import { connect } from 'react-redux';
 import MovieId from '../components/MovieId';
 
-// multilanguage component
-import { useTranslation } from "react-i18next";
-
 function MoviePage(props) {
     return (
         <MovieId movieId={parseInt(props.movieId)}/>

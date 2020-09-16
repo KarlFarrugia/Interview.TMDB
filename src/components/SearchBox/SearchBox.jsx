@@ -34,11 +34,9 @@ function SearchBox(props) {
   `;
   
   return (
-    <ThemeProvider>
-      <FormControl>
-        <StyledTextField autoFocus value={searchValue} label="Search" id="search-input" onChange={handleChange} />
-      </FormControl>
-    </ThemeProvider>
+    <FormControl>
+      <StyledTextField autoFocus value={searchValue} label="Search" id="search-input" onChange={handleChange} />
+    </FormControl>
   );
 }
 

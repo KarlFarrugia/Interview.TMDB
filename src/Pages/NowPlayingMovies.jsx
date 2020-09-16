@@ -4,11 +4,13 @@ import Paging from '../components/Paging'
 import {useSelector, useDispatch} from 'react-redux';
 import {APPEND_MOVIES, TRUNCATE_MOVIES, INCREMENT_MOVIE_PAGE, DECREMENT_MOVIE_PAGE} from '../Store/actions/Action'
 import {Api_NowPlaying} from '../api'
+import { connect } from 'react-redux';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
-function NowPlaying() {
+function NowPlaying(props) {
+    console.log(props);
     const [maxPage, SetMaxPage] = useState(1);
     const { t } = useTranslation("");
     const dispatch = useDispatch();
@@ -26,7 +28,7 @@ function NowPlaying() {
             <section className="Results">
                 {/* Movie Refiner by Genre Drop Down */}
                 <div>
-                    {<MoviesListings props={useSelector(state => state.movies)} />}
+                    {<MoviesListings props={props.movies} />}
                 </div>
             </section>
             <section className="Paging">
@@ -36,4 +38,14 @@ function NowPlaying() {
     );
 }
 
-export default NowPlaying;
+const mapStateToProps = state => {  
+    return {
+        movies: state.movies,
+    }
+}
+  
+const mapDispatchToProps = dispatch => ({
+    //reducer: () => dispatch(action())
+})
+
+export default connect(mapStateToProps, null)(NowPlaying);

@@ -76,3 +76,5 @@ Styled the individual movie page
 
 [TODO:: close button in search]
 [INVIGATE:: back button issue]
+[IMPLEMENT:: genre filter]
+[IMPLEMENT:: adult filter]

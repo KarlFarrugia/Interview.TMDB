@@ -73,7 +73,7 @@ function MoviePage(props) {
                 </GridItem>*/}
                 <GridItem xs={12}>
                     {/* Get Similar Movies */}
-                    <MovieHeader>{t("movie:similar").replace("{MOVIE}",moviesValue.title)}</MovieHeader>
+                    {(similarMovies.length > 0) ? (<MovieHeader>{t("movie:similar").replace("{MOVIE}",moviesValue.title)}</MovieHeader>) : (<></>)}                   
                     <MoviesListings props={similarMovies} />
                 </GridItem>
             </GridContainer>

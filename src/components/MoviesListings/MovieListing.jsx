@@ -37,7 +37,7 @@ function MovieListing(movie){
           <br />
           </GridItem>
           <GridItem xs={12}>
-            <MovieCardGenres>{movie.movie.genre_ids.map(genre => <MovieCardGenre><i>{t(`genres:${genreRetriever(genre).toLowerCase()}`)}</i></MovieCardGenre>)}</MovieCardGenres>
+            <MovieCardGenres>{movie.movie.genre_ids.map((genre, key) => <MovieCardGenre key={key}><i>{t(`genres:${genreRetriever(genre).toLowerCase()}`)}</i></MovieCardGenre>)}</MovieCardGenres>
           </GridItem>
         </MovieCardItem>
     </Link>

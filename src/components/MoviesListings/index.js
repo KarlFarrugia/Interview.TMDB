@@ -85,7 +85,7 @@ function MoviesListings(movie_props){
             */}            
             {movie_props.props.map((prop, key) => {
               return(
-                <GridItem xs={12} sm={12} md={6} lg={4} xl={3}>
+                <GridItem key={key} xs={12} sm={12} md={6} lg={4} xl={3}>
                   <MovieListing movie={prop} />
                 </GridItem>
               );

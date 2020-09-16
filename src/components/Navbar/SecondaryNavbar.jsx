@@ -67,7 +67,7 @@ function SecondaryNavbar (){
     };
     
     async function GetMovies(movie_list) {
-        movie_list.
+        await movie_list.
         then(movies => {
             if (movies === ""){
                 setMoviesValue([]);
@@ -77,7 +77,7 @@ function SecondaryNavbar (){
         });
     }
 
-    function UpdateMovies(search){
+    function UpdateMovies(){
         dispatch(CLEAR_ALL_MOVIES());
         // from 'http://localhost:3000/NowPlaying/additionalStrings' get nowplaying
         const path = window.location.pathname.split("/")[1].toLowerCase();
@@ -99,6 +99,7 @@ function SecondaryNavbar (){
             setCurrentMovie(movieName);
         }
     }
+
     function UpdateLanguage(event) {
         dispatch(UPDATE_LANGUAGE(event.target.value));
         i18n.changeLanguage(event.target.value);
@@ -139,9 +140,10 @@ function SecondaryNavbar (){
                                 Genre
                                 </span>
                             </MenuItem>
-                            {genresValue.map((props) => {
+                            {genresValue.map((props, key) => {
                                 return(
                                 <MenuItem
+                                    key={key}
                                     value={props.id}
                                 >
                                     <span>{t(`genres:${props.name.toLowerCase()}`)}</span>
@@ -174,9 +176,10 @@ function SecondaryNavbar (){
                                         {t("language:title")}
                                     </span>
                                 </MenuItem>
-                                {LANGUAGES.map((props) => {
+                                {LANGUAGES.map((props, key) => {
                                     return(
                                     <MenuItem
+                                        key={key}
                                         value={props.id}
                                     >
                                         <span>{props.name}</span>

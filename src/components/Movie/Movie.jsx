@@ -22,9 +22,9 @@ function Movie({...props}) {
     const dispatch = useDispatch();
     const { t } = useTranslation("");
 
-    useEffect(() => 
+    useEffect(() => {
         dispatch(MOVIE_SEARCH(""))
-    ,[]);
+    },[]);
 
     return (
         <GridContainer
@@ -104,7 +104,7 @@ function Movie({...props}) {
                     </GridItem>
                     <GridItem xs={12}>
                         <MovieSectionHeader>{t("genres:title")}</MovieSectionHeader>
-                        {(props.movie.genres ? (props.movie.genres.map(genre => <MovieGenre>{t(`genres:${genre.name.toLowerCase()}`)}</MovieGenre>)) : (<></>))}
+                        {(props.movie.genres ? (props.movie.genres.map((genre, key) => <MovieGenre key={key}>{t(`genres:${genre.name.toLowerCase()}`)}</MovieGenre>)) : (<></>))}
                     </GridItem>
                 </GridContainer>
             </GridItem>
