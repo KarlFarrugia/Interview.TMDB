@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
-import {Api_Search, Api_NowPlaying2} from '../../api/'
-import {useSelector, useDispatch, connect} from 'react-redux';
-import {UPDATE_LANGUAGE, ACTION_CLEAR_ALL_MOVIES, ACTION_APPEND_MOVIES, UPDATE_GENRE, ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
-import { SecondNavigationItem, StyledSelect } from '../../assets/StyledComponents/Navigation';
-import { LANGUAGES } from '../../config';
+import {Api_Search, Api_NowPlaying} from '../../api/'
+import {connect} from 'react-redux';
+import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_CLEAR_ALL_MOVIES, ACTION_APPEND_MOVIES, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
+import { SecondNavigationItem, StyledSelect, StyledFormControlLabel, } from '../../assets/StyledComponents/Navigation';
+import { GENRES, LANGUAGES } from '../../config';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
@@ -17,29 +17,26 @@ import GridContainer from "../../assets/GridContainer.jsx";
 // @material-ui/core components
 import FormControl from "@material-ui/core/FormControl";
 import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from "@material-ui/core/MenuItem";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#fff',
-      },
-      secondary: {
-        main: '#fff',
-      },
-    },
-});
-  
-function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, clear_search, append_movies}){
+function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, clear_search, append_movies, update_genre, update_language, update_locale, toggle_adult}){
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
     const { t, i18n } = useTranslation("");
-    const dispatch = useDispatch();
+    const theme = createMuiTheme({
+        palette: {
+          primary: {
+            main: '#fff',
+          },
+          secondary: {
+            main: '#fff',
+          },
+        },
+    });
 
     function change(event){
-      dispatch(UPDATE_GENRE(event.target.value));
+      update_genre(event.target.value);
       clear_movies();
       UpdateMovies();
     };
@@ -59,11 +56,10 @@ function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, c
         clear_movies();
         // from 'http://localhost:3000/NowPlaying/additionalStrings' get nowplaying
         const path = window.location.pathname.split("/")[1].toLowerCase();
-        ACTION_MOVIE_SEARCH("");
         switch(path){
             case 'nowplaying':
                 for (let index = 1; index <= page; index++) {
-                    Api_NowPlaying2(append_movies,index,t("common:locale"));
+                    Api_NowPlaying(append_movies,index,t("common:locale"));
                 }
             default:
                 return;
@@ -78,8 +74,9 @@ function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, c
     }
 
     function UpdateLanguage(event) {
-        dispatch(UPDATE_LANGUAGE(event.target.value));
+        update_language(event.target.value);
         i18n.changeLanguage(event.target.value);
+        update_locale(t(`common:locale`));
         UpdateMovies();
     }
 
@@ -117,7 +114,7 @@ function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, c
                                     {t("genres:title")}
                                 </span>
                             </MenuItem>
-                            {genres.map((props, key) => {
+                            {GENRES.map((props, key) => {
                                 return(
                                 <MenuItem
                                     key={key}
@@ -139,7 +136,7 @@ function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, c
                                 {/* The drop down list section */}
                                 <StyledSelect
                                 MenuProps={{}}
-                                value={useSelector(state => state.language)}
+                                value={language}
                                 inputProps={{
                                     name: "language",
                                     id: "language",
@@ -171,8 +168,11 @@ function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, c
             <GridItem xs={3} sm={2} md={1}>
                 <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
-                        <FormControlLabel
-                            control={<Checkbox />}
+                        <StyledFormControlLabel
+                            control={<Checkbox 
+                                value={adult}
+                                onChange={() => toggle_adult()}
+                            />}
                             label={t("common:adult")}
                             labelPlacement="start"
                         />
@@ -180,7 +180,7 @@ function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, c
                 </SecondNavigationItem>
             </GridItem>
             <GridItem xs={12}>
-                {FetchMovies(useSelector(state => state.search), adult)}
+                {FetchMovies(search, adult)}
                 <SearchResults movieList={moviesValue} clear_search={clear_search} />
             </GridItem>
         </GridContainer >
@@ -191,9 +191,9 @@ const mapStateToProps =  state => {
     return {
         page: state.page,
         genre: state.genre,
-        genres: state.genres,
         language: state.language,
-        adult: state.adult
+        adult: state.adult,
+        search: state.search
     }
 }
 
@@ -201,6 +201,10 @@ const mapDispatchToProps = dispatch => ({
     clear_movies: () => dispatch(ACTION_CLEAR_ALL_MOVIES()),
     clear_search: () => dispatch(ACTION_MOVIE_SEARCH("")),
     append_movies: query => dispatch(ACTION_APPEND_MOVIES(query)),
+    update_genre: genre => dispatch(ACTION_UPDATE_GENRE(genre)),
+    update_language: lang => dispatch(ACTION_UPDATE_LANGUAGE(lang)),
+    update_locale: locale => dispatch(ACTION_UPDATE_LOCALE(locale)),
+    toggle_adult: () => dispatch(ACTION_TOGGLE_ADULT())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SecondaryNavbar);

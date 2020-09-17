@@ -1,13 +1,9 @@
-import {INCREMENT_PAGE, DECREMENT_PAGE, CLEAR_MOVIES, SET_PAGE} from "../actions/Types";
+import {CLEAR_MOVIES, SET_PAGE} from "../actions/Types";
 
 const INITIAL_STATE = 1
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case INCREMENT_PAGE:
-      return state + 1;
-    case DECREMENT_PAGE:
-      return state - 1;
     case SET_PAGE:
       return action.payload;
     case CLEAR_MOVIES:

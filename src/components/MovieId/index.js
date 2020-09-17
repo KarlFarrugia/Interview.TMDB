@@ -4,8 +4,6 @@ import {Api_QueryMovie, Api_Similar, Api_Keywords, Api_Videos} from '../../api';
 import {MovieContainer, MovieBody, MovieHeader} from '../../assets/StyledComponents/Movie';
 import styled from 'styled-components';
 import {config} from '../../config';
-import {useSelector, useDispatch} from 'react-redux';
-import {MOVIE_SEARCH} from '../../Store/actions/Action';
 import Movie from '../../components/Movie/Movie';
 
 // multilanguage component
@@ -16,13 +14,11 @@ import GridItem from '../../assets/GridItem';
 
 function MoviePage({...props}) {
     console.log(props);
-    debugger;
     const [moviesValue, setMoviesValue] = useState("");
     const [similarMovies, setSimilarMovies] = useState("");
     const [keywords, setKeywords] = useState([]);
     const [videos, setVideos] = useState([]);
     const { t } = useTranslation("");
-    const dispatch = useDispatch();
 
     const MovieBackgroundElement = styled.div`    
         background: url(${config.TMDB.BACKDROP_ROOT}/${moviesValue.backdrop_path}) center center / cover no-repeat fixed;

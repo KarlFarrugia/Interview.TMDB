@@ -7,6 +7,7 @@ export const TMDB_IT = {
             adult: "Adulto"
         },
         search :{
+            title: "Cerca",
             no_results: "Oops! Non abbiamo trovato risultati"
         },
         genres : {
@@ -47,9 +48,6 @@ export const TMDB_IT = {
         },
         language: {
             title: "Linguaggio",
-        },
-        search: {
-            title: "Cerca"
         },
         movie: {
             similar: "Persone che hanno visto {MOVIE} hanno anche guardato i seguenti film",

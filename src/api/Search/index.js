@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { config } from '../../config';
-import {useSelector, useDispatch} from 'react-redux';
 
 let axiosRequest;
 

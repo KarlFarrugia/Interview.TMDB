@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {Api_QueryMovie} from '../../api';
 import {MoviePoster, MovieTitle, MovieVideo, MovieSubTitle, MovieOverview, MovieInformation, MovieTitleInformation, MovieNumberInformation, MovieHomepage, MovieHeader, MovieGenre, MovieSectionHeader} from '../../assets/StyledComponents/Movie';
-import styled from 'styled-components';
 import {config} from '../../config';
 import {urlCleaner, numberLocalisation} from '../../helpers'
 import ReactPlayer from 'react-player';
-import {useSelector, useDispatch} from 'react-redux';
 import {ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt, faStar, faStopwatch, faHandHoldingUsd, faFileInvoice } from '@fortawesome/free-solid-svg-icons'
@@ -18,8 +15,6 @@ import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
 function Movie({...props}) {
-    console.log(props);
-    const dispatch = useDispatch();
     const { t } = useTranslation("");
 
     useEffect(() => {

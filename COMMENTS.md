@@ -75,6 +75,14 @@ Added more structure to the secondary navigation bar
 Styled the individual movie page
 Updated Routes for github pages
 
+____
+
+Commit Batch 7 17/09/2020 
+
+Converted all the solution to propertly use redux
+Implemented caching
+
+
 [TODO:: close button in search]
 [IMPLEMENT:: genre filter]
 [IMPLEMENT:: adult filter]

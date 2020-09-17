@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Select from "@material-ui/core/Select";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export const NavbarPosition = styled.div`
     z-index: 99999;
@@ -37,5 +38,11 @@ export const StyledSelect = styled(Select)`
     input#genre,
     label.MuiFormLabel-root{
         color: white !important;
+    }
+`;
+
+export const StyledFormControlLabel = styled(FormControlLabel)`
+    span.MuiFormControlLabel-label{
+        color: white;
     }
 `;

@@ -37,3 +37,8 @@ export const GENRES = [
      {id: "it", name: "Italiano"},
      {id: "de", name: "Deutsch"}
  ];
+
+ export const LONG_COOKIE_EXPIRY = 30;
+ export const MEDIUM_COOKIE_EXPIRY = 7;
+ export const DAY_COOKIE_EXPIRY = 0.01;
+ export const SHORT_COOKIE_EXPIRY = 0.01;
