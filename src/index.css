@@ -12,7 +12,3 @@ a:-webkit-any-link {
   cursor: pointer;
   text-decoration: none !important;
 }
-
-.padtop {
-  padding-top: 30px;
-}

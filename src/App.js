@@ -1,16 +1,14 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Card from './components/Card/Card';
-import './App.css';
+import {App, Section} from './assets/StyledComponents/App';
 
-function App() {
+export default function () {
   return (
-    <div className="App">
-      <section className="Results">
+    <App>
+      <Section>
         <Card />
-      </section>
-    </div>
+      </Section>
+    </App>
   );
 }
-
-export default App;

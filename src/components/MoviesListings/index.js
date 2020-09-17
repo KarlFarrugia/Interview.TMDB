@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MovieListing from './MovieListing';
-import {UPDATE_GENRE, CLEAR_ALL_MOVIES, APPEND_MOVIES} from '../../Store/actions/Action'
+import {UPDATE_GENRE, APPEND_MOVIES} from '../../Store/actions/Action'
 import {useSelector, useDispatch} from 'react-redux';
 import {Api_NowPlaying} from "../../api";
 import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
@@ -25,7 +25,6 @@ function MoviesListings(movie_props){
 
   function change(event){
     dispatch(UPDATE_GENRE(event.target.value));
-    dispatch(CLEAR_ALL_MOVIES());
     UpdateMovies();
     setCurrentGenreReducer(event.target.value);
   };

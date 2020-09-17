@@ -15,23 +15,11 @@ import {
 } from "./Types";
 
 export const ACTION_MOVIE_SEARCH = (query) => async (dispatch)  => {
-  debugger;
   dispatch({ 
     type: MOVIE_SEARCH, 
     payload: query 
   });
 };
-
-/*export function ACTION_MOVIE_SEARCH(query) {
-  debugger;
-  const action = () => async dispatch =>{
-    dispatch({
-      type: MOVIE_SEARCH,
-      payload: query
-    });
-  };
-  action();
-};*/
 
 export const ACTION_TOGGLE_ADULT = () => {
   return{ 
@@ -46,30 +34,23 @@ export const APPEND_MOVIES = (movies) => {
   }
 };
 
+export const ACTION_APPEND_MOVIES = (movies) => async (dispatch)  => {
+  dispatch({ 
+    type: ADD_MOVIES, 
+    payload: movies 
+  });
+};
+
 export const ACTION_REPLACE_MOVIES = (movies) => {
   return {
       type: REPLACE_MOVIES,
       payload: movies 
   }
 };
-
-export const TRUNCATE_MOVIES = () => {
-  return {
-      type: REMOVE_MOVIES
-  }
-};
-
-export const CLEAR_ALL_MOVIES = () => {
-  return {
-      type: CLEAR_MOVIES
-  }
-};
-
-export const RETRIEVE_GENRES = (genres) => {
-  return {
-      type: GET_GENRES,
-      payload: genres 
-  }
+export const ACTION_CLEAR_ALL_MOVIES = () => async (dispatch)  => {
+  dispatch({ 
+    type: CLEAR_MOVIES
+  });
 };
 
 export const UPDATE_GENRE = (genre) => {
@@ -86,35 +67,16 @@ export const UPDATE_LANGUAGE = (lang) => {
   }
 };
 
-export const INCREMENT_MOVIE_PAGE = () =>{
-  return {
-    type: INCREMENT_PAGE
-  }
-};
-
-export const DECREMENT_MOVIE_PAGE = () =>{
-  return {
-    type: DECREMENT_PAGE
-  }
-};
-
-export const ACTION_SET_PAGE = (page) =>{
-  return {
-    type: SET_PAGE,
-    payload: page
-  };
-}
-
-/*export const ACTION_SET_PAGE = (page) => async dispatch =>{
+export const ACTION_SET_PAGE = (page) => async (dispatch)  => {
   dispatch({
     type: SET_PAGE,
     payload: page
   });
-}*/
+};
 
 export const ACTION_UPDATE_LOCALE = (locale) => {
   return{
     type: UPDATE_LOCALE,
     payload: locale
   }
-}
+};

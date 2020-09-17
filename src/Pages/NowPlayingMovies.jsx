@@ -1,51 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import MoviesListings from '../components/MoviesListings';
 import Paging from '../components/Paging'
-import {useSelector, useDispatch} from 'react-redux';
-import {APPEND_MOVIES, TRUNCATE_MOVIES, INCREMENT_MOVIE_PAGE, DECREMENT_MOVIE_PAGE} from '../Store/actions/Action'
-import {Api_NowPlaying} from '../api'
 import { connect } from 'react-redux';
+import {ACTION_APPEND_MOVIES, ACTION_SET_PAGE} from '../Store/actions/Action'
+import {App, Section} from '../assets/StyledComponents/App'
 
-// multilanguage component
-import { useTranslation } from "react-i18next";
-
-function NowPlaying(props) {
-    console.log(props);
-    const [maxPage, SetMaxPage] = useState(1);
-    const { t } = useTranslation("");
-    const dispatch = useDispatch();
-
-    async function GetMovies(){
-        SetMaxPage(await Api_NowPlaying(dispatch,APPEND_MOVIES,1,t("common:locale")));
-    }
-
-    useEffect(() => {
-        GetMovies();
-    },[])
-
+function NowPlaying({page, movies, append_movies, set_page}) {
     return (
-        <div className="App">
-            <section className="Results">
-                {/* Movie Refiner by Genre Drop Down */}
-                <div>
-                    {<MoviesListings props={props.movies} />}
-                </div>
-            </section>
-            <section className="Paging">
-                <Paging max_page={maxPage}/>
-            </section>
-        </div>
+        <App>
+            <Section>
+                {<MoviesListings props={movies} />}
+            </Section>
+            <Section>
+                <Paging page={page} append_movies={append_movies} set_page={set_page}/>
+            </Section>
+        </App>
     );
 }
 
-const mapStateToProps = state => {  
+const mapStateToProps =  state => {  
     return {
+        page: state.page,
         movies: state.movies,
     }
 }
-  
+
 const mapDispatchToProps = dispatch => ({
-    //reducer: () => dispatch(action())
+    append_movies: query => dispatch(ACTION_APPEND_MOVIES(query)),
+    set_page: page => dispatch(ACTION_SET_PAGE(page))
 })
 
-export default connect(mapStateToProps, null)(NowPlaying);
+export default connect(mapStateToProps, mapDispatchToProps)(NowPlaying);
+  

@@ -102,7 +102,6 @@ export const MovieOverview = styled.p`
 export const MovieBody = styled.div`
     text-align: center;
     width: auto;
-    margin-top: 125px;
 `;
 
 export const MovieVideo = styled.div`

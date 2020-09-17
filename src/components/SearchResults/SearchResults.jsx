@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link, Redirect } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 import SearchStyle from "../../assets/SearchStyle";
-import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchError, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/search";
+import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/search";
 import {dateExtractor} from "../../helpers"
 
 // core components
@@ -12,21 +12,12 @@ import { config } from "../../config";
 import {genreRetriever} from "../../helpers";
 import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
 
-// multilanguage component
-import { useTranslation } from "react-i18next";
-
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
-function SearchBox({...props}) {
-  let { movieList, ...rest } = props;
-  const { t } = useTranslation("");
+function SearchBox({ movieList, clear_search }) {
   let isEmpty = false;
-  if(movieList === ""){
-    movieList = [];
-  }else{
-    isEmpty = movieList.length < 1;
-  }
+  movieList === "" ? movieList = [] : isEmpty = movieList.length < 1;
   return (
     isEmpty ? 
     (
@@ -34,10 +25,9 @@ function SearchBox({...props}) {
     ) : 
     (
       <SearchBoxContainer>
-          {movieList.map((prop,key) => {
-            let movie_props = prop;
+          {movieList.map((movie_props,key) => {
             return(
-              <Link to={`/Interview.TMDB/Movie/${movie_props.id}`}>
+              <Link key={key} onClick={() => clear_search()}to={`/Interview.TMDB/Movie/${movie_props.id}`}>
                 <SearchBoxItem>
                   <GridContainer direction="row" alignItems="flex-start" className="header">
                     <GridItem xs={1}>

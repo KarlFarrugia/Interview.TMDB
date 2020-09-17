@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import MoviesListings from '../components/MoviesListings'
 import MovieId from '../components/MovieId';
-import {CLEAR_ALL_MOVIES, APPEND_MOVIES} from '../Store/actions/Action'
-import {useSelector, useDispatch} from 'react-redux';
+import {ACTION_CLEAR_ALL_MOVIES} from '../Store/actions/Action'
+import {connect} from 'react-redux';
 import {Api_Latest} from '../api';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
-function LatesMovie() {
+function LatesMovie({clear_movies}) {
     const [moviesValue, setMoviesValue] = useState(0);
     const { t } = useTranslation("");
-    const dispatch = useDispatch();
 
     const GetLatestMovie = async () => {
         const movie_id = await Api_Latest(t("common:locale"));
@@ -20,7 +17,7 @@ function LatesMovie() {
     }
 
     useEffect(() => {
-        dispatch(CLEAR_ALL_MOVIES());
+        clear_movies();
         GetLatestMovie();
     },[])
 
@@ -28,5 +25,9 @@ function LatesMovie() {
         moviesValue > 0 ? (<MovieId movieId={moviesValue}/>) : (<></>)
     );
 }
+  
+const mapDispatchToProps = dispatch => ({
+    clear_movies: () => dispatch(ACTION_CLEAR_ALL_MOVIES())
+})
 
-export default LatesMovie;
+export default connect(null, mapDispatchToProps)(LatesMovie);

@@ -1,38 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PagingElement} from "../../assets/StyledComponents/Paging";
 import Pagination from "react-js-pagination";
-import {useSelector, useDispatch} from 'react-redux';
-import { ACTION_SET_PAGE, ACTION_REPLACE_MOVIES } from '../../Store/actions/Action';
-import {Api_NowPlaying} from '../../api';
+import {Api_NowPlaying2} from '../../api';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
-function Paging({...props}) {
-    const max_page = props.max_page;
-    const dispatch = useDispatch();
-    const { t } = useTranslation("");
+function Paging({page, append_movies, set_page, clear_movies}) {
+  const [maxPage, SetMaxPage] = useState(1);
+  console.log(page);
+  const { t } = useTranslation("");
 
-    function handlePageChange(event){
-        dispatch(ACTION_SET_PAGE(event));
-        Api_NowPlaying(dispatch,ACTION_REPLACE_MOVIES,event,t("common:locale"));
-    }
+  async function GetMovies(){
+    SetMaxPage(await Api_NowPlaying2(append_movies,1,t("common:locale")));
+  }
 
-    return (
-        <PagingElement>
-          <Pagination
-            hideDisabled
-            prevPageText={t(`page:previous`)}
-            nextPageText={t(`page:next`)}
-            firstPageText={t(`page:first`)}
-            lastPageText={t(`page:last`)}
-            activePage={useSelector(state => state.page)}
-            itemsCountPerPage={1}
-            totalItemsCount={max_page}
-            onChange={event => handlePageChange(event)}
-          />
-        </PagingElement>
-    );
+  //On component load get movies
+  useEffect(() => {
+      GetMovies();
+  },[])
+
+  function handlePageChange(event){
+    clear_movies();
+    set_page(event);
+    Api_NowPlaying2(append_movies,event,t("common:locale"));
+  }
+
+  return (
+      <PagingElement>
+        <Pagination
+          hideDisabled
+          prevPageText={t(`page:previous`)}
+          nextPageText={t(`page:next`)}
+          firstPageText={t(`page:first`)}
+          lastPageText={t(`page:last`)}
+          activePage={page}
+          itemsCountPerPage={1}
+          totalItemsCount={maxPage}
+          onChange={event => handlePageChange(event)}
+        />
+      </PagingElement>
+  );
 }
 
 export default Paging;

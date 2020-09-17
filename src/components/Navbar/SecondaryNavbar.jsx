@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
-import {Api_Search, Api_NowPlaying} from '../../api/'
+import {Api_Search, Api_NowPlaying2} from '../../api/'
 import {useSelector, useDispatch, connect} from 'react-redux';
-import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, UPDATE_GENRE, ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
+import {UPDATE_LANGUAGE, ACTION_CLEAR_ALL_MOVIES, ACTION_APPEND_MOVIES, UPDATE_GENRE, ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
 import { SecondNavigationItem, StyledSelect } from '../../assets/StyledComponents/Navigation';
 import { LANGUAGES } from '../../config';
 
@@ -21,26 +21,26 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from "@material-ui/core/MenuItem";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-function SecondaryNavbar ({page, genre, genres}){
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#fff',
+      },
+      secondary: {
+        main: '#fff',
+      },
+    },
+});
+  
+function SecondaryNavbar ({page, genre, genres, language, adult, clear_movies, clear_search, append_movies}){
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
     const { t, i18n } = useTranslation("");
     const dispatch = useDispatch();
 
-    const theme = createMuiTheme({
-        palette: {
-          primary: {
-            main: '#fff',
-          },
-          secondary: {
-            main: '#fff',
-          },
-        },
-      });
-
     function change(event){
       dispatch(UPDATE_GENRE(event.target.value));
-      dispatch(CLEAR_ALL_MOVIES());
+      clear_movies();
       UpdateMovies();
     };
     
@@ -56,14 +56,14 @@ function SecondaryNavbar ({page, genre, genres}){
     }
 
     function UpdateMovies(){
-        dispatch(CLEAR_ALL_MOVIES());
+        clear_movies();
         // from 'http://localhost:3000/NowPlaying/additionalStrings' get nowplaying
         const path = window.location.pathname.split("/")[1].toLowerCase();
         ACTION_MOVIE_SEARCH("");
         switch(path){
             case 'nowplaying':
                 for (let index = 1; index <= page; index++) {
-                    Api_NowPlaying(dispatch,APPEND_MOVIES,index,t("common:locale"));
+                    Api_NowPlaying2(append_movies,index,t("common:locale"));
                 }
             default:
                 return;
@@ -180,8 +180,8 @@ function SecondaryNavbar ({page, genre, genres}){
                 </SecondNavigationItem>
             </GridItem>
             <GridItem xs={12}>
-                {FetchMovies(useSelector(state => state.search), useSelector(state => state.adult))}
-                <SearchResults movieList={moviesValue} />
+                {FetchMovies(useSelector(state => state.search), adult)}
+                <SearchResults movieList={moviesValue} clear_search={clear_search} />
             </GridItem>
         </GridContainer >
     );
@@ -191,12 +191,16 @@ const mapStateToProps =  state => {
     return {
         page: state.page,
         genre: state.genre,
-        genres: state.genres
+        genres: state.genres,
+        language: state.language,
+        adult: state.adult
     }
 }
-  
+
 const mapDispatchToProps = dispatch => ({
-    //reducer: () => dispatch(action())
+    clear_movies: () => dispatch(ACTION_CLEAR_ALL_MOVIES()),
+    clear_search: () => dispatch(ACTION_MOVIE_SEARCH("")),
+    append_movies: query => dispatch(ACTION_APPEND_MOVIES(query)),
 })
 
-export default connect(mapStateToProps, null)(SecondaryNavbar);
+export default connect(mapStateToProps, mapDispatchToProps)(SecondaryNavbar);

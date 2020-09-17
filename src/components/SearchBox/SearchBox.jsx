@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 
 const SearchBox = ({search, movie_search}) => {
   const handleChange = event => {
-    debugger;
     movie_search(event.target.value);
   }
   

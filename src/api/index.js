@@ -1,6 +1,7 @@
 import Api_Search from './Search';
 import Api_Latest from './Latest';
 import Api_NowPlaying from './NowPlaying';
+import Api_NowPlaying2 from './NowPlaying2';
 import Api_QueryMovie from './QueryMovie';
 import Api_Keywords from './Keywords';
 import Api_Similar from './Similar';
@@ -10,6 +11,7 @@ export {
     Api_Search,
     Api_Latest,
     Api_NowPlaying,
+    Api_NowPlaying2,
     Api_QueryMovie,
     Api_Keywords,
     Api_Similar,

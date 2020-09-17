@@ -6,7 +6,7 @@ import "react-app-polyfill/stable";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
-import { StaticRouter, BrowserRouter, Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -26,6 +26,7 @@ import LatestMovie from './Pages/LatestMovie';
 import NowPlaying from './Pages/NowPlayingMovies';
 import Navbar from './components/Navbar/Navbar';
 import SecondaryNavbar from './components/Navbar/SecondaryNavbar';
+import {Layouts} from './assets/StyledComponents/App';
 import { NavigationItem, NavigationLine } from './assets/StyledComponents/Navigation';
 
 axios.defaults.params = {}
@@ -50,7 +51,7 @@ ReactDOM.render(
           <br />
           <NavigationLine />
         </header>
-        <div className="padtop">
+        <Layouts>
           <Switch>
             <Route
               path="/Interview.TMDB/Movie/:movieid"
@@ -69,7 +70,7 @@ ReactDOM.render(
               component={NowPlaying}
             />
           </Switch>
-        </div>
+        </Layouts>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
