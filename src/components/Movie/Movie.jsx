@@ -6,7 +6,7 @@ import {config} from '../../config';
 import {urlCleaner, numberLocalisation} from '../../helpers'
 import ReactPlayer from 'react-player';
 import {useSelector, useDispatch} from 'react-redux';
-import {MOVIE_SEARCH} from '../../Store/actions/Action'
+import {ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt, faStar, faStopwatch, faHandHoldingUsd, faFileInvoice } from '@fortawesome/free-solid-svg-icons'
 import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
@@ -23,7 +23,7 @@ function Movie({...props}) {
     const { t } = useTranslation("");
 
     useEffect(() => {
-        dispatch(MOVIE_SEARCH(""))
+        ACTION_MOVIE_SEARCH("")
     },[]);
 
     return (
@@ -126,5 +126,4 @@ function Movie({...props}) {
         </GridContainer>
     );
 }
-
 export default Movie;

@@ -1,4 +1,4 @@
-export const GET_MOVIE_SEARCH = "GET_MOVIE_SEARCH";
+export const MOVIE_SEARCH = "MOVIE_SEARCH";
 export const GET_GENRES = "GET_GENRES";
 export const SET_GENRE = "SET_GENRES";
 export const SET_LANGUAGE = "SET_LANGUAGE";

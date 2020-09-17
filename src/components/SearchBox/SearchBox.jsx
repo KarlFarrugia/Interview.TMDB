@@ -1,43 +1,30 @@
-import React, { useState } from 'react';
-import InputStyle from "../../assets/InputStyle";
-
-// multilanguage component
-import { useTranslation } from "react-i18next";
-
-// @material-ui/core components
-import {
-  ThemeProvider,
-  withStyles
-} from '@material-ui/core/styles';
+import React from 'react';
 import FormControl from "@material-ui/core/FormControl";
-import TextField from '@material-ui/core/TextField';
-import {useSelector, useDispatch} from 'react-redux';
-import {MOVIE_SEARCH} from '../../Store/actions/Action'
-import styled from 'styled-components';
+import {StyledTextField} from '../../assets/StyledComponents/SearchBox'
+import {ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
+import {connect} from 'react-redux';
 
-function SearchBox(props) {
-  const [searchValue, setSearchValue] = useState(useSelector(state => state.movie));
-  const dispatch = useDispatch();
-  const { t } = useTranslation("");
-
+const SearchBox = ({search, movie_search}) => {
   const handleChange = event => {
-    dispatch(MOVIE_SEARCH(event.target.value));
-    setSearchValue(event.target.value);
+    debugger;
+    movie_search(event.target.value);
   }
-
-  const StyledTextField = styled(TextField)`
-    #search-input,  
-    MuiFormControl-root,
-    label.MuiFormLabel-root{
-      color: white !important;
-    }
-  `;
   
   return (
     <FormControl>
-      <StyledTextField autoFocus value={searchValue} label="Search" id="search-input" onChange={handleChange} />
+      <StyledTextField autoFocus value={search} label="Search" id="search-input" onChange={handleChange} />
     </FormControl>
   );
 }
 
-export default (withStyles(InputStyle), SearchBox);
+const mapStateToProps =  state => {  
+  return {
+      search: state.search
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  movie_search: query => dispatch(ACTION_MOVIE_SEARCH(query))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

@@ -1,5 +1,5 @@
 import {
-  GET_MOVIE_SEARCH,
+  MOVIE_SEARCH,
   ADD_MOVIES,
   CLEAR_MOVIES,
   REMOVE_MOVIES,
@@ -14,12 +14,24 @@ import {
   UPDATE_LOCALE
 } from "./Types";
 
-export const MOVIE_SEARCH = (query) => {
-  return{ 
-    type: GET_MOVIE_SEARCH, 
+export const ACTION_MOVIE_SEARCH = (query) => async (dispatch)  => {
+  debugger;
+  dispatch({ 
+    type: MOVIE_SEARCH, 
     payload: query 
-  };
+  });
 };
+
+/*export function ACTION_MOVIE_SEARCH(query) {
+  debugger;
+  const action = () => async dispatch =>{
+    dispatch({
+      type: MOVIE_SEARCH,
+      payload: query
+    });
+  };
+  action();
+};*/
 
 export const ACTION_TOGGLE_ADULT = () => {
   return{ 

@@ -3,7 +3,7 @@ import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search, Api_NowPlaying} from '../../api/'
 import {useSelector, useDispatch, connect} from 'react-redux';
-import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, UPDATE_GENRE, MOVIE_SEARCH} from '../../Store/actions/Action'
+import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, UPDATE_GENRE, ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
 import { SecondNavigationItem, StyledSelect } from '../../assets/StyledComponents/Navigation';
 import { LANGUAGES } from '../../config';
 
@@ -59,7 +59,7 @@ function SecondaryNavbar ({page, genre, genres}){
         dispatch(CLEAR_ALL_MOVIES());
         // from 'http://localhost:3000/NowPlaying/additionalStrings' get nowplaying
         const path = window.location.pathname.split("/")[1].toLowerCase();
-        dispatch(MOVIE_SEARCH(""));
+        ACTION_MOVIE_SEARCH("");
         switch(path){
             case 'nowplaying':
                 for (let index = 1; index <= page; index++) {
@@ -180,7 +180,7 @@ function SecondaryNavbar ({page, genre, genres}){
                 </SecondNavigationItem>
             </GridItem>
             <GridItem xs={12}>
-                {FetchMovies(useSelector(state => state.movie), useSelector(state => state.adult))}
+                {FetchMovies(useSelector(state => state.search), useSelector(state => state.adult))}
                 <SearchResults movieList={moviesValue} />
             </GridItem>
         </GridContainer >

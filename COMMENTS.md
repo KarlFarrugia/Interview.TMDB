@@ -73,9 +73,9 @@ Commit Batch 6 16/09/2020
 Added more structure to the navigation bar
 Added more structure to the secondary navigation bar
 Styled the individual movie page
+Updated Routes for github pages
 
 [TODO:: close button in search]
-[INVIGATE:: back button issue]
 [IMPLEMENT:: genre filter]
 [IMPLEMENT:: adult filter]
 [IMPLEMENT:: caching filter]
