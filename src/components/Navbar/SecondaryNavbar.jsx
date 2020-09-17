@@ -1,16 +1,11 @@
-import React, {Component, useState} from 'react';
-import { Link } from "react-router-dom";
+import React, {useState} from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search, Api_NowPlaying} from '../../api/'
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch, connect} from 'react-redux';
 import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, UPDATE_GENRE, MOVIE_SEARCH} from '../../Store/actions/Action'
-import Card from '../Card/MovieSearchCard'
-import {LogoImg} from '../../assets/StyledComponents/MovieCard'
-import site_logo from "../../assets/images/site_logo.png"
-import { SecondNavigationItem } from '../../assets/StyledComponents/Navigation';
+import { SecondNavigationItem, StyledSelect } from '../../assets/StyledComponents/Navigation';
 import { LANGUAGES } from '../../config';
-import styled from 'styled-components';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
@@ -20,33 +15,17 @@ import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
 import FormControl from "@material-ui/core/FormControl";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import InputLabel from "@material-ui/core/InputLabel";
-import Switch from '@material-ui/core/Switch';
-import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-function SecondaryNavbar (){
+function SecondaryNavbar ({page, genre, genres}){
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
-    const [currentGenreReducer, setCurrentGenreReducer] = useState(useSelector(state => state.genre));
-    const [genresValue, setGenresValue] = useState(useSelector(state => state.genres));
     const { t, i18n } = useTranslation("");
-    let page = useSelector(state => state.page);
     const dispatch = useDispatch();
-
-    const StyledSelect = styled(Select)`
-        .MuiSelect-root,
-        .Mui-focused,
-        input#genre,
-        label.MuiFormLabel-root{
-            color: white !important;
-        }
-    `;
 
     const theme = createMuiTheme({
         palette: {
@@ -63,7 +42,6 @@ function SecondaryNavbar (){
       dispatch(UPDATE_GENRE(event.target.value));
       dispatch(CLEAR_ALL_MOVIES());
       UpdateMovies();
-      setCurrentGenreReducer(event.target.value);
     };
     
     async function GetMovies(movie_list) {
@@ -92,7 +70,6 @@ function SecondaryNavbar (){
         }
     }
 
-    
     function FetchMovies(movieName, adult){
         if(movieName !== currentMovie){
             GetMovies(Api_Search(movieName, t("common:locale"), adult));
@@ -126,7 +103,7 @@ function SecondaryNavbar (){
                             <StyledSelect
                             id="customSelect"
                             MenuProps={{}}
-                            value={currentGenreReducer}
+                            value={genre}
                             inputProps={{
                                 name: "genre",
                                 id: "genre",
@@ -137,10 +114,10 @@ function SecondaryNavbar (){
                                 disabled
                             >
                                 <span className="menu_item">
-                                Genre
+                                    {t("genres:title")}
                                 </span>
                             </MenuItem>
-                            {genresValue.map((props, key) => {
+                            {genres.map((props, key) => {
                                 return(
                                 <MenuItem
                                     key={key}
@@ -210,4 +187,16 @@ function SecondaryNavbar (){
     );
 }
 
-export default SecondaryNavbar;
+const mapStateToProps =  state => {  
+    return {
+        page: state.page,
+        genre: state.genre,
+        genres: state.genres
+    }
+}
+  
+const mapDispatchToProps = dispatch => ({
+    //reducer: () => dispatch(action())
+})
+
+export default connect(mapStateToProps, null)(SecondaryNavbar);

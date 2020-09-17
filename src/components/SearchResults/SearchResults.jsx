@@ -50,7 +50,7 @@ function SearchBox({...props}) {
                       <span>
                         <SearchItemTitle>{movie_props.original_title}</SearchItemTitle><SearchItemDate> {dateExtractor(movie_props.release_date)}</SearchItemDate>
                         <br />
-                        {movie_props.genre_ids.map(genre => <SearchItemGenre><i>{genreRetriever(genre)}</i></SearchItemGenre>)}
+                        {movie_props.genre_ids.map((genre, key) => <SearchItemGenre key={key}><i>{genreRetriever(genre)}</i></SearchItemGenre>)}
                         <br />
                         <SearchItemOverview>{movie_props.overview}</SearchItemOverview>                        
                       </span>

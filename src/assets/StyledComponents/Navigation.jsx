@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Select from "@material-ui/core/Select";
 
 export const NavbarPosition = styled.div`
     z-index: 99999;
@@ -28,4 +29,13 @@ export const NavigationSpacer = styled.div`
 
 export const SecondNavigationItem = styled.div`
     float: right;
+`;
+
+export const StyledSelect = styled(Select)`
+    .MuiSelect-root,
+    .Mui-focused,
+    input#genre,
+    label.MuiFormLabel-root{
+        color: white !important;
+    }
 `;

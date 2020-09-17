@@ -10,3 +10,4 @@ export const TOGGLE_ADULT = "TOGGLE_ADULT";
 export const INCREMENT_PAGE = "INCREMENT_PAGE";
 export const DECREMENT_PAGE = "DECREMENT_PAGE";
 export const SET_PAGE = "SET_PAGE";
+export const UPDATE_LOCALE = "UPDATE_LOCALE";

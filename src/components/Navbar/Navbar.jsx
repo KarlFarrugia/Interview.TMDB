@@ -1,20 +1,11 @@
 import React, {Component, useState} from 'react';
 import { Link } from "react-router-dom";
-import SearchBox from '../SearchBox/SearchBox';
-import SearchResults from '../SearchResults/SearchResults';
-import {Api_Search, Api_NowPlaying} from '../../api/'
-import {useSelector, useDispatch} from 'react-redux';
-import {UPDATE_LANGUAGE, CLEAR_ALL_MOVIES, APPEND_MOVIES, ACTION_TOGGLE_ADULT, MOVIE_SEARCH} from '../../Store/actions/Action'
-import Card from '../Card/MovieSearchCard'
 import {LogoImg} from '../../assets/StyledComponents/MovieCard'
 import site_logo from "../../assets/images/site_logo.png"
 import {NavbarTitle, NavbarPosition, NavigationSpacer} from '../../assets/StyledComponents/Navigation';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
-
-// @material-ui/core components
-import { createMuiTheme } from '@material-ui/core/styles';
 
 // core components
 import GridItem from "../../assets/GridItem.jsx";

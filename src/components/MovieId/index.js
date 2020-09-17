@@ -14,7 +14,9 @@ import { useTranslation } from "react-i18next";
 import GridContainer from '../../assets/GridContainer';
 import GridItem from '../../assets/GridItem';
 
-function MoviePage(props) {
+function MoviePage({...props}) {
+    console.log(props);
+    debugger;
     const [moviesValue, setMoviesValue] = useState("");
     const [similarMovies, setSimilarMovies] = useState("");
     const [keywords, setKeywords] = useState([]);

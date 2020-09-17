@@ -78,3 +78,4 @@ Styled the individual movie page
 [INVIGATE:: back button issue]
 [IMPLEMENT:: genre filter]
 [IMPLEMENT:: adult filter]
+[IMPLEMENT:: caching filter]

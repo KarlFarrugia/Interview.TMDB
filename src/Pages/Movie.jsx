@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import MoviesListings from '../components/MoviesListings';
+import React from 'react';
 import {Api_QueryMovie, Api_Similar, Api_Keywords, Api_Videos} from '../api';
 import { connect } from 'react-redux';
 import MovieId from '../components/MovieId';
@@ -10,9 +9,10 @@ function MoviePage(props) {
     );
 }
 
-const mapStateToProps = state => {  
+const mapStateToProps =  state => {  
+    console.log(state);
     return {
-        movieId: window.location.pathname.split("/")[2],
+        movieId: window.location.pathname.split("/")[2]
     }
 }
   

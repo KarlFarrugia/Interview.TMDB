@@ -10,7 +10,8 @@ import {
   INCREMENT_PAGE,
   DECREMENT_PAGE,
   TOGGLE_ADULT,
-  SET_PAGE
+  SET_PAGE,
+  UPDATE_LOCALE
 } from "./Types";
 
 export const MOVIE_SEARCH = (query) => {
@@ -85,9 +86,23 @@ export const DECREMENT_MOVIE_PAGE = () =>{
   }
 };
 
-export const ACTION_SET_PAGE = (page) => {
-  return{
+export const ACTION_SET_PAGE = (page) =>{
+  return {
     type: SET_PAGE,
     payload: page
+  };
+}
+
+/*export const ACTION_SET_PAGE = (page) => async dispatch =>{
+  dispatch({
+    type: SET_PAGE,
+    payload: page
+  });
+}*/
+
+export const ACTION_UPDATE_LOCALE = (locale) => {
+  return{
+    type: UPDATE_LOCALE,
+    payload: locale
   }
 }
