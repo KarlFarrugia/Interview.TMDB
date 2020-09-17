@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Interview.TMDB/precache-manifest.1c56716f22741f8a162378e5b5bf4908.js"
+  "/Interview.TMDB/precache-manifest.aba63df9f6e9a5444e4343ab6c476ea2.js"
 );
 
 self.addEventListener('message', (event) => {
