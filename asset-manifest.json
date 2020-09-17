@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/Interview.TMDB/static/css/main.8689c5af.chunk.css",
-    "main.js": "/Interview.TMDB/static/js/main.effc916d.chunk.js",
-    "main.js.map": "/Interview.TMDB/static/js/main.effc916d.chunk.js.map",
+    "main.css": "/Interview.TMDB/static/css/main.04aa14ea.chunk.css",
+    "main.js": "/Interview.TMDB/static/js/main.c491869b.chunk.js",
+    "main.js.map": "/Interview.TMDB/static/js/main.c491869b.chunk.js.map",
     "runtime-main.js": "/Interview.TMDB/static/js/runtime-main.097b4a74.js",
     "runtime-main.js.map": "/Interview.TMDB/static/js/runtime-main.097b4a74.js.map",
-    "static/js/2.f9e9153c.chunk.js": "/Interview.TMDB/static/js/2.f9e9153c.chunk.js",
-    "static/js/2.f9e9153c.chunk.js.map": "/Interview.TMDB/static/js/2.f9e9153c.chunk.js.map",
+    "static/js/2.4dc4ffa0.chunk.js": "/Interview.TMDB/static/js/2.4dc4ffa0.chunk.js",
+    "static/js/2.4dc4ffa0.chunk.js.map": "/Interview.TMDB/static/js/2.4dc4ffa0.chunk.js.map",
     "index.html": "/Interview.TMDB/index.html",
-    "precache-manifest.273132cd7faa5d37858c0170f429a9a4.js": "/Interview.TMDB/precache-manifest.273132cd7faa5d37858c0170f429a9a4.js",
+    "precache-manifest.1c56716f22741f8a162378e5b5bf4908.js": "/Interview.TMDB/precache-manifest.1c56716f22741f8a162378e5b5bf4908.js",
     "service-worker.js": "/Interview.TMDB/service-worker.js",
-    "static/css/main.8689c5af.chunk.css.map": "/Interview.TMDB/static/css/main.8689c5af.chunk.css.map",
-    "static/js/2.f9e9153c.chunk.js.LICENSE.txt": "/Interview.TMDB/static/js/2.f9e9153c.chunk.js.LICENSE.txt",
+    "static/css/main.04aa14ea.chunk.css.map": "/Interview.TMDB/static/css/main.04aa14ea.chunk.css.map",
+    "static/js/2.4dc4ffa0.chunk.js.LICENSE.txt": "/Interview.TMDB/static/js/2.4dc4ffa0.chunk.js.LICENSE.txt",
     "static/media/unavailable_movie_poster.jpg": "/Interview.TMDB/static/media/unavailable_movie_poster.b326079b.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.097b4a74.js",
-    "static/js/2.f9e9153c.chunk.js",
-    "static/css/main.8689c5af.chunk.css",
-    "static/js/main.effc916d.chunk.js"
+    "static/js/2.4dc4ffa0.chunk.js",
+    "static/css/main.04aa14ea.chunk.css",
+    "static/js/main.c491869b.chunk.js"
   ]
 }
