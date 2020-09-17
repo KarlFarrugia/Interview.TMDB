@@ -12,7 +12,7 @@ function MoviePage(props) {
 const mapStateToProps =  state => {  
     console.log(state);
     return {
-        movieId: window.location.pathname.split("/")[2]
+        movieId: window.location.pathname.split("/")[3]
     }
 }
   

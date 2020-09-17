@@ -37,7 +37,7 @@ function SearchBox({...props}) {
           {movieList.map((prop,key) => {
             let movie_props = prop;
             return(
-              <Link onClick={() => window.location.href=`/Movie/${movie_props.id}`} to={`/Movie/${movie_props.id}`}>
+              <Link to={`/Interview.TMDB/Movie/${movie_props.id}`}>
                 <SearchBoxItem>
                   <GridContainer direction="row" alignItems="flex-start" className="header">
                     <GridItem xs={1}>

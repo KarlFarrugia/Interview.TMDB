@@ -23,7 +23,7 @@ function Navbar (){
             >
                 <GridItem xs={12} sm={4} lg={7}>
                     <NavigationSpacer>
-                        <Link to={"/"}>
+                        <Link to={"/Interview.TMDB/"}>
                             <LogoImg src={site_logo}/> <NavbarTitle>{t("common:app_title")}</NavbarTitle>
                         </Link>
                     </NavigationSpacer>
@@ -36,35 +36,35 @@ function Navbar (){
                     >
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Latest"}>
+                                <Link to={"/Interview.TMDB/Latest"}>
                                     <span>{t("navigation:latest")}</span>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/NowPlaying"}>
+                                <Link to={"/Interview.TMDB/NowPlaying"}>
                                     <span>{t("navigation:now_playing")}</span>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Upcoming"}>
+                                <Link to={"/Interview.TMDB/Upcoming"}>
                                     <span>{t("navigation:upcoming")}</span>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Popular"}>
+                                <Link to={"/Interview.TMDB/Popular"}>
                                     <span>{t("navigation:popular")}</span>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link onClick={() => window.location.href=`/TopRated`} to={"/TopRated"}>
+                                <Link to={"/Interview.TMDB/TopRated"}>
                                     <span>{t("navigation:top_rated")}</span>
                                 </Link>
                             </NavigationSpacer>

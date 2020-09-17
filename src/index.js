@@ -53,15 +53,15 @@ ReactDOM.render(
         <div className="padtop">
           <Switch>
             <Route
-              path="/Movie/:movieid"
+              path="/Interview.TMDB/Movie/:movieid"
               component={Movie}
             />
             <Route
-              path="/Latest"
+              path="/Interview.TMDB/Latest"
               component={LatestMovie}
             />
             <Route
-              path="/NowPlaying"
+              path="/Interview.TMDB/NowPlaying"
               component={NowPlaying}
             />
             <Route
