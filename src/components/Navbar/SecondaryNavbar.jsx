@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
-import {Api_Search, Api_NowPlaying} from '../../api/'
+import {Api_Search} from '../../api/'
 import {connect} from 'react-redux';
-import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_CLEAR_ALL_MOVIES, ACTION_APPEND_MOVIES, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
+import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
 import { SecondNavigationItem, StyledSelect, StyledFormControlLabel, } from '../../assets/StyledComponents/Navigation';
 import { GENRES, LANGUAGES } from '../../config';
 
@@ -20,7 +20,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from "@material-ui/core/MenuItem";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, clear_search, append_movies, update_genre, update_language, update_locale, toggle_adult}){
+function SecondaryNavbar ({genre, language, adult, search, clear_search, update_genre, update_language, update_locale, toggle_adult}){
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
     const { t, i18n } = useTranslation("");
@@ -37,8 +37,6 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
 
     function change(event){
       update_genre(event.target.value);
-      clear_movies();
-      UpdateMovies();
     };
     
     async function GetMovies(movie_list) {
@@ -53,21 +51,6 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
         );
     }
 
-    function UpdateMovies(){
-        clear_movies();
-        // from 'http://localhost:3000/NowPlaying/additionalStrings' get nowplaying
-        const path = window.location.pathname.split("/")[1].toLowerCase();
-        switch(path){
-            case 'nowplaying':
-                for (let index = 1; index <= page; index++) {
-                    Api_NowPlaying(append_movies,index,t("common:locale"));
-                }
-                break;
-            default:
-                return;
-        }
-    }
-
     function FetchMovies(movieName, adult){
         if(movieName !== currentMovie){
             GetMovies(Api_Search(movieName, t("common:locale"), adult));
@@ -78,8 +61,8 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
     function UpdateLanguage(event) {
         update_language(event.target.value);
         i18n.changeLanguage(event.target.value);
+        //Locale is retrieved from the i18n translations therefore dispatch the update after changing the language
         update_locale(t(`common:locale`));
-        UpdateMovies();
     }
 
     return (
@@ -89,7 +72,7 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
             alignItems="flex-end"
         >
             <br />
-            <GridItem xs={3} sm={4} md={2}>
+            <GridItem xs={4} sm={4} md={2}>
                 <SecondNavigationItem>
                     <SearchBox />
                 </SecondNavigationItem>
@@ -167,7 +150,7 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
                     </ThemeProvider>
                 </SecondNavigationItem>
             </GridItem>
-            <GridItem xs={3} sm={2} md={1}>
+            <GridItem xs={2} sm={2} md={1}>
                 <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
                         <StyledFormControlLabel
@@ -191,7 +174,6 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
 
 const mapStateToProps =  state => {  
     return {
-        page: state.page,
         genre: state.genre,
         language: state.language,
         adult: state.adult,
@@ -200,9 +182,7 @@ const mapStateToProps =  state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    clear_movies: () => dispatch(ACTION_CLEAR_ALL_MOVIES()),
     clear_search: () => dispatch(ACTION_MOVIE_SEARCH("")),
-    append_movies: query => dispatch(ACTION_APPEND_MOVIES(query)),
     update_genre: genre => dispatch(ACTION_UPDATE_GENRE(genre)),
     update_language: lang => dispatch(ACTION_UPDATE_LANGUAGE(lang)),
     update_locale: locale => dispatch(ACTION_UPDATE_LOCALE(locale)),

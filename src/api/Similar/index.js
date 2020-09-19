@@ -16,6 +16,7 @@ import { config, LONG_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../helpers';
 import * as Sentry from "@sentry/react";
 
+//Global Declarations
 let axiosSimilarRequest;
 const COOKIE_PREFIX = "similar_";
 
@@ -27,7 +28,6 @@ const COOKIE_PREFIX = "similar_";
  * @param {String} locale the locale from which to retrieve the latest movie
  * @returns {Object} the set of movie objects which are similar to the movie_id
  */
-
 export default async function Similar (movie_id, locale) {
   try{
     //Retrieve values from cookie

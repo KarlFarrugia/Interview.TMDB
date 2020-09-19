@@ -1,4 +1,4 @@
-import {GENRES} from "../config";
+import { GENRES } from "../config";
 
 export function genreRetriever (id) {
     try{

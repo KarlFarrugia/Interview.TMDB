@@ -6,7 +6,9 @@ import {
   SET_LANGUAGE,
   TOGGLE_ADULT,
   SET_PAGE,
-  UPDATE_LOCALE
+  UPDATE_LOCALE,
+  ERROR,
+  RESOLVE
 } from "./Types";
 
 export const ACTION_MOVIE_SEARCH = (query) => async (dispatch)  => {
@@ -60,5 +62,17 @@ export const ACTION_UPDATE_LOCALE = (locale) => async (dispatch) => {
   dispatch({
     type: UPDATE_LOCALE,
     payload: locale
+  });
+};
+
+export const ACTION_SET_ERROR = () => async (dispatch) => {
+  dispatch({
+    type: ERROR
+  });
+};
+
+export const ACTION_RESOLVE_ERROR = () => async (dispatch) => {
+  dispatch({
+    type: RESOLVE
   });
 };

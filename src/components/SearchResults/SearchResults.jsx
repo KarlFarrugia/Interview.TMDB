@@ -1,19 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import SearchStyle from "../../assets/SearchStyle";
-import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/Search";
-import {dateExtractor} from "../../helpers"
 
 // core components
 import GridItem from "../../assets/GridItem.jsx";
 import GridContainer from "../../assets/GridContainer.jsx";
 
 import { config } from "../../config";
-import {genreRetriever} from "../../helpers";
-import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
+import {genreRetriever, dateExtractor} from "../../helpers";
 
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
+import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/Search";
 
 function SearchBox({ movieList, clear_search }) {
   let isEmpty = false;
@@ -55,4 +51,4 @@ function SearchBox({ movieList, clear_search }) {
   );
 }
 
-export default (withStyles(SearchStyle), SearchBox);
+export default SearchBox;

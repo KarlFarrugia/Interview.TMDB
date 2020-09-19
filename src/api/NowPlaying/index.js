@@ -16,6 +16,7 @@ import { config, DAY_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../helpers';
 import * as Sentry from "@sentry/react";
 
+//Global Declarations
 let nowPlayingAxiosRequest;
 const COOKIE_PREFIX = "now_playing_";
 
@@ -29,14 +30,18 @@ const COOKIE_PREFIX = "now_playing_";
  * @param {String} page the current page number
  * @param {String} locale the locale from which to retrieve the latest movie
  * @param {String} genre the genres of the movies to be retrieved
+ * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
  * @returns {Int16Array} the maximum number of pages that can be retrieved
  */
-export default async function Latest (action, page, locale, genre = "") {
+export default async function Latest (action, page, locale, genre = 0, adult) {
   try{
+    //Default genre to empty such that when the query is executed it will not specify the genre query. A 0 or -1 will cause the query to return an empty list.
+    if (genre <= 0)
+      genre = "";
+
     //Retrieve values from cookie
     const cookie_name = `${COOKIE_PREFIX}${page}_${locale}_${genre}`;
     const cookie_value = GetFromCookie(cookie_name);
-    
     if (cookie_value === "") {
       // Cancel previous request
       if (nowPlayingAxiosRequest)

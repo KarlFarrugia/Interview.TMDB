@@ -1,27 +1,58 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { Redirect } from "react-router-dom";
 import MoviesListings from '../components/MoviesListings';
+import Error from './Error';
 import Paging from '../components/Paging'
 import { connect } from 'react-redux';
-import {ACTION_APPEND_MOVIES, ACTION_SET_PAGE, ACTION_CLEAR_ALL_MOVIES} from '../Store/actions/Action'
-import {App, Section} from '../assets/StyledComponents/App'
+import { ACTION_APPEND_MOVIES, ACTION_SET_PAGE, ACTION_CLEAR_ALL_MOVIES } from '../Store/actions/Action'
+import {Api_Search, Api_NowPlaying} from '../api'
+import { App, Section } from '../assets/StyledComponents/App'
 
-function NowPlaying({page, movies, append_movies, set_page, clear_movies}) {
+function NowPlaying({page, language, genre, adult, movies, render, append_movies, set_page, clear_movies}) {
+    const [currentPage, setCurrentPage] = useState(-1);
+    const [currentLanguage, setCurrentLanguage] = useState('en');
+    const [currentGenre, setCurrentGenre] = useState(0);
+    const [currentAdult, setCurrentAdult] = useState(false);
+    const [maxPage, SetMaxPage] = useState(1);
+
+    useEffect(() => {
+        // If current Movie Selection (the one that is rendered on screen) is different from the passed parameters then update the current movie selection
+        // Otherwise do nothing. This condition safeguards against an infinite update loop
+        if(currentPage !== page || currentLanguage !== language || currentGenre !== genre || currentAdult !== adult){
+            setCurrentPage(page);
+            setCurrentLanguage(language);
+            setCurrentGenre(genre);
+            setCurrentAdult(adult);
+            clear_movies();
+            Api_NowPlaying(append_movies, page, language, genre, adult);
+        }
+    });
+
     return (
-        <App>
-            <Section>
-                {<MoviesListings props={movies} />}
-            </Section>
-            <Section>
-                <Paging page={page} append_movies={append_movies} set_page={set_page} clear_movies={clear_movies}/>
-            </Section>
-        </App>
+        render ? (
+            <App>
+                <Section>
+                    {<MoviesListings props={movies} />}
+                </Section>
+                <Section>
+                    <Paging maxPage={maxPage} page={page} set_page={set_page}/>
+                </Section>
+            </App>
+        ) : (
+            <Redirect to={Error} />
+        ) 
+        
     );
 }
 
 const mapStateToProps =  state => {  
     return {
         page: state.page,
+        language: state.language,
+        genre: state.genre,
+        adult: state.adult,
         movies: state.movies,
+        render: state.render
     }
 }
 

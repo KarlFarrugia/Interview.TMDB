@@ -2,20 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MovieId from '../components/MovieId';
 
-function MoviePage() {
+function MoviePage({language}) {
     return (
-        <MovieId movieId={parseInt(window.location.pathname.split("/")[3])}/>
+        <MovieId movieId={parseInt(window.location.pathname.split("/")[3])} language={language}/>
     );
 }
 
-/*const mapStateToProps =  state => {  
+const mapStateToProps =  state => {  
     return {
-        movieId: window.location.pathname.split("/")[3]
+        language: state.language
     }
 }
   
-const mapDispatchToProps = dispatch => ({
+/*const mapDispatchToProps = dispatch => ({
     reducer: () => dispatch(action())
 })*/
 
-export default connect(null, null)(MoviePage);
+export default connect(mapStateToProps, null)(MoviePage);

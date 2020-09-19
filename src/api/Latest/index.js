@@ -16,6 +16,7 @@ import { config, SHORT_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../helpers';
 import * as Sentry from "@sentry/react";
 
+//Global Declarations
 let latestAxiosRequest;
 const COOKIE_PREFIX = "latest_id";
 

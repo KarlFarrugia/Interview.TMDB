@@ -12,12 +12,13 @@ import { useTranslation } from "react-i18next";
 import GridContainer from '../../assets/GridContainer';
 import GridItem from '../../assets/GridItem';
 
-function MoviePage({movieId}) {
+function MoviePage({movieId, language}) {
     const [moviesValue, setMoviesValue] = useState("");
     const [similarMovies, setSimilarMovies] = useState("");
     const [keywords, setKeywords] = useState([]);
     const [videos, setVideos] = useState([]);
     const [currentMovie, setCurrentMovie] = useState(-1);
+    const [currentLanguage, setCurrentLanguage] = useState('en');
     const { t } = useTranslation("");
 
     const MovieBackgroundElement = styled.div`    
@@ -33,20 +34,20 @@ function MoviePage({movieId}) {
 
     useEffect(() => {
         const GetMovies = async () => {
-            setMoviesValue(await Api_QueryMovie(movieId, t("common:locale")));     
-            setSimilarMovies(await Api_Similar(movieId, t("common:locale")));  
+            setMoviesValue(await Api_QueryMovie(movieId, language));     
+            setSimilarMovies(await Api_Similar(movieId, language));  
             setKeywords(await Api_Keywords(movieId));  
-            const videos = await Api_Videos(movieId);
+            const videos = await Api_Videos(movieId,language);
             setVideos(...videos);  
         }
 
-        // If current Movie (the one that is rendered on screen) is different from the passed parameter movieId then update the current movie
+        // If current Movie (the one that is rendered on screen) is different from the passed movieId and language parameters then update the current movie
         // Otherwise do nothing. This condition safeguards against an infinite update loop
-        if(currentMovie !== movieId){
+        if(currentMovie !== movieId || currentLanguage !== language ){
             setCurrentMovie(movieId);
+            setCurrentLanguage(language);
             GetMovies();
         }
-        console.log(movieId);
     })
 
     return (

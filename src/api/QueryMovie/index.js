@@ -16,6 +16,7 @@ import { config, LONG_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../helpers';
 import * as Sentry from "@sentry/react";
 
+//Global Declarations
 let queryAxiosRequest;
 const COOKIE_PREFIX = "query_";
 

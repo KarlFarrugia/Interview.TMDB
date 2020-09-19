@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Footer = styled.div`
+export const FooterContainer = styled.footer`
     text-align: right;
     margin: 0 15px 15px 0;
 `

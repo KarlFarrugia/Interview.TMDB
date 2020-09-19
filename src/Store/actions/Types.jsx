@@ -6,3 +6,5 @@ export const CLEAR_MOVIES = "CLEAR_MOVIES";
 export const TOGGLE_ADULT = "TOGGLE_ADULT";
 export const SET_PAGE = "SET_PAGE";
 export const UPDATE_LOCALE = "UPDATE_LOCALE";
+export const ERROR = "ERROR";
+export const RESOLVE ="RESOLVE";

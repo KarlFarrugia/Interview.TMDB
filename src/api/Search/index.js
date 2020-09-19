@@ -16,6 +16,7 @@ import { config, LONG_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../helpers';
 import * as Sentry from "@sentry/react";
 
+//Global Declarations
 let axiosRequest;
 const COOKIE_PREFIX = "search_";
 
@@ -27,7 +28,7 @@ const COOKIE_PREFIX = "search_";
  * @param {String} locale the locale from which to retrieve the latest movie
  * @returns {Object} the movie data as a JavaScript Object
  */
-export default async function Search (moviename, locale = "de-DE", adult = false) {
+export default async function Search (moviename, locale = "en", adult = false) {
   try{
     //Retrieve values from cookie
     const cookie_name = `${COOKIE_PREFIX}${moviename}_${locale}`;

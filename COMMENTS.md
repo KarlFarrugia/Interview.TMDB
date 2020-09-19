@@ -90,7 +90,9 @@ Added sentry
 Started cleaning code and adding comments
 Modified some responsiveness issues
 Modified the way the __REDUX_DEVTOOLS_EXTENSION__ is declared within the store
+Created generic error page
 
 [TODO:: close button in search]
+[TODO:: add a generic error page]
 [IMPLEMENT:: genre filter]
 [IMPLEMENT:: adult filter]

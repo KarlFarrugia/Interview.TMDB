@@ -5,6 +5,7 @@ import moviesReducer from './MoviesReducer.jsx';
 import searchReducer from './SearchReducer.jsx';
 import languageReducer from './LanguageReducer.jsx';
 import localeReducer from './LocaleReducer.jsx';
+import errorReducer from './ErrorReducer.jsx';
 import pageReducer from './PageReducer.jsx';
 import adultReducer from './AdultReducer.jsx';
 
@@ -16,6 +17,7 @@ const allReducers = combineReducers({
     locale: localeReducer,
     page: pageReducer,
     adult: adultReducer,
+    render: errorReducer,
     routing: routerReducer
 });
 
