@@ -42,14 +42,15 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
     };
     
     async function GetMovies(movie_list) {
-        await movie_list.
-        then(movies => {
-            if (movies === ""){
-                setMoviesValue([]);
-            }else{
-                setMoviesValue(movies);
+        await movie_list.then(
+            movies => {
+                if (movies === ""){
+                    setMoviesValue([]);
+                }else{
+                    setMoviesValue(movies);
+                }
             }
-        });
+        );
     }
 
     function UpdateMovies(){
@@ -61,6 +62,7 @@ function SecondaryNavbar ({page, genre, language, adult, search, clear_movies, c
                 for (let index = 1; index <= page; index++) {
                     Api_NowPlaying(append_movies,index,t("common:locale"));
                 }
+                break;
             default:
                 return;
         }

@@ -1,34 +1,79 @@
+/*
+ * QueryMovie - index.js
+ * Author: Karl Farrugia
+ * -------------------------------------------------------------------------------------------------------------------------------
+ * 
+ *  This file returns a single default function to return the primary movie details as specified by the movie_id and locale parameters
+ *  This function uses axios to return the latest movie according to a locale and then stores the result in a cookie for a long period of
+ *  time as specified by th config file. Subsequent requests will make use of the stored cookie to retrieve the content of the latest movie
+ *  as long as the cookie is still active, otherwise a new call is sent to the TMDB site.
+ *
+ * -------------------------------------------------------------------------------------------------------------------------------
+ */
+
 import axios from 'axios';
-import { config, MEDIUM_COOKIE_EXPIRY } from '../../config';
+import { config, LONG_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../helpers';
+import * as Sentry from "@sentry/react";
 
 let queryAxiosRequest;
 const COOKIE_PREFIX = "query_";
 
-export default async function Search (moviename, locale) {
+/**
+ * This function checks if the movie specified by the movie_id parameter is present in the cookie otherwise it proceeds to get it from TMDB 
+ * Web API. The retrieved object is the return as is to the calling function.
+ * 
+ * @param {String} movie_id the id of the movie to be retrieved
+ * @param {String} locale the locale from which to retrieve the latest movie
+ * @returns {Object} the movie data as a JavaScript Object
+ */
+export default async function Search (movie_id, locale = "de-DE") {
   try{
-    const cookie_value = GetFromCookie(`${COOKIE_PREFIX}${moviename}_${locale}`);
-    if (cookie_value === "") {
+    //Retrieve values from cookie
+    const cookie_name = `${COOKIE_PREFIX}${movie_id}_${locale}`;
+    const cookie_value = GetFromCookie(cookie_name);
+
+    // If cookie is not empty or undefined
+    if (cookie_value === "" || cookie_value === undefined) {
+      
       // Cancel previous request
-      if (queryAxiosRequest) {
+      if (queryAxiosRequest)
           queryAxiosRequest.cancel();
-      }
-      if(moviename.length === 0 || moviename === "" || moviename === undefined || moviename === null){
+
+      // If no movie is returned passed as a parameter return an empty string
+      if(movie_id.length === 0 || movie_id === "" || movie_id === undefined || movie_id === null)
         return "";
-      }else{
-      // creates a new token for upcomming ajax (overwrite the previous one)
+
+      // Creates a new token for upcomming ajax (overwrite the previous one)
       queryAxiosRequest = axios.CancelToken.source();  
-      const result = await axios.get(`${config.TMDB.API_ROOT_URL}/movie/${moviename}`, {
+
+      // Use Axios to get the movie by name
+      const result = await axios.get(`${config.TMDB.API_ROOT_URL}/movie/${movie_id}`, {
         params: {
             language: locale
         }
       });
-      WriteToCookie((`${COOKIE_PREFIX}${moviename}_${locale}`),JSON.stringify(result.data),MEDIUM_COOKIE_EXPIRY);
+
+      // Store the result in a cookie for subsequent requests for a long period set in the config file
+      // Long period since actual movie details do not change as often.
+      WriteToCookie(
+        cookie_value,
+        JSON.stringify(result.data),
+        LONG_COOKIE_EXPIRY
+      );
+
+      // Return the movie related data
       return result.data;
-      }
-    } else {
-      console.log(`Retrieved ${COOKIE_PREFIX}${moviename}_${locale} from storage`);
+    } 
+    //otherwise return the content of the cookie
+    else 
+    {
+      console.log(`Retrieved ${cookie_value} from storage`);
+      // Return the movie related data
       return JSON.parse(cookie_value);
     }
-  }catch (e){}
+  }catch (e){
+    //Log exception to sentry
+    Sentry.captureException(e, `An error was encountered while retrieving the latest movies with the following parameters: movie id - ${movie_id}, locale - ${locale}`);
+  }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import SearchStyle from "../../assets/SearchStyle";
-import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/search";
+import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/Search";
 import {dateExtractor} from "../../helpers"
 
 // core components

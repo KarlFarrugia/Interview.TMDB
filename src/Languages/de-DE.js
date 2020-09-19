@@ -58,6 +58,10 @@ export const TMDB_DE = {
             numbers: "Die Zahlen",
             budget: "Budget:",
             revenue: "Einnahmen:"
-        }     
+        },
+        footer: {
+            powered_by: "Unterstützt von",
+            created_by: "Erstellt von"
+        } 
     }
 }

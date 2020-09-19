@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {MoviePoster, MovieTitle, MovieVideo, MovieSubTitle, MovieOverview, MovieInformation, MovieTitleInformation, MovieNumberInformation, MovieHomepage, MovieHeader, MovieGenre, MovieSectionHeader} from '../../assets/StyledComponents/Movie';
 import {config} from '../../config';
 import {urlCleaner, numberLocalisation} from '../../helpers'

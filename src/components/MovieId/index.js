@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import MoviesListings from '../../components/MoviesListings';
 import {Api_QueryMovie, Api_Similar, Api_Keywords, Api_Videos} from '../../api';
 import {MovieContainer, MovieBody, MovieHeader} from '../../assets/StyledComponents/Movie';
@@ -31,15 +31,15 @@ function MoviePage({...props}) {
         z-index: -1;
     `
 
-    const GetMovies = async () => {
-        setMoviesValue(await Api_QueryMovie(props.movieId, t("common:locale")));     
-        setSimilarMovies(await Api_Similar(props.movieId, t("common:locale")));  
-        setKeywords(await Api_Keywords(props.movieId));  
-        const videos = await Api_Videos(props.movieId);
-        setVideos(...videos);  
-    }
-
     useEffect(() => {
+        const GetMovies = async () => {
+            setMoviesValue(await Api_QueryMovie(props.movieId, t("common:locale")));     
+            setSimilarMovies(await Api_Similar(props.movieId, t("common:locale")));  
+            setKeywords(await Api_Keywords(props.movieId));  
+            const videos = await Api_Videos(props.movieId);
+            setVideos(...videos);  
+        }
+
         GetMovies();
     }, [])
 

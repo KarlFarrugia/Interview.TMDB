@@ -20,23 +20,38 @@ import { config } from './config';
 import "./i18n";
 
 //Pages
-import App from './App';
 import Movie from './Pages/Movie';
 import LatestMovie from './Pages/LatestMovie';
 import NowPlaying from './Pages/NowPlayingMovies';
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer';
 import SecondaryNavbar from './components/Navbar/SecondaryNavbar';
 import {Layouts} from './assets/StyledComponents/App';
-import { NavigationItem, NavigationLine } from './assets/StyledComponents/Navigation';
+import { NavigationLine } from './assets/StyledComponents/Navigation';
+
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
+
+Sentry.init({
+  dsn: "https://3265ed4ca10f474badbdda2f3b400ea5@o374444.ingest.sentry.io/5434536",
+  integrations: [
+    new Integrations.BrowserTracing(),
+  ],
+  tracesSampleRate: 1.0,
+});
 
 axios.defaults.params = {}
 axios.defaults.params['api_key'] = config.TMDB.API_KEY;
 
 const hist = createBrowserHistory();
+const sentryReduxEnhancer = Sentry.createReduxEnhancer({
+  // Optionally pass options
+});
 const store = createStore(
   allReducer,
   compose(
-      applyMiddleware(thunk),        
+      applyMiddleware(thunk),
+      sentryReduxEnhancer,    
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
@@ -71,6 +86,7 @@ ReactDOM.render(
             />
           </Switch>
         </Layouts>
+        <Footer />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

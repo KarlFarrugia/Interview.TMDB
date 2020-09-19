@@ -11,12 +11,12 @@ function LatesMovie({clear_movies}) {
     const [moviesValue, setMoviesValue] = useState(0);
     const { t } = useTranslation("");
 
-    const GetLatestMovie = async () => {
-        const movie_id = await Api_Latest(t("common:locale"));
-        setMoviesValue(movie_id);
-    }
-
     useEffect(() => {
+        const GetLatestMovie = async () => {
+            const movie_id = await Api_Latest(t("common:locale"));
+            setMoviesValue(movie_id);
+        }
+
         clear_movies();
         GetLatestMovie();
     },[])
