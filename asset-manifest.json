@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Interview.TMDB/static/css/main.03953299.chunk.css",
-    "main.js": "/Interview.TMDB/static/js/main.e6f1a8b5.chunk.js",
-    "main.js.map": "/Interview.TMDB/static/js/main.e6f1a8b5.chunk.js.map",
+    "main.css": "/Interview.TMDB/static/css/main.10eebe6c.chunk.css",
+    "main.js": "/Interview.TMDB/static/js/main.69be9f92.chunk.js",
+    "main.js.map": "/Interview.TMDB/static/js/main.69be9f92.chunk.js.map",
     "runtime-main.js": "/Interview.TMDB/static/js/runtime-main.097b4a74.js",
     "runtime-main.js.map": "/Interview.TMDB/static/js/runtime-main.097b4a74.js.map",
-    "static/js/2.1c6b58cd.chunk.js": "/Interview.TMDB/static/js/2.1c6b58cd.chunk.js",
-    "static/js/2.1c6b58cd.chunk.js.map": "/Interview.TMDB/static/js/2.1c6b58cd.chunk.js.map",
+    "static/js/2.1994d07c.chunk.js": "/Interview.TMDB/static/js/2.1994d07c.chunk.js",
+    "static/js/2.1994d07c.chunk.js.map": "/Interview.TMDB/static/js/2.1994d07c.chunk.js.map",
     "index.html": "/Interview.TMDB/index.html",
-    "precache-manifest.3dab5626c9f2e6876fe25bed386b863b.js": "/Interview.TMDB/precache-manifest.3dab5626c9f2e6876fe25bed386b863b.js",
+    "precache-manifest.2d02a35f08b95455facc8f172fd7855d.js": "/Interview.TMDB/precache-manifest.2d02a35f08b95455facc8f172fd7855d.js",
     "service-worker.js": "/Interview.TMDB/service-worker.js",
-    "static/css/main.03953299.chunk.css.map": "/Interview.TMDB/static/css/main.03953299.chunk.css.map",
-    "static/js/2.1c6b58cd.chunk.js.LICENSE.txt": "/Interview.TMDB/static/js/2.1c6b58cd.chunk.js.LICENSE.txt",
+    "static/css/main.10eebe6c.chunk.css.map": "/Interview.TMDB/static/css/main.10eebe6c.chunk.css.map",
+    "static/js/2.1994d07c.chunk.js.LICENSE.txt": "/Interview.TMDB/static/js/2.1994d07c.chunk.js.LICENSE.txt",
     "static/media/GitHubLogo.png": "/Interview.TMDB/static/media/GitHubLogo.ff12764c.png",
     "static/media/TMDBLogo.svg": "/Interview.TMDB/static/media/TMDBLogo.24a6fdb9.svg",
     "static/media/unavailable_movie_poster.jpg": "/Interview.TMDB/static/media/unavailable_movie_poster.b326079b.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.097b4a74.js",
-    "static/js/2.1c6b58cd.chunk.js",
-    "static/css/main.03953299.chunk.css",
-    "static/js/main.e6f1a8b5.chunk.js"
+    "static/js/2.1994d07c.chunk.js",
+    "static/css/main.10eebe6c.chunk.css",
+    "static/js/main.69be9f92.chunk.js"
   ]
 }
