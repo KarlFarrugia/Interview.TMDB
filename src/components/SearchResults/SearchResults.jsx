@@ -27,7 +27,7 @@ function SearchBox({ movieList, clear_search }) {
       <SearchBoxContainer>
           {movieList.map((movie_props,key) => {
             return(
-              <Link key={key} onClick={() => clear_search()}to={`/Interview.TMDB/Movie/${movie_props.id}`}>
+              <Link key={key} onClick={() => clear_search()}to={`/Movie/${movie_props.id}`}>
                 <SearchBoxItem>
                   <GridContainer direction="row" alignItems="flex-start" className="header">
                     <GridItem xs={1}>

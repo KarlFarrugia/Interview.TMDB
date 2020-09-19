@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {LogoImg} from '../../assets/StyledComponents/MovieCard'
 import site_logo from "../../assets/images/site_logo.png"
-import {NavbarTitle, NavbarPosition, NavigationSpacer} from '../../assets/StyledComponents/Navigation';
+import {NavbarTitle, NavbarPosition, NavigationSpacer, NavigationLinkText} from '../../assets/StyledComponents/Navigation';
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
@@ -23,7 +23,7 @@ function Navbar (){
             >
                 <GridItem xs={12} sm={4} lg={7}>
                     <NavigationSpacer>
-                        <Link to={"/Interview.TMDB/"}>
+                        <Link to={"/"}>
                             <LogoImg src={site_logo}/> <NavbarTitle>{t("common:app_title")}</NavbarTitle>
                         </Link>
                     </NavigationSpacer>
@@ -36,36 +36,36 @@ function Navbar (){
                     >
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Interview.TMDB/Latest"}>
-                                    <span>{t("navigation:latest")}</span>
+                                <Link to={"/Latest"}>
+                                    <NavigationLinkText>{t("navigation:latest")}</NavigationLinkText>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Interview.TMDB/NowPlaying"}>
-                                    <span>{t("navigation:now_playing")}</span>
+                                <Link to={"/NowPlaying"}>
+                                    <NavigationLinkText>{t("navigation:now_playing")}</NavigationLinkText>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Interview.TMDB/Upcoming"}>
-                                    <span>{t("navigation:upcoming")}</span>
+                                <Link to={"/Upcoming"}>
+                                    <NavigationLinkText>{t("navigation:upcoming")}</NavigationLinkText>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Interview.TMDB/Popular"}>
-                                    <span>{t("navigation:popular")}</span>
+                                <Link to={"/Popular"}>
+                                    <NavigationLinkText>{t("navigation:popular")}</NavigationLinkText>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>
                         <GridItem xs={2} sm={1} md={1} lg={1}>
                             <NavigationSpacer>
-                                <Link to={"/Interview.TMDB/TopRated"}>
-                                    <span>{t("navigation:top_rated")}</span>
+                                <Link to={"/TopRated"}>
+                                    <NavigationLinkText>{t("navigation:top_rated")}</NavigationLinkText>
                                 </Link>
                             </NavigationSpacer>
                         </GridItem>

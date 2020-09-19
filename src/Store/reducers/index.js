@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import genreReducer from './GenreReducer.jsx';
 import moviesReducer from './MoviesReducer.jsx';
 import searchReducer from './SearchReducer.jsx';
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
     locale: localeReducer,
     page: pageReducer,
     adult: adultReducer,
+    routing: routerReducer
 });
 
 export default allReducers; 

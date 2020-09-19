@@ -12,3 +12,7 @@ a:-webkit-any-link {
   cursor: pointer;
   text-decoration: none !important;
 }
+
+a{
+  text-decoration: none !important;
+}

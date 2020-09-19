@@ -8,14 +8,14 @@ function MoviePage() {
     );
 }
 
-const mapStateToProps =  state => {  
+/*const mapStateToProps =  state => {  
     return {
         movieId: window.location.pathname.split("/")[3]
     }
 }
   
-/*const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     reducer: () => dispatch(action())
 })*/
 
-export default connect(mapStateToProps, null)(MoviePage);
+export default connect(null, null)(MoviePage);

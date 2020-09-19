@@ -24,7 +24,7 @@ function MovieListing(movie){
     default: break;
   }
   return(
-    <Link to={`/Interview.TMDB/Movie/${movie.movie.id}`}>
+    <Link to={`/Movie/${movie.movie.id}`}>
         <MovieCardItem>
           <GridItem xs={12}>
           <MovieCardTitle>{movie.movie.original_title}</MovieCardTitle>

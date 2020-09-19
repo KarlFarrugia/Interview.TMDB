@@ -13,15 +13,21 @@ export const NavbarTitle = styled.div`
     margin-left: 5%;
     margin-bottom: 10px;
     font-size: larger;
+    color: white;
 `
 
 export const NavigationItem = styled.span`    
     margin-right: 50px;
 `;
 
+export const NavigationLinkText = styled.span`    
+    color: white;
+`;
+
 export const NavigationLine = styled.div`    
     border: 1px solid white;
-    width: 98%
+    width: 98%;
+    margin-left: 1%;
 `;
 
 export const NavigationSpacer = styled.div`

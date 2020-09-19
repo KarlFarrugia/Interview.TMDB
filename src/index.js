@@ -28,6 +28,7 @@ import Footer from './components/Footer';
 import SecondaryNavbar from './components/Navbar/SecondaryNavbar';
 import {Layouts} from './assets/StyledComponents/App';
 import { NavigationLine } from './assets/StyledComponents/Navigation';
+import { syncHistoryWithStore } from 'react-router-redux'
 
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
@@ -43,7 +44,6 @@ Sentry.init({
 axios.defaults.params = {}
 axios.defaults.params['api_key'] = config.TMDB.API_KEY;
 
-const hist = createBrowserHistory();
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   // Optionally pass options
 });
@@ -51,15 +51,18 @@ const store = createStore(
   allReducer,
   compose(
       applyMiddleware(thunk),
-      sentryReduxEnhancer,    
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      sentryReduxEnhancer,
+      //without this below fix browsers that do not have the redux devtools extension would have an error 
+      typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
   )
 );
+
+const history = syncHistoryWithStore(createBrowserHistory(), store)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter history={hist}>
+      <BrowserRouter history={history} basename={process.env.PUBLIC_URL}>
         <header className="App-header">
           <Navbar />
           <SecondaryNavbar />
@@ -69,15 +72,15 @@ ReactDOM.render(
         <Layouts>
           <Switch>
             <Route
-              path="/Interview.TMDB/Movie/:movieid"
+              path="/Movie/:movieid"
               component={Movie}
             />
             <Route
-              path="/Interview.TMDB/Latest"
+              path="/Latest"
               component={LatestMovie}
             />
             <Route
-              path="/Interview.TMDB/NowPlaying"
+              path="/NowPlaying"
               component={NowPlaying}
             />
             <Route

@@ -82,8 +82,15 @@ Commit Batch 7 17/09/2020
 Converted all the solution to propertly use redux
 Implemented caching
 
+____
+
+Commit Batch 8 19/09/2020 
+
+Added sentry
+Started cleaning code and adding comments
+Modified some responsiveness issues
+Modified the way the __REDUX_DEVTOOLS_EXTENSION__ is declared within the store
 
 [TODO:: close button in search]
 [IMPLEMENT:: genre filter]
 [IMPLEMENT:: adult filter]
-[IMPLEMENT:: caching filter]

@@ -17,8 +17,10 @@ export const MovieCardElement = styled.div`
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    height: 530px;
-    width: 350px;
+    max-height: 530px;
+    max-width: 350px;
+    height: inherit;
+    width: inherit;
 `
 
 export const MovieCardContainer = styled.div`    
