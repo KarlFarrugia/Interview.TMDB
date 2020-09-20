@@ -29,7 +29,7 @@ const COOKIE_PREFIX = "query_";
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
  * @returns {Object} the movie data as a JavaScript Object
  */
-export default async function Search (movie_id, locale = "de-DE", adult = false) {
+export default async function Search (movie_id, locale = "en", adult = false) {
   try{
     //Retrieve values from cookie
     const cookie_name = `${COOKIE_PREFIX}${movie_id}_${locale}`;

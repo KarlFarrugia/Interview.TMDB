@@ -7,13 +7,13 @@ import {Api_Latest} from '../api';
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
-function LatesMovie({clear_movies}) {
+function LatesMovie({locale, genre, clear_movies}) {
     const [moviesValue, setMoviesValue] = useState(0);
     const { t } = useTranslation("");
 
     useEffect(() => {
         const GetLatestMovie = async () => {
-            const movie_id = await Api_Latest(t("common:locale"));
+            const movie_id = await Api_Latest(locale);
             setMoviesValue(movie_id);
         }
 
@@ -26,8 +26,15 @@ function LatesMovie({clear_movies}) {
     );
 }
   
+const mapStateToProps =  state => {  
+    return {
+        locale: state.locale,
+        genre: state.genre
+    }
+}
+  
 const mapDispatchToProps = dispatch => ({
     clear_movies: () => dispatch(ACTION_CLEAR_ALL_MOVIES())
 })
 
-export default connect(null, mapDispatchToProps)(LatesMovie);
+export default connect(mapStateToProps, mapDispatchToProps)(LatesMovie);

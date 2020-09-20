@@ -39,7 +39,11 @@ function MoviePage({movieId, language, genre}) {
             setSimilarMovies(await Api_Similar(movieId, language, genre));  
             setKeywords(await Api_Keywords(movieId));  
             const videos = await Api_Videos(movieId,language);
-            setVideos(...videos);  
+            //Otherwise this causes an error
+            if(videos.length > 0)
+                setVideos(...videos);  
+            else    
+                setVideos([]);
         }
 
         // If current Movie (the one that is rendered on screen) is different from the passed movieId and language parameters then update the current movie
