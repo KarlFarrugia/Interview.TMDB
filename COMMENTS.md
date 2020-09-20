@@ -8,6 +8,7 @@ This site uses cookies to stash api responses. However, no cookie banner has bee
 
 Further consolidate routes <br />
 Create a centralised caching mechanism to cache requests from different users <br />
+Put the current active navbar link in a different colour <br />
 
 ## Known Issues
 
