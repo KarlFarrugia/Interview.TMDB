@@ -139,7 +139,7 @@ export default function Movie({movie, video}) {
                     </GridItem>
                     {/* Movie Genres */}
                     <GridItem xs={12}>
-                        <MovieSectionHeader>{t("genres:title")}</MovieSectionHeader>
+                        {(movie.genres.length > 0 ? <MovieSectionHeader>{t("genres:title")}</MovieSectionHeader> : <></>)}
                         {(movie.genres ? (movie.genres.map((genre, key) => <MovieGenre key={key}>{t(`genres:${genre.name.toLowerCase()}`)}</MovieGenre>)) : (<></>))}
                     </GridItem>
                 </GridContainer>
