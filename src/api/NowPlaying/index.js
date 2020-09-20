@@ -1,3 +1,4 @@
+import Axios from 'axios';
 /*
  * NowPlaying - index.js
  * Author: Karl Farrugia
@@ -11,7 +12,7 @@
  * -------------------------------------------------------------------------------------------------------------------------------
  */
 
-import { config, DAY_COOKIE_EXPIRY } from '../../config';
+import { DAY_COOKIE_EXPIRY } from '../../config';
 import Common_Api from '../Common';
 
 //Global Declarations

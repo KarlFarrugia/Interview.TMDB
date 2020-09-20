@@ -15,23 +15,14 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import thunk from 'redux-thunk';
 import allReducer from './Store/reducers'
 
+import Delay from './components/Delay';
+
 // Styling 
 import './index.css';
 import {Layouts} from './assets/StyledComponents/App';
 
 // Multi Langauge Support
 import "./i18n";
-
-//Pages
-import Movie from './Pages/Movie';
-import Error from './Pages/Error';
-import LatestMovie from './Pages/LatestMovie';
-import PopularMovies from './Pages/PopularMovies';
-import NowPlaying from './Pages/NowPlayingMovies';
-import Upcoming from './Pages/UpcomingMovies';
-import TopRated from './Pages/TopRatedMovies';
-import Footer from './components/Footer';
-import Header from './components/Header';
 
 // Logging
 import * as Sentry from "@sentry/react";
@@ -41,6 +32,18 @@ import { Integrations } from "@sentry/tracing";
 import axios from 'axios';
 
 import { config } from './config';
+
+import Footer from './components/Footer';
+import Header from './components/Header';
+
+//Pages
+const Movie = React.lazy(() => import('./Pages/Movie'));
+const Error = React.lazy(() => import('./Pages/Error'));
+const LatestMovie = React.lazy(() => import('./Pages/LatestMovie'));
+const PopularMovies = React.lazy(() => import('./Pages/PopularMovies'));
+const NowPlaying = React.lazy(() => import('./Pages/NowPlayingMovies'));
+const Upcoming = React.lazy(() => import('./Pages/UpcomingMovies'));
+const TopRated = React.lazy(() => import('./Pages/TopRatedMovies'));
 
 //#endregion
 
@@ -83,42 +86,43 @@ function App() {
         <BrowserRouter history={history} basename={process.env.PUBLIC_URL}>
           {/* Rendering the common header componenets of the solution */}
           <Header />
+          {Delay()}
           {/* The non static components of the site */}
           <Layouts>
             <Switch>
               <Route
                 path="/Movie/:movieid"
-                component={Movie}
+                component={Delay(Movie)}
               />
               <Route
                 path="/Latest"
-                component={LatestMovie}
+                component={Delay(LatestMovie)}
               />
               {/* Current */}
               <Route
                 path="/NowPlaying"
-                component={NowPlaying}
+                component={Delay(NowPlaying)}
               />
               <Route
                 path="/Upcoming"
-                component={Upcoming}
+                component={Delay(Upcoming)}
               />
               <Route
                 path="/Popular"
-                component={PopularMovies}
+                component={Delay(PopularMovies)}
               />
               {/* Best */}
               <Route
                 path="/TopRated"
-                component={TopRated}
+                component={Delay(TopRated)}
               />
               <Route
                 path="/Error"
-                component={Error}
+                component={Delay(Error)}
               />
               <Route
                 path="/"
-                component={NowPlaying}
+                component={Delay(NowPlaying)}
               />
             </Switch>
           </Layouts>

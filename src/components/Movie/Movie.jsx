@@ -21,6 +21,7 @@ function Movie({...props}) {
     useEffect(() => {
         ACTION_MOVIE_SEARCH("")
     },[]);
+    
     return (
         <GridContainer
         direction="row"

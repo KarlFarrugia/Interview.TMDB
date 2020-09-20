@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieListing from './MovieListing/MovieListing';
 import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
+import LoaderSpinner from '../../components/Loader/LoaderSpinner'
 
 // core components
 import GridItem from "../Grid/GridItem.jsx";
@@ -24,7 +25,7 @@ function MoviesListings(movie_props){
             })}
         </GridContainer >
       </MovieCardContainer>
-    ): (<div>Empty</div>)
+    ): (<LoaderSpinner />)
   );
 }
 
