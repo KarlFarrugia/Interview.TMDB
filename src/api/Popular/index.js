@@ -15,6 +15,7 @@ import axios from 'axios';
 import { config, DAY_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
+import Common_Api from '../Common';
 
 //Global Declarations
 let nowPlayingAxiosRequest;
@@ -35,61 +36,5 @@ const COOKIE_PREFIX = "now_playing_";
  * @returns {Int16Array} the maximum number of pages that can be retrieved
  */
 export default async function Popular (action, page, locale, region = "EN", genre = 0, adult) {
-  try{
-    //Default genre to empty such that when the query is executed it will not specify the genre query. A 0 or -1 will cause the query to return an empty list.
-    if (genre <= 0)
-      genre = "";
-
-    //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${page}_${locale}_${region}_${genre}_${adult}`;
-    const cookie_value = GetFromCookie(cookie_name);
-    if (cookie_value === "") {
-      // Cancel previous request
-      if (nowPlayingAxiosRequest)
-          nowPlayingAxiosRequest.cancel();
-          
-      // Creates a new token for upcomming ajax (overwrite the previous one)
-      nowPlayingAxiosRequest = axios.CancelToken.source();  
-
-      // Use Axios to get the latest movie
-      const result = await axios.get(`${config.TMDB.API_ROOT_URL}/movie/now_playing`, {
-          params: {
-              page: page,
-              language: locale,
-              region: region,
-              with_genres: genre,
-              include_adult: adult
-          }
-      });
-      
-      // Store the result in a cookie for subsequent requests for a day.
-      // Assuming now playing movies are updated daily.
-      WriteToCookie(
-        cookie_name,
-        JSON.stringify(result.data),
-        DAY_COOKIE_EXPIRY
-      );
-      
-      // Dispatch the results to be stored within the store
-      action(result.data.results);
-      // Return the total pages
-      return result.data.total_pages;
-    }
-    //otherwise return the content of the cookie
-    else
-    {
-      //Logging
-      Sentry.captureMessage(`Now Playing Cookie Content ${cookie_value}`);
-      console.log(`Retrieved ${cookie_name} from storage`);
-      // Parse the object retrieved from the cookie
-      const parsed_cookie = JSON.parse(cookie_value);
-      // Dispatch the results to be stored within the store
-      action(parsed_cookie.results);
-      // Return the total pages
-      return parsed_cookie.total_pages;
-    }    
-  }catch (e){
-    //Log exception to sentry
-    Sentry.captureException(e, `An error was encountered while retrieving the most popular movies with the following parameters: page - ${page}, locale - ${locale}, region - ${region} & genre - ${genre}`);
-  }
+  return Common_Api(COOKIE_PREFIX, "/movie/popular", nowPlayingAxiosRequest, action, DAY_COOKIE_EXPIRY, page, locale, region, genre, adult);
 }

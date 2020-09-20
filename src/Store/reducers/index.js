@@ -1,5 +1,10 @@
+//#region Imports
+
+//Import redux components
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
+
+//Import reducers
 import genreReducer from './GenreReducer.jsx';
 import moviesReducer from './MoviesReducer.jsx';
 import searchReducer from './SearchReducer.jsx';
@@ -9,6 +14,8 @@ import errorReducer from './ErrorReducer.jsx';
 import pageReducer from './PageReducer.jsx';
 import adultReducer from './AdultReducer.jsx';
 import regionReducer from './RegionReducer.jsx';
+
+//#endregion
 
 const allReducers = combineReducers({
     genre: genreReducer,

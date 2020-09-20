@@ -5,7 +5,7 @@ import Error from './Error';
 import Paging from '../components/Paging'
 import { connect } from 'react-redux';
 import { ACTION_APPEND_MOVIES, ACTION_SET_PAGE, ACTION_CLEAR_ALL_MOVIES } from '../Store/actions/Action'
-import {Api_Search, Api_NowPlaying} from '../api'
+import { Api_NowPlaying} from '../api'
 import { App, Section } from '../assets/StyledComponents/App'
 
 function NowPlaying({page, language, genre, adult, movies, render, append_movies, set_page, clear_movies}) {

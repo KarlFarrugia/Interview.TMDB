@@ -28,6 +28,8 @@ import Error from './Pages/Error';
 import LatestMovie from './Pages/LatestMovie';
 import PopularMovies from './Pages/PopularMovies';
 import NowPlaying from './Pages/NowPlayingMovies';
+import Upcoming from './Pages/UpcomingMovies';
+import TopRated from './Pages/TopRatedMovies';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
@@ -92,13 +94,23 @@ function App() {
                 path="/Latest"
                 component={LatestMovie}
               />
+              {/* Current */}
               <Route
                 path="/NowPlaying"
                 component={NowPlaying}
               />
               <Route
+                path="/Upcoming"
+                component={Upcoming}
+              />
+              <Route
                 path="/Popular"
                 component={PopularMovies}
+              />
+              {/* Best */}
+              <Route
+                path="/TopRated"
+                component={TopRated}
               />
               <Route
                 path="/Error"
