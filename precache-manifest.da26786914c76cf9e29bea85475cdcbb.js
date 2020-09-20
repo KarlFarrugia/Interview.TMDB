@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ec927f5cbf9a09c6c33038ad7238704b",
+    "revision": "9ef6122f643c7a7d15615195fce1a5c1",
     "url": "/Interview.TMDB/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Interview.TMDB/static/css/2.f87e9f44.chunk.css"
   },
   {
-    "revision": "e8756c895f87d47e2a1e",
+    "revision": "9ba14b8d6803a60af055",
     "url": "/Interview.TMDB/static/css/main.10eebe6c.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Interview.TMDB/static/js/2.1b49c8f1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e8756c895f87d47e2a1e",
-    "url": "/Interview.TMDB/static/js/main.97f1734d.chunk.js"
+    "revision": "9ba14b8d6803a60af055",
+    "url": "/Interview.TMDB/static/js/main.864322cd.chunk.js"
   },
   {
     "revision": "20b195cc6fcfb9a92e87",
