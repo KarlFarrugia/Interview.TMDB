@@ -70,16 +70,12 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
 
     // On every page update check if the page parameters have changed.
     useEffect(() => {
-        // If the passed parameters are different from the useStates then update them to match
-        // Otherwise do nothing. This condition safeguards against an infinite update loop
-        if(currentAdult !== adult || currentLanguage !== language || currentGenre !== genre){
-            setCurrentAdult(adult);
-            setCurrentLanguage(language);
-            setCurrentGenre(genre);
-            GetMovies(Api_Search(currentMovie, language, adult));
-            setCurrentMovie(currentMovie);
-        }
-    });
+        setCurrentAdult(adult);
+        setCurrentLanguage(language);
+        setCurrentGenre(genre);
+        GetMovies(Api_Search(currentMovie, language, adult));
+        setCurrentMovie(currentMovie);
+    },[currentAdult, adult, currentLanguage, language, currentGenre, genre, currentMovie]);
 
     // This function awaits the result of the search results and then updates the setMovies useState which renders the search results component
     async function GetMovies(movie_list) {

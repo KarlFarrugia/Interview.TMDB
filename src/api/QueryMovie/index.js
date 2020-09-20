@@ -26,9 +26,10 @@ let queryAxiosRequest;
  * @param {String} movie_id the id of the movie to be retrieved
  * @param {String} locale the locale from which to retrieve the latest movie
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {Object} the movie data as a JavaScript Object
  */
-export default async function Search (movie_id, locale = "en", adult = false) {
+export default async function Search (movie_id, locale = "en", adult = false, error) {
   try{
     //Retrieve values from cookie
     const cookie_prefix = "query_";
@@ -78,5 +79,6 @@ export default async function Search (movie_id, locale = "en", adult = false) {
   }catch (e){
     //Log exception to sentry
     Sentry.captureException(e, `An error was encountered while retrieving the latest movies with the following parameters: movie id - ${movie_id}, locale - ${locale}, adult - ${adult}`);
+    error();
   }
 }

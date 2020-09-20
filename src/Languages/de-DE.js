@@ -5,7 +5,9 @@ export const TMDB_DE = {
             hello: "Hallo",
             locale: "de-DE",
             region: "DE",
-            adult: "Erwachsene"
+            adult: "Erwachsene",
+            error: "Uups! Etwas ist schief gelaufen",
+            no_results: "Diese Verfeinerung lieferte keine Ergebnisse"
         },
         search: {
             title: "Suche",

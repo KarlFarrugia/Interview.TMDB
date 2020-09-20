@@ -29,9 +29,10 @@ let axiosKeywordsRequest;
  * @name Keywords
  * @function
  * @param {String} movie_id the id of the movie whose keywords needs to be retrieved
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {Object} the keywords of the retrieved movie
  */
-export default async function Keywords (movie_id) {
+export default async function Keywords (movie_id, error) {
   try{
     //Retrieve values from cookie
     const cookie_prefix = "keywords_";
@@ -71,5 +72,6 @@ export default async function Keywords (movie_id) {
   }catch (e){
     //Log exception to sentry
     Sentry.captureException(e, `An error was encountered while retrieving the keywords of movie with id ${movie_id}`);
+    error();
   }
 }

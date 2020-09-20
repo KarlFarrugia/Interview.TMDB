@@ -38,9 +38,10 @@ import {MovieContainer, MovieBody, MovieHeader} from '../../assets/StyledCompone
  * @param {Int16Array} movieId the id of the movie to get from TMDB
  * @param {String} language the language of the movie object to be retrieved from TMDB
  * @param {String} genre the genre of the similar movies to be retrieved from TMDB
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {StyledComponent} A styled component movie container which will have all the movie components within it.
  */
-export default function MovieId({movieId, language, genre}) {
+export default function MovieId({movieId, language, genre, error}) {
     // Current rendered movie useStates
     const [moviesValue, setMoviesValue] = useState("");
     const [similarMovies, setSimilarMovies] = useState("");
@@ -67,9 +68,9 @@ export default function MovieId({movieId, language, genre}) {
     // On every page update check if the page parameters have changed.
     useEffect(() => {
         const GetMovies = async () => {
-            setMoviesValue(await Api_QueryMovie(movieId, language));     
-            setSimilarMovies(await Api_Similar(movieId, language, genre));  
-            const videos = await Api_Videos(movieId,language);
+            setMoviesValue(await Api_QueryMovie(movieId, language, false, error));     
+            setSimilarMovies(await Api_Similar(movieId, language, genre, error));  
+            const videos = await Api_Videos(movieId, language, error);
             //Otherwise this causes an error
             if(videos.length > 0)
                 setVideos(...videos);  

@@ -4,9 +4,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-// Import multilanguage component
-import { useTranslation } from "react-i18next";
-
 // Import grid components
 import GridItem from "../Grid/GridItem.jsx";
 import GridContainer from "../Grid/GridContainer.jsx";

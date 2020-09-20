@@ -94,4 +94,6 @@ export const MovieCardGenre = styled.span`
     padding-left: 25px;
 `
 
+export const MovieHeader = styled.h3``
+
 //#endregion 

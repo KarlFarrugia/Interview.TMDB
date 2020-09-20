@@ -53,6 +53,7 @@ const TopRated = React.lazy(() => import('./Pages/TopRatedMovies'));
 axios.defaults.params = {}
 axios.defaults.params['api_key'] = config.TMDB.API_KEY;
 
+//Instantiate the sentry logging system
 Sentry.init({
   dsn: "https://3265ed4ca10f474badbdda2f3b400ea5@o374444.ingest.sentry.io/5434536",
   integrations: [
@@ -61,10 +62,12 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
+//Link Sentry to the redux store
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   // Optionally pass options
 });
 
+// Create the store
 const store = createStore(
   allReducer,
   compose(

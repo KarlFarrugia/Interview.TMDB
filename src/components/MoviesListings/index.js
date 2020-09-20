@@ -7,12 +7,15 @@ import React from 'react';
 import GridItem from "../Grid/GridItem.jsx";
 import GridContainer from "../Grid/GridContainer.jsx";
 
+// Import multilanguage component
+import { useTranslation } from "react-i18next";
+
 // Import custom components
 import MovieListing from './MovieListing';
 import LoaderSpinner from '../../components/LoaderSpinner'
 
 // Import styled components
-import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
+import {MovieCardContainer, MovieHeader} from "../../assets/StyledComponents/MovieCard";
 
 //#endregion
 
@@ -28,6 +31,10 @@ import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
  * user to the movie search page.
  */
 export default function MoviesListings(movie_props){
+  // Get the translation component to be used to switch between different languages
+  const { t } = useTranslation("");
+  const path = window.location.pathname.split("/")[2];
+
   return(
     //Render the movie grid. While the movie grid is being built a spinner is shown
     movie_props.props ? (
@@ -37,13 +44,18 @@ export default function MoviesListings(movie_props){
           justify="space-evenly"
           alignItems="center"
         >
-            {movie_props.props.map((prop, key) => {
+          {(movie_props.props.length > 0)
+            ? (movie_props.props.map((prop, key) => {
               return(
                 <GridItem key={key} xs={12} sm={12} md={6} lg={4} xl={3}>
                   <MovieListing movie={prop} />
                 </GridItem>
               );
-            })}
+            })
+            ):(
+              //if path is in movie do not show this message as that is part of the similar movies
+              path && path.toLocaleLowerCase() !== "movie" &&  path.toLocaleLowerCase() !== "latest" ? <MovieHeader>{t("common:no_results")}</MovieHeader> : <></>
+            )}
         </GridContainer >
       </MovieCardContainer>
     ): (<LoaderSpinner />)

@@ -25,9 +25,10 @@ let axiosVideosRequest;
  * 
  * @param {String} movie_id the id of the movie to be retrieved
  * @param {String} locale the locale from which to retrieve the movie
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {Object} the set of movie objects which are similar to the movie_id
  */
-export default async function Videos (movie_id, locale="en") {
+export default async function Videos (movie_id, locale="en", error) {
   try{
     //Retrieve values from cookie
     const cookie_prefix = "videos_";
@@ -68,5 +69,6 @@ export default async function Videos (movie_id, locale="en") {
   }catch (e){
     //Log exception to sentry
     Sentry.captureException(e, `An error was encountered while retrieving the videos for the movie with the following parameters: movie id - ${movie_id}, locale - ${locale}`);
+    error();
   }
 }

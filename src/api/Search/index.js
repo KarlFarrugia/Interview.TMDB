@@ -27,9 +27,10 @@ let searchAxiosRequest;
  * @param {String} locale the locale from which to retrieve the latest movie
  * @param {Int16Array} genre THIS DOESNT WORK BUT LEFT HERE FOR FUTURE PROOFING
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {Object} the movie data as a JavaScript Object
  */
-export default async function Search (moviename, locale = "en", adult = false) {
+export default async function Search (moviename, locale = "en", adult = false, error) {
   try{
     //Retrieve values from cookie
     const cookie_prefix = "search_";
@@ -78,5 +79,6 @@ export default async function Search (moviename, locale = "en", adult = false) {
   } catch (e) {
     //Log exception to sentry
     Sentry.captureException(e, `An error was encountered while retrieving similar movies with the following parameters: movie name - ${moviename}, locale - ${locale}, adult - ${adult}`);
+    error();
   }
 }

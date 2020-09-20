@@ -5,7 +5,9 @@ export const TMDB_IT = {
             hello: "Ciao",
             locale: "it-IT",
             region: "IT",
-            adult: "Adulto"
+            adult: "Adulto",
+            error: "Oops! Qualcosa è andato storto",
+            no_results: "Questo perfezionamento non ha fornito risultati"
         },
         search :{
             title: "Cerca",

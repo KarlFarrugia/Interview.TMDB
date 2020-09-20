@@ -27,9 +27,10 @@ let axiosSimilarRequest;
  * @param {String} locale the locale from which to retrieve the latest movie
  * @param {Int16Array} genre THIS DOESNT WORK BUT LEFT HERE FOR FUTURE PROOFING
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {Object} the set of movie objects which are similar to the movie_id
  */
-export default async function Similar (movie_id, locale, genre = 0, adult = false) {
+export default async function Similar (movie_id, locale, genre = 0, adult = false, error) {
   try{    
     //Default genre to empty such that when the query is executed it will not specify the genre query. A 0 or -1 will cause the query to return an empty list.
     if (genre <= 0)
@@ -80,5 +81,6 @@ export default async function Similar (movie_id, locale, genre = 0, adult = fals
   }catch (e){
     //Log exception to sentry
     Sentry.captureException(e, `An error was encountered while retrieving similar movies with the following parameters: movie id - ${movie_id}, locale - ${locale}, adult - ${adult}`);
+    error();
   }
 }

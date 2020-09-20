@@ -5,7 +5,9 @@ export const TMDB_EN = {
             hello: "Hello",
             locale: "en-GB",
             region: "GB",
-            adult: "Adult"
+            adult: "Adult",
+            error: "Oops! Something went wrong",
+            no_results: "This refinement provided no results"
         },
         search :{
             title: "Search",
