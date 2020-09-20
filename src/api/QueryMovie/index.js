@@ -13,7 +13,7 @@
 
 import axios from 'axios';
 import { config, LONG_COOKIE_EXPIRY } from '../../config';
-import { WriteToCookie, GetFromCookie } from '../../helpers';
+import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
 
 //Global Declarations
@@ -26,9 +26,10 @@ const COOKIE_PREFIX = "query_";
  * 
  * @param {String} movie_id the id of the movie to be retrieved
  * @param {String} locale the locale from which to retrieve the latest movie
+ * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
  * @returns {Object} the movie data as a JavaScript Object
  */
-export default async function Search (movie_id, locale = "de-DE") {
+export default async function Search (movie_id, locale = "de-DE", adult = false) {
   try{
     //Retrieve values from cookie
     const cookie_name = `${COOKIE_PREFIX}${movie_id}_${locale}`;
@@ -51,7 +52,8 @@ export default async function Search (movie_id, locale = "de-DE") {
       // Use Axios to get the movie by name
       const result = await axios.get(`${config.TMDB.API_ROOT_URL}/movie/${movie_id}`, {
         params: {
-            language: locale
+            language: locale,
+            include_adult: adult
         }
       });
 
@@ -75,6 +77,6 @@ export default async function Search (movie_id, locale = "de-DE") {
     }
   }catch (e){
     //Log exception to sentry
-    Sentry.captureException(e, `An error was encountered while retrieving the latest movies with the following parameters: movie id - ${movie_id}, locale - ${locale}`);
+    Sentry.captureException(e, `An error was encountered while retrieving the latest movies with the following parameters: movie id - ${movie_id}, locale - ${locale}, adult - ${adult}`);
   }
 }

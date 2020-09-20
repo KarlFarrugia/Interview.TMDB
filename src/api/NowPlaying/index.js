@@ -13,7 +13,7 @@
 
 import axios from 'axios';
 import { config, DAY_COOKIE_EXPIRY } from '../../config';
-import { WriteToCookie, GetFromCookie } from '../../helpers';
+import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
 
 //Global Declarations
@@ -29,7 +29,7 @@ const COOKIE_PREFIX = "now_playing_";
  * @param {Dispatch Function} action the dispatch action to update the movies to be rendered to the dom
  * @param {String} page the current page number
  * @param {String} locale the locale from which to retrieve the latest movie
- * @param {String} genre the genres of the movies to be retrieved
+ * @param {Int16Array} genre the genres of the movies to be retrieved
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
  * @returns {Int16Array} the maximum number of pages that can be retrieved
  */
@@ -40,7 +40,7 @@ export default async function Latest (action, page, locale, genre = 0, adult) {
       genre = "";
 
     //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${page}_${locale}_${genre}`;
+    const cookie_name = `${COOKIE_PREFIX}${page}_${locale}_${genre}_${adult}`;
     const cookie_value = GetFromCookie(cookie_name);
     if (cookie_value === "") {
       // Cancel previous request
@@ -55,7 +55,8 @@ export default async function Latest (action, page, locale, genre = 0, adult) {
           params: {
               page: page,
               language: locale,
-              with_genres: genre
+              with_genres: genre,
+              include_adult: adult
           }
       });
       

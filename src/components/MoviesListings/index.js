@@ -1,10 +1,10 @@
 import React from 'react';
-import MovieListing from './MovieListing';
+import MovieListing from './MovieListing/MovieListing';
 import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
 
 // core components
-import GridItem from "../../assets/GridItem.jsx";
-import GridContainer from "../../assets/GridContainer.jsx";
+import GridItem from "../Grid/GridItem.jsx";
+import GridContainer from "../Grid/GridContainer.jsx";
 
 function MoviesListings(movie_props){
   return(

@@ -13,7 +13,7 @@
 
 import axios from 'axios';
 import { config, LONG_COOKIE_EXPIRY } from '../../config';
-import { WriteToCookie, GetFromCookie } from '../../helpers';
+import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
 
 //Global Declarations
@@ -26,12 +26,18 @@ const COOKIE_PREFIX = "search_";
  * 
  * @param {String} moviename the name of the movie to be retrieved
  * @param {String} locale the locale from which to retrieve the latest movie
+ * @param {Int16Array} genre THIS DOESNT WORK BUT LEFT HERE FOR FUTURE PROOFING
+ * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
  * @returns {Object} the movie data as a JavaScript Object
  */
-export default async function Search (moviename, locale = "en", adult = false) {
+export default async function Search (moviename, locale = "en", genre = 0, adult = false) {
   try{
+    //Default genre to empty such that when the query is executed it will not specify the genre query. A 0 or -1 will cause the query to return an empty list.
+    if (genre <= 0)
+      genre = "";
+
     //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${moviename}_${locale}`;
+    const cookie_name = `${COOKIE_PREFIX}${moviename}_${locale}_${adult}`;
     const cookie_value = GetFromCookie(cookie_name);
 
     // If cookie is not empty or undefined
@@ -49,10 +55,10 @@ export default async function Search (moviename, locale = "en", adult = false) {
       // Use Axios to get the movie by name
       const { data } = await axios.get(`${config.TMDB.API_ROOT_URL}/search/movie`, {
         params: {
-            /*api_key: config.TMDB.API_KEY,*/
             page: 1,
             language: locale,
             query: moviename,
+            with_genres: genre,
             include_adult: adult
         }
       });
@@ -76,6 +82,6 @@ export default async function Search (moviename, locale = "en", adult = false) {
     }
   } catch (e) {
     //Log exception to sentry
-    Sentry.captureException(e, `An error was encountered while retrieving similar movies with the following parameters: movie name - ${moviename}, locale - ${locale}`);
+    Sentry.captureException(e, `An error was encountered while retrieving similar movies with the following parameters: movie name - ${moviename}, locale - ${locale}, adult - ${adult}`);
   }
 }

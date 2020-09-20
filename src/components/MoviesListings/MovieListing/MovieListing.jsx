@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {config} from '../../config';
-import {genreRetriever} from '../../helpers'
+import {config} from '../../../config';
+import {genreRetriever} from '../../../Helpers'
 
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
-import {MovieCardPoster, MovieCardTitle, MovieCardItem, MovieRating, MovieCardElement, MovieCardGenre, MovieCardGenres} from "../../assets/StyledComponents/MovieCard";
+import {MovieCardPoster, MovieCardTitle, MovieCardItem, MovieRating, MovieCardElement, MovieCardGenre, MovieCardGenres} from "../../../assets/StyledComponents/MovieCard";
 
-import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
+import unavailable_poster_image from "../../../assets/images/unavailable_movie_poster.jpg"
 
 // core components
-import GridItem from "../../assets/GridItem.jsx";
+import GridItem from "../../Grid/GridItem.jsx";
 
 function MovieListing(movie){
   let MovieRatingClass = "Average";

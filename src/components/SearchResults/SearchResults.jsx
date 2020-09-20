@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 // core components
-import GridItem from "../../assets/GridItem.jsx";
-import GridContainer from "../../assets/GridContainer.jsx";
+import GridItem from "../Grid/GridItem.jsx";
+import GridContainer from "../Grid/GridContainer.jsx";
 
 import { config } from "../../config";
-import {genreRetriever, dateExtractor} from "../../helpers";
+import {genreRetriever, dateExtractor} from "../../Helpers";
 
 import unavailable_poster_image from "../../assets/images/unavailable_movie_poster.jpg"
 import {SearchBoxContainer, SearchBoxItem, SearchBoxImg, SearchItemTitle, SearchItemDate, SearchItemGenre, SearchItemOverview} from "../../assets/StyledComponents/Search";

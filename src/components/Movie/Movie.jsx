@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {MoviePoster, MovieTitle, MovieVideo, MovieSubTitle, MovieOverview, MovieInformation, MovieTitleInformation, MovieNumberInformation, MovieHomepage, MovieHeader, MovieGenre, MovieSectionHeader} from '../../assets/StyledComponents/Movie';
 import {config} from '../../config';
-import {urlCleaner, numberLocalisation} from '../../helpers'
+import {urlCleaner, numberLocalisation} from '../../Helpers'
 import ReactPlayer from 'react-player';
 import {ACTION_MOVIE_SEARCH} from '../../Store/actions/Action'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,12 +11,13 @@ import unavailable_poster_image from "../../assets/images/unavailable_movie_post
 // multilanguage component
 import { useTranslation } from "react-i18next";
 // core components
-import GridItem from "../../assets/GridItem.jsx";
-import GridContainer from "../../assets/GridContainer.jsx";
+import GridItem from "../Grid/GridItem.jsx";
+import GridContainer from "../Grid/GridContainer.jsx";
 
 function Movie({...props}) {
     const { t } = useTranslation("");
 
+    //Remove the current search as the user would have just searched for something
     useEffect(() => {
         ACTION_MOVIE_SEARCH("")
     },[]);
@@ -105,9 +106,9 @@ function Movie({...props}) {
             </GridItem>
             <GridItem xs={12} md={6}>
                 {/* Get Related Videos */}
-                <MovieVideo>
-                    <MovieHeader>{t("movie:trailer")}</MovieHeader>
-                    {props.video && props.video.site === 'YouTube' && (
+                {props.video && props.video.site === 'YouTube' && (
+                    <MovieVideo>
+                        <MovieHeader>{t("movie:trailer")}</MovieHeader>
                         <ReactPlayer 
                             url={`https://www.youtube.com/embed/${props.video.key}`} 
                             playing={true}
@@ -115,8 +116,8 @@ function Movie({...props}) {
                             height="450px"
                             controls={true} 
                         />
-                    )}
-                </MovieVideo> 
+                    </MovieVideo> 
+                )}
             </GridItem>
         </GridContainer>
     );

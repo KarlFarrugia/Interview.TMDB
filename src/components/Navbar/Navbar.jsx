@@ -8,8 +8,8 @@ import {NavbarTitle, NavbarPosition, NavigationSpacer, NavigationLinkText} from 
 import { useTranslation } from "react-i18next";
 
 // core components
-import GridItem from "../../assets/GridItem.jsx";
-import GridContainer from "../../assets/GridContainer.jsx";
+import GridItem from "../Grid/GridItem.jsx";
+import GridContainer from "../Grid/GridContainer.jsx";
 
 function Navbar (){
     const { t } = useTranslation("");

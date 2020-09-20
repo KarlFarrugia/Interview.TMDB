@@ -9,15 +9,16 @@ import Movie from '../../components/Movie/Movie';
 // multilanguage component
 import { useTranslation } from "react-i18next";
 
-import GridContainer from '../../assets/GridContainer';
-import GridItem from '../../assets/GridItem';
+import GridContainer from '../Grid/GridContainer';
+import GridItem from '../Grid/GridItem';
 
-function MoviePage({movieId, language}) {
+function MoviePage({movieId, language, genre}) {
     const [moviesValue, setMoviesValue] = useState("");
     const [similarMovies, setSimilarMovies] = useState("");
     const [keywords, setKeywords] = useState([]);
     const [videos, setVideos] = useState([]);
     const [currentMovie, setCurrentMovie] = useState(-1);
+    const [currentGenre, setCurrentGenre] = useState(-1);
     const [currentLanguage, setCurrentLanguage] = useState('en');
     const { t } = useTranslation("");
 
@@ -35,7 +36,7 @@ function MoviePage({movieId, language}) {
     useEffect(() => {
         const GetMovies = async () => {
             setMoviesValue(await Api_QueryMovie(movieId, language));     
-            setSimilarMovies(await Api_Similar(movieId, language));  
+            setSimilarMovies(await Api_Similar(movieId, language, genre));  
             setKeywords(await Api_Keywords(movieId));  
             const videos = await Api_Videos(movieId,language);
             setVideos(...videos);  
@@ -43,9 +44,10 @@ function MoviePage({movieId, language}) {
 
         // If current Movie (the one that is rendered on screen) is different from the passed movieId and language parameters then update the current movie
         // Otherwise do nothing. This condition safeguards against an infinite update loop
-        if(currentMovie !== movieId || currentLanguage !== language ){
+        if(currentMovie !== movieId || currentLanguage !== language || currentGenre !== genre){
             setCurrentMovie(movieId);
             setCurrentLanguage(language);
+            setCurrentGenre(genre)
             GetMovies();
         }
     })

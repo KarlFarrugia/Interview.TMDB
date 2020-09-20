@@ -16,15 +16,19 @@ function NowPlaying({page, language, genre, adult, movies, render, append_movies
     const [maxPage, SetMaxPage] = useState(1);
 
     useEffect(() => {
+        async function GetMovies() {
+            SetMaxPage(await Api_NowPlaying(append_movies, page, language, genre, adult));
+        }
+
         // If current Movie Selection (the one that is rendered on screen) is different from the passed parameters then update the current movie selection
         // Otherwise do nothing. This condition safeguards against an infinite update loop
         if(currentPage !== page || currentLanguage !== language || currentGenre !== genre || currentAdult !== adult){
-            setCurrentPage(page);
             setCurrentLanguage(language);
             setCurrentGenre(genre);
             setCurrentAdult(adult);
+            setCurrentPage(page);
             clear_movies();
-            Api_NowPlaying(append_movies, page, language, genre, adult);
+            GetMovies();
         }
     });
 
@@ -46,6 +50,7 @@ function NowPlaying({page, language, genre, adult, movies, render, append_movies
 }
 
 const mapStateToProps =  state => {  
+    debugger;
     return {
         page: state.page,
         language: state.language,

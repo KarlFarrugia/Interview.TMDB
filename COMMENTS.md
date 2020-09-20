@@ -91,8 +91,8 @@ Started cleaning code and adding comments
 Modified some responsiveness issues
 Modified the way the __REDUX_DEVTOOLS_EXTENSION__ is declared within the store
 Created generic error page
+Created filtering by genre/language/adult content
+
 
 [TODO:: close button in search]
 [TODO:: add a generic error page]
-[IMPLEMENT:: genre filter]
-[IMPLEMENT:: adult filter]

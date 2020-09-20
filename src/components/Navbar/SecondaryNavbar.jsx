@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search} from '../../api/'
@@ -11,8 +11,8 @@ import { GENRES, LANGUAGES } from '../../config';
 import { useTranslation } from "react-i18next";
 
 // core components
-import GridItem from "../../assets/GridItem.jsx";
-import GridContainer from "../../assets/GridContainer.jsx";
+import GridItem from "../Grid/GridItem.jsx";
+import GridContainer from "../Grid/GridContainer.jsx";
 
 // @material-ui/core components
 import FormControl from "@material-ui/core/FormControl";
@@ -23,6 +23,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 function SecondaryNavbar ({genre, language, adult, search, clear_search, update_genre, update_language, update_locale, toggle_adult}){
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
+    const [currentAdult, setCurrentAdult] = useState(false);
+    const [currentLanguage, setCurrentLanguage] = useState("en");
+    const [currentGenre, setCurrentGenre] = useState(0);
     const { t, i18n } = useTranslation("");
     const theme = createMuiTheme({
         palette: {
@@ -33,6 +36,16 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
             main: '#fff',
           },
         },
+    });
+
+    useEffect(() => {
+        if(currentAdult !== adult || currentLanguage !== language || currentGenre !== genre){
+            setCurrentAdult(adult);
+            setCurrentLanguage(language);
+            setCurrentGenre(genre);
+            GetMovies(Api_Search(currentMovie, language, genre, adult));
+            setCurrentMovie(currentMovie);
+        }
     });
 
     function change(event){
@@ -53,7 +66,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
 
     function FetchMovies(movieName, adult){
         if(movieName !== currentMovie){
-            GetMovies(Api_Search(movieName, t("common:locale"), adult));
+            GetMovies(Api_Search(movieName, language, adult));
             setCurrentMovie(movieName);
         }
     }

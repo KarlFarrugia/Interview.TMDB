@@ -32,6 +32,7 @@ export const ACTION_CLEAR_ALL_MOVIES = () => async (dispatch)  => {
 };
 
 export const ACTION_SET_PAGE = (page) => async (dispatch) => {
+  debugger;
   dispatch({
     type: SET_PAGE,
     payload: page
