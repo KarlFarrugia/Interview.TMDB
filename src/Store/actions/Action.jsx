@@ -7,6 +7,7 @@ import {
   TOGGLE_ADULT,
   SET_PAGE,
   UPDATE_LOCALE,
+  UPDATE_REGION,
   ERROR,
   RESOLVE
 } from "./Types";
@@ -32,7 +33,6 @@ export const ACTION_CLEAR_ALL_MOVIES = () => async (dispatch)  => {
 };
 
 export const ACTION_SET_PAGE = (page) => async (dispatch) => {
-  debugger;
   dispatch({
     type: SET_PAGE,
     payload: page
@@ -50,6 +50,13 @@ export const ACTION_UPDATE_LANGUAGE = (lang) => async (dispatch) => {
   dispatch({
     type: SET_LANGUAGE,
     payload: lang 
+  });
+};
+
+export const ACTION_UPDATE_REGION = (region) => async (dispatch) => {
+  dispatch({
+    type: UPDATE_REGION,
+    payload: region 
   });
 };
 

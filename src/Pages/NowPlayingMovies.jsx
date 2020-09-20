@@ -50,7 +50,6 @@ function NowPlaying({page, language, genre, adult, movies, render, append_movies
 }
 
 const mapStateToProps =  state => {  
-    debugger;
     return {
         page: state.page,
         language: state.language,

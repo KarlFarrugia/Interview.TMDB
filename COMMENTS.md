@@ -96,3 +96,4 @@ Created filtering by genre/language/adult content
 
 [TODO:: close button in search]
 [TODO:: add a generic error page]
+[INVESTIGATE:: http://localhost:3000/Interview.TMDB/Movie/471707 on german and italian]

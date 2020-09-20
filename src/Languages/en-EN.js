@@ -3,7 +3,8 @@ export const TMDB_EN = {
         common :{
             app_title: "Movie Library",
             hello: "Hello",
-            locale: "en-EN",
+            locale: "en-GB",
+            region: "GB",
             adult: "Adult"
         },
         search :{

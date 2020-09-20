@@ -21,7 +21,6 @@ function Movie({...props}) {
     useEffect(() => {
         ACTION_MOVIE_SEARCH("")
     },[]);
-
     return (
         <GridContainer
         direction="row"
@@ -45,7 +44,7 @@ function Movie({...props}) {
                 >
                     <GridItem sm={12} md={6}>
                         <MovieTitle>
-                            {props.movie.original_title}
+                            {props.movie.title}
                         </MovieTitle>
                     </GridItem>
                     <GridItem sm={12} md={6}>

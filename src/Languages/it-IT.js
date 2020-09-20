@@ -4,6 +4,7 @@ export const TMDB_IT = {
             app_title: "Libreria di Film",
             hello: "Ciao",
             locale: "it-IT",
+            region: "IT",
             adult: "Adulto"
         },
         search :{

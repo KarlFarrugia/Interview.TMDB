@@ -26,6 +26,7 @@ import "./i18n";
 import Movie from './Pages/Movie';
 import Error from './Pages/Error';
 import LatestMovie from './Pages/LatestMovie';
+import PopularMovies from './Pages/PopularMovies';
 import NowPlaying from './Pages/NowPlayingMovies';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -94,6 +95,10 @@ function App() {
               <Route
                 path="/NowPlaying"
                 component={NowPlaying}
+              />
+              <Route
+                path="/Popular"
+                component={PopularMovies}
               />
               <Route
                 path="/Error"

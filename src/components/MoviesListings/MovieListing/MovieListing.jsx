@@ -27,7 +27,7 @@ function MovieListing(movie){
     <Link to={`/Movie/${movie.movie.id}`}>
         <MovieCardItem>
           <GridItem xs={12}>
-          <MovieCardTitle>{movie.movie.original_title}</MovieCardTitle>
+          <MovieCardTitle>{movie.movie.title}</MovieCardTitle>
           <MovieCardElement>
             <MovieRating>
               <div className={MovieRatingClass}>{movie.movie.vote_average}/10</div>

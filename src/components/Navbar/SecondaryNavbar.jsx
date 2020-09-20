@@ -3,7 +3,7 @@ import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search} from '../../api/'
 import {connect} from 'react-redux';
-import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
+import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_UPDATE_REGION, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
 import { SecondNavigationItem, StyledSelect, StyledFormControlLabel, } from '../../assets/StyledComponents/Navigation';
 import { GENRES, LANGUAGES } from '../../config';
 
@@ -20,7 +20,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from "@material-ui/core/MenuItem";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-function SecondaryNavbar ({genre, language, adult, search, clear_search, update_genre, update_language, update_locale, toggle_adult}){
+function SecondaryNavbar ({genre, language, adult, search, clear_search, update_genre, update_language, update_locale, update_region, toggle_adult}){
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
     const [currentAdult, setCurrentAdult] = useState(false);
@@ -76,6 +76,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
         i18n.changeLanguage(event.target.value);
         //Locale is retrieved from the i18n translations therefore dispatch the update after changing the language
         update_locale(t(`common:locale`));
+        update_region(t(`common:region`));
     }
 
     return (
@@ -199,6 +200,7 @@ const mapDispatchToProps = dispatch => ({
     update_genre: genre => dispatch(ACTION_UPDATE_GENRE(genre)),
     update_language: lang => dispatch(ACTION_UPDATE_LANGUAGE(lang)),
     update_locale: locale => dispatch(ACTION_UPDATE_LOCALE(locale)),
+    update_region: region => dispatch(ACTION_UPDATE_REGION(region)),
     toggle_adult: () => dispatch(ACTION_TOGGLE_ADULT())
 })
 

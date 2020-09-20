@@ -65,7 +65,7 @@ function MoviePage({movieId, language, genre}) {
                 <GridItem xs={12}>
                     <MovieBody>
                         <section className="Results">
-                            <Movie movie={moviesValue} video={videos}/>
+                            {moviesValue && videos ? (<Movie movie={moviesValue} video={videos}/>) : (<></>)}
                         </section>
                     </MovieBody> 
                 </GridItem>  
