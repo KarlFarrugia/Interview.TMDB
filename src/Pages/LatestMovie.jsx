@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import MovieId from '../components/MovieId';
-import {ACTION_CLEAR_ALL_MOVIES} from '../Store/actions/Action'
+import Error from './Error';
+import {ACTION_CLEAR_ALL_MOVIES, ACTION_SET_ERROR} from '../Store/actions/Action'
 import {connect} from 'react-redux';
 import {Api_Latest} from '../api';
 
-// multilanguage component
-import { useTranslation } from "react-i18next";
-
-function LatesMovie({locale, genre, clear_movies}) {
+function LatesMovie({locale, render, clear_movies, error}) {
     const [moviesValue, setMoviesValue] = useState(0);
-    const { t } = useTranslation("");
 
     useEffect(() => {
         const GetLatestMovie = async () => {
-            const movie_id = await Api_Latest(locale);
+            const movie_id = await Api_Latest(locale, error);
             setMoviesValue(movie_id);
         }
 
@@ -22,19 +20,20 @@ function LatesMovie({locale, genre, clear_movies}) {
     },[])
 
     return (
-        moviesValue > 0 ? (<MovieId movieId={moviesValue}/>) : (<></>)
+        (render ? (moviesValue > 0 ? (<MovieId movieId={moviesValue}/>) : (<></>)) : (<Redirect to={"./Error"} />))
     );
 }
   
 const mapStateToProps =  state => {  
     return {
         locale: state.locale,
-        genre: state.genre
+        render: state.render
     }
 }
   
 const mapDispatchToProps = dispatch => ({
-    clear_movies: () => dispatch(ACTION_CLEAR_ALL_MOVIES())
+    clear_movies: () => dispatch(ACTION_CLEAR_ALL_MOVIES()),
+    error: () => dispatch(ACTION_SET_ERROR())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LatesMovie);

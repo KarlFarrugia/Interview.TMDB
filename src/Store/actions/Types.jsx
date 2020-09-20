@@ -5,6 +5,7 @@ export const ADD_MOVIES = "ADD_MOVIES";
 export const CLEAR_MOVIES = "CLEAR_MOVIES";
 export const TOGGLE_ADULT = "TOGGLE_ADULT";
 export const SET_PAGE = "SET_PAGE";
+export const RESET_PAGE = "RESET_PAGE";
 export const UPDATE_LOCALE = "UPDATE_LOCALE";
 export const UPDATE_REGION = "UPDATE_REGION";
 export const ERROR = "ERROR";

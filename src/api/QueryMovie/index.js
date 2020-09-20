@@ -18,7 +18,6 @@ import * as Sentry from "@sentry/react";
 
 //Global Declarations
 let queryAxiosRequest;
-const COOKIE_PREFIX = "query_";
 
 /**
  * This function checks if the movie specified by the movie_id parameter is present in the cookie otherwise it proceeds to get it from TMDB 
@@ -32,7 +31,8 @@ const COOKIE_PREFIX = "query_";
 export default async function Search (movie_id, locale = "en", adult = false) {
   try{
     //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${movie_id}_${locale}`;
+    const cookie_prefix = "query_";
+    const cookie_name = `${cookie_prefix}${movie_id}_${locale}`;
     const cookie_value = GetFromCookie(cookie_name);
 
     // If cookie is not empty or undefined

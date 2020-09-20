@@ -1,4 +1,12 @@
+//#region Imports
+
+// Import react styled components
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
-`
+//#endregion 
+
+//#region Exported Styled Components
+
+export const HeaderContainer = styled.header``
+
+//#endregion 

@@ -1,14 +1,35 @@
-import React from 'react';
-import MovieListing from './MovieListing/MovieListing';
-import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
-import LoaderSpinner from '../../components/Loader/LoaderSpinner'
+//#region Imports
 
-// core components
+// Import react components
+import React from 'react';
+
+// Import grid components
 import GridItem from "../Grid/GridItem.jsx";
 import GridContainer from "../Grid/GridContainer.jsx";
 
-function MoviesListings(movie_props){
+// Import custom components
+import MovieListing from './MovieListing';
+import LoaderSpinner from '../../components/LoaderSpinner'
+
+// Import styled components
+import {MovieCardContainer} from "../../assets/StyledComponents/MovieCard";
+
+//#endregion
+
+/**
+ * MovieListing function
+ *  
+ * This function takes a list of movie objects as a parameter and then uses a Grid Container and the MovieListing components to render a grid of movie cards.
+ * 
+ * @name MoviesListings
+ * @function
+ * @param {Object} movie_props a list of movie object to create cards for
+ * @returns {StyledComponent} A styled component from the passed movie object. The returned component will be wrapped around a link component to the movie. The link will then take the
+ * user to the movie search page.
+ */
+export default function MoviesListings(movie_props){
   return(
+    //Render the movie grid. While the movie grid is being built a spinner is shown
     movie_props.props ? (
       <MovieCardContainer>
         <GridContainer 
@@ -28,5 +49,3 @@ function MoviesListings(movie_props){
     ): (<LoaderSpinner />)
   );
 }
-
-export default MoviesListings;

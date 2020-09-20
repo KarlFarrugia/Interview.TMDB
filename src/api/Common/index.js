@@ -3,18 +3,22 @@
  * Author: Karl Farrugia
  * -------------------------------------------------------------------------------------------------------------------------------
  * 
- *  This file returns a single default function to return a default api call using the provided parameters. The api itself uses axios
- *  to return the latest movies according to the specified endpoint and related parameters and then stores the result in a cookie for 
- *  as long as the cookie_expiry parameter specifies. Subsequent requests will make use of the stored cookie to retrieve the content 
+ *  This file returns a single default function to return a default generic api call using the provided parameters. The api itself uses 
+ *  axios to return the latest movies according to the specified endpoint and related parameters and then stores the result in a cookie  
+ *  for as long as the cookie_expiry parameter specifies. Subsequent requests will make use of the stored cookie to retrieve the content 
  *  of the same movie requests as long as the cookie is still active, otherwise a new call is sent to the TMDB api.
  *
  * -------------------------------------------------------------------------------------------------------------------------------
  */
 
+//#region Imports
+
 import axios from 'axios';
 import { config } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
+
+//#endregion
 
 /**
  * Common Api Function
@@ -26,7 +30,6 @@ import * as Sentry from "@sentry/react";
  * 
  * @name Common_Api
  * @function
- * @param {String} cookie_name the name of the cookie to query for the movie set or store it within
  * @param {String} api_endpoint the api endpoint with which to query the TMDB API
  * @param {Object} axios_request the current axios request object
  * @param {Dispatch Function} action the dispatch action to update the movies to be rendered to the dom
@@ -36,13 +39,17 @@ import * as Sentry from "@sentry/react";
  * @param {String} region the region from which to retrieve the most popular movie
  * @param {Int16Array} genre the genres of the movies to be retrieved
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {Int16Array} the maximum number of pages that can be retrieved
  */
-export default async function Common_Api (cookie_name, api_endpoint, axios_request, action, cookie_expiry, page, locale, region = "EN", genre = 0, adult = false) {
+export default async function Common_Api (api_endpoint, axios_request, action, cookie_expiry, page, locale, region = "EN", genre = 0, adult = false, error) {
   try{
     //Default genre to empty such that when the query is executed it will not specify the genre query. A 0 or -1 will cause the query to return an empty list.
     if (genre <= 0)
       genre = "";
+
+    //Create a cookie name with the provided parameters
+    const cookie_name = `${api_endpoint}_${page}_${locale}_${region}_${genre}_${adult}`
 
     //Retrieve values from cookie
     const cookie_value = GetFromCookie(cookie_name);
@@ -83,7 +90,6 @@ export default async function Common_Api (cookie_name, api_endpoint, axios_reque
     {
       //Logging
       Sentry.captureMessage(`Now Playing Cookie Content ${cookie_value}`);
-      console.log(`Retrieved ${cookie_name} from storage`);
       // Parse the object retrieved from the cookie
       const parsed_cookie = JSON.parse(cookie_value);
       // Dispatch the results to be stored within the store
@@ -94,5 +100,6 @@ export default async function Common_Api (cookie_name, api_endpoint, axios_reque
   }catch (e){
     //Log exception to sentry
     Sentry.captureException(e, `An error was encountered while retrieving the movies from ${api_endpoint} with the following parameters: page - ${page}, locale - ${locale}, region - ${region} & genre - ${genre}`);
+    error()
   }
 }

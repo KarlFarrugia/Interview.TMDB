@@ -11,25 +11,32 @@
  * -------------------------------------------------------------------------------------------------------------------------------
  */
 
+//#region Imports
+
 import axios from 'axios';
 import { config, SHORT_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
 
+//#endregion
+
 //Global Declarations
 let latestAxiosRequest;
-const COOKIE_PREFIX = "latest_id_";
 
 /**
  * This function checks if the latest movie is present in the cookie otherwise it proceeds to get it from TMDB Web API.
  * 
+ * @name Latest
+ * @function
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
+ * @param {Dispatch Function} error the dispatch function to trigger an error page rendering
  * @returns {String} the id of the retrieved movie
  */
-export default async function Latest (adult=false) {
+export default async function Latest (adult=false, error) {
   try{
     //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${adult}`;
+    const cookie_prefix = "latest_id_";
+    const cookie_name = `${cookie_prefix}${adult}`;
     const cookie_value = GetFromCookie(cookie_name);
     
     // If cookie is not empty or undefined
@@ -69,5 +76,6 @@ export default async function Latest (adult=false) {
   }catch (e){
     //Log exception to sentry
     Sentry.captureException(e, `An error was encountered while retrieving the latest movie. Adult flag set to ${adult}`);
+    error();
   }
 }

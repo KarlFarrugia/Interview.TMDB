@@ -18,7 +18,6 @@ import * as Sentry from "@sentry/react";
 
 //Global Declarations
 let axiosSimilarRequest;
-const COOKIE_PREFIX = "similar_";
 
 /**
  * This function checks if the movie specified by the movie_id parameter is present in the cookie otherwise it proceeds to get similar movies
@@ -37,7 +36,8 @@ export default async function Similar (movie_id, locale, genre = 0, adult = fals
       genre = "";
 
     //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${movie_id}_${locale}_${genre}_${adult}`;
+    const cookie_prefix = "similar_";
+    const cookie_name = `${cookie_prefix}${movie_id}_${locale}_${genre}_${adult}`;
     const cookie_value = GetFromCookie(cookie_name);
 
     // If cookie is not empty or undefined

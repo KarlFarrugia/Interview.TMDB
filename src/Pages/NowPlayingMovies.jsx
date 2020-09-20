@@ -8,16 +8,17 @@ import { ACTION_APPEND_MOVIES, ACTION_SET_PAGE, ACTION_CLEAR_ALL_MOVIES } from '
 import { Api_NowPlaying} from '../api'
 import { App, Section } from '../assets/StyledComponents/App'
 
-function NowPlaying({page, language, genre, adult, movies, render, append_movies, set_page, clear_movies}) {
+function NowPlaying({page, language, region, genre, adult, movies, render, append_movies, set_page, clear_movies}) {
     const [currentPage, setCurrentPage] = useState(-1);
     const [currentLanguage, setCurrentLanguage] = useState('en');
     const [currentGenre, setCurrentGenre] = useState(0);
     const [currentAdult, setCurrentAdult] = useState(false);
     const [maxPage, SetMaxPage] = useState(1);
-
+    
+    // On every page update check if the page parameters have changed.
     useEffect(() => {
         async function GetMovies() {
-            SetMaxPage(await Api_NowPlaying(append_movies, page, language, genre, adult));
+            SetMaxPage(await Api_NowPlaying(append_movies, page, language, region, genre, adult));
         }
 
         // If current Movie Selection (the one that is rendered on screen) is different from the passed parameters then update the current movie selection
@@ -53,6 +54,7 @@ const mapStateToProps =  state => {
     return {
         page: state.page,
         language: state.language,
+        region: state.region,
         genre: state.genre,
         adult: state.adult,
         movies: state.movies,

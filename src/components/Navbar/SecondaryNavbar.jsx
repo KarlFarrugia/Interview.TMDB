@@ -1,32 +1,62 @@
-import React, {useState, useEffect} from 'react';
-import SearchBox from '../SearchBox/SearchBox';
-import SearchResults from '../SearchResults/SearchResults';
-import {Api_Search} from '../../api/'
-import {connect} from 'react-redux';
-import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_UPDATE_REGION, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
-import { SecondNavigationItem, StyledSelect, StyledFormControlLabel, AdultCheckbox } from '../../assets/StyledComponents/Navigation';
-import { GENRES, LANGUAGES } from '../../config';
+//#region Imports
 
-// multilanguage component
+// Import react components
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+
+// Import redux actions
+import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_UPDATE_REGION, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
+
+// Import multilanguage component
 import { useTranslation } from "react-i18next";
 
-// core components
+// Import api functions
+import {Api_Search} from '../../api/'
+
+// Import grid components
 import GridItem from "../Grid/GridItem.jsx";
 import GridContainer from "../Grid/GridContainer.jsx";
 
-// @material-ui/core components
+// Import material-ui core components
 import FormControl from "@material-ui/core/FormControl";
 import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from "@material-ui/core/MenuItem";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+// Import custom components
+import SearchBox from '../SearchBox/SearchBox';
+import SearchResults from '../SearchResults/SearchResults';
+
+// Import custom configurations functions
+import { GENRES, LANGUAGES } from '../../config';
+
+// Import styled components
+import { SecondNavigationItem, StyledSelect, StyledFormControlLabel, AdultCheckbox } from '../../assets/StyledComponents/Navigation';
+
+//#endregion
+
+/**
+ * SecondaryNavbar function
+ *  
+ * This function uses a grid container to returns the secondary navbar which contains the refiners to be used throughout the site. The refiners are then connected to 
+ * the redux store to be able to refine all site selections
+ * 
+ * @name SecondaryNavbar
+ * @function
+ * @returns {Component} A styled component which uses grid container to render the site logo and navigation bar
+ */
 function SecondaryNavbar ({genre, language, adult, search, clear_search, update_genre, update_language, update_locale, update_region, toggle_adult}){
+    // Current searched for movie and refiners useStates
     const [moviesValue, setMoviesValue] = useState([]);
     const [currentMovie, setCurrentMovie] = useState("");
     const [currentAdult, setCurrentAdult] = useState(false);
     const [currentLanguage, setCurrentLanguage] = useState("en");
     const [currentGenre, setCurrentGenre] = useState(0);
+
+    // Get the translation and language switching components
     const { t, i18n } = useTranslation("");
+
+    // Create a custom theme for the material ui inputs
     const theme = createMuiTheme({
         palette: {
           primary: {
@@ -38,20 +68,20 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
         },
     });
 
+    // On every page update check if the page parameters have changed.
     useEffect(() => {
+        // If the passed parameters are different from the useStates then update them to match
+        // Otherwise do nothing. This condition safeguards against an infinite update loop
         if(currentAdult !== adult || currentLanguage !== language || currentGenre !== genre){
             setCurrentAdult(adult);
             setCurrentLanguage(language);
             setCurrentGenre(genre);
-            GetMovies(Api_Search(currentMovie, language, genre, adult));
+            GetMovies(Api_Search(currentMovie, language, adult));
             setCurrentMovie(currentMovie);
         }
     });
 
-    function change(event){
-      update_genre(event.target.value);
-    };
-    
+    // This function awaits the result of the search results and then updates the setMovies useState which renders the search results component
     async function GetMovies(movie_list) {
         await movie_list.then(
             movies => {
@@ -64,6 +94,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
         );
     }
 
+    // This function gets triggered when the user searches or toggles the adult checkbox. The function updates the setMovies useState which renders the search results component
     function FetchMovies(movieName, adult){
         if(movieName !== currentMovie){
             GetMovies(Api_Search(movieName, language, adult));
@@ -71,6 +102,8 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
         }
     }
 
+    // This function gets triggered when the user changes the language from the drop down. The function then updates language, locale and region store items. The locale and region
+    // can only be changed after the language has been switched as their values are set within the translations files.
     function UpdateLanguage(event) {
         update_language(event.target.value);
         i18n.changeLanguage(event.target.value);
@@ -87,11 +120,13 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
         >
             <br />
             <GridItem xs={4} sm={4} md={2}>
+                {/* Search Box Component */}
                 <SecondNavigationItem>
                     <SearchBox />
                 </SecondNavigationItem>
             </GridItem>
             <GridItem xs={2} sm={2} md={1}>
+                {/* Genre Drop Down Component */}
                 <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
                         <FormControl>
@@ -103,7 +138,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
                             inputProps={{
                                 name: "genre",
                                 id: "genre",
-                                onChange: event => change(event)
+                                onChange: event => update_genre(event.target.value)
                             }}
                             >
                             <MenuItem
@@ -129,6 +164,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
                 </SecondNavigationItem>
             </GridItem>
             <GridItem xs={3} sm={2} md={1}>
+                {/* Language Drop Down Component */}
                 <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
                         <FormControl>
@@ -165,6 +201,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
                 </SecondNavigationItem>
             </GridItem>
             <GridItem xs={2} sm={2} md={1}>
+                {/* Adult Checkbox Component */}
                 <AdultCheckbox>
                     <SecondNavigationItem>
                         <ThemeProvider theme={theme}>
@@ -181,6 +218,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
                 </AdultCheckbox>
             </GridItem>
             <GridItem xs={12}>
+                {/* Search Results */}
                 {FetchMovies(search, adult)}
                 <SearchResults movieList={moviesValue} clear_search={clear_search} />
             </GridItem>
@@ -188,6 +226,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
     );
 }
 
+// states to be retrieved from the redux store
 const mapStateToProps =  state => {  
     return {
         genre: state.genre,
@@ -197,6 +236,7 @@ const mapStateToProps =  state => {
     }
 }
 
+// actions to be retrieved from the reducers
 const mapDispatchToProps = dispatch => ({
     clear_search: () => dispatch(ACTION_MOVIE_SEARCH("")),
     update_genre: genre => dispatch(ACTION_UPDATE_GENRE(genre)),

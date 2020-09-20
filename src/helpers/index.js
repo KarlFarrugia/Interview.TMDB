@@ -1,22 +1,46 @@
+//#region Imports
+
+// Import logging components
+import * as Sentry from "@sentry/react";
+
+// Import custom configurations
 import { GENRES } from "../config";
+ 
+//#endregion
 
-
+/**
+ * Retrieves the genre using an id and the genre list in the config file
+ * 
+ * @param {Int16Array} id the id of the genre to have its name retrieved
+ */
 export function genreRetriever (id) {
     try{
         return GENRES.find(genre => genre.id === id).name;
     }catch(e){
+        Sentry.captureException(e, `An error was encountered while retrieving the genre with id ${id}`);
         return "";
     }
 }
 
+/**
+ * Returns the year part of a date
+ * 
+ * @param {String} date returns the year part of the TMDB date property. If there is no date an empty string is returned instead
+ */
 export function dateExtractor (date){
     try{
         return date.substring(0,4)
     }catch(e){
+        Sentry.captureException(e, `An error was encountered while extracting the date from ${date}`);
         return "";
     }
 }
 
+/**
+ * Returns a cleaned url from the provided parameter
+ * 
+ * @param {String} url the url to be cleansed. If no url is provided an empty string is returned.
+ */
 export function urlCleaner (url){
     try{
         if(url){
@@ -26,18 +50,25 @@ export function urlCleaner (url){
         }
         return "";
     }catch(e){
+        Sentry.captureException(e, `An error while cleaning the following url: ${url}`);
         return "";
     }
 }
 
+/**
+ * Returns a localised number with commas every 3 digits and a euro sign in from
+ * 
+ * @param {Int16Array} number the number to be localised.
+ */
 export function numberLocalisation (number){
     try{
         if(number > 0){
             return `€${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
         } else{
-            return "Data Not Available";
+            return "N/A";
         }
     }catch(e){
+        Sentry.captureException(e, `An error was encountered while localising the following number: ${number}`);
         return number;
     }
 }

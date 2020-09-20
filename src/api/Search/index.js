@@ -17,8 +17,7 @@ import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
 
 //Global Declarations
-let axiosRequest;
-const COOKIE_PREFIX = "search_";
+let searchAxiosRequest;
 
 /**
  * This function checks if the movie specified by the moviename parameter is present in the cookie otherwise it proceeds to get it from TMDB 
@@ -30,27 +29,24 @@ const COOKIE_PREFIX = "search_";
  * @param {Boolean} adult a flag to indicate whether adult movies should be rendered as well
  * @returns {Object} the movie data as a JavaScript Object
  */
-export default async function Search (moviename, locale = "en", genre = 0, adult = false) {
+export default async function Search (moviename, locale = "en", adult = false) {
   try{
-    //Default genre to empty such that when the query is executed it will not specify the genre query. A 0 or -1 will cause the query to return an empty list.
-    if (genre <= 0)
-      genre = "";
-
     //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${moviename}_${locale}_${adult}`;
+    const cookie_prefix = "search_";
+    const cookie_name = `${cookie_prefix}${moviename}_${locale}_${adult}`;
     const cookie_value = GetFromCookie(cookie_name);
 
     // If cookie is not empty or undefined
     if (cookie_value === "" || cookie_value === undefined) {
       // Cancel previous request
-      if (axiosRequest)
-        axiosRequest.cancel();
+      if (searchAxiosRequest)
+        searchAxiosRequest.cancel();
       
       if(moviename.length === 0 || moviename === "" || moviename === undefined || moviename === null)
         return "";
         
       // Creates a new token for upcomming ajax (overwrite the previous one)
-      axiosRequest = axios.CancelToken.source();  
+      searchAxiosRequest = axios.CancelToken.source();  
       
       // Use Axios to get the movie by name
       const { data } = await axios.get(`${config.TMDB.API_ROOT_URL}/search/movie`, {
@@ -58,7 +54,6 @@ export default async function Search (moviename, locale = "en", genre = 0, adult
             page: 1,
             language: locale,
             query: moviename,
-            with_genres: genre,
             include_adult: adult
         }
       });

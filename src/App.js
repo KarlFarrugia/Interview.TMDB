@@ -86,7 +86,6 @@ function App() {
         <BrowserRouter history={history} basename={process.env.PUBLIC_URL}>
           {/* Rendering the common header componenets of the solution */}
           <Header />
-          {Delay()}
           {/* The non static components of the site */}
           <Layouts>
             <Switch>

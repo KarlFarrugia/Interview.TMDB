@@ -6,6 +6,7 @@ import {
   SET_LANGUAGE,
   TOGGLE_ADULT,
   SET_PAGE,
+  RESET_PAGE,
   UPDATE_LOCALE,
   UPDATE_REGION,
   ERROR,
@@ -36,6 +37,12 @@ export const ACTION_SET_PAGE = (page) => async (dispatch) => {
   dispatch({
     type: SET_PAGE,
     payload: page
+  });
+};
+
+export const ACTION_RESET_PAGE = () => async (dispatch) => {
+  dispatch({
+    type: RESET_PAGE,
   });
 };
 

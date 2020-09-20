@@ -1,4 +1,11 @@
+//#region Imports
+
+// Import react styled components
 import styled from 'styled-components';
+
+//#endregion 
+
+//#region Exported Styled Components
 
 export const LogoImg = styled.img`    
     margin-top: 15px;
@@ -86,3 +93,5 @@ export const MovieCardGenre = styled.span`
     font-size: 12px;
     padding-left: 25px;
 `
+
+//#endregion 

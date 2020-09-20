@@ -1,4 +1,11 @@
+//#region Imports
+
+// Import react styled components
 import styled from 'styled-components';
+
+//#endregion
+
+//#region Exported Styled Components
 
 export const SearchError = styled.div`
     text-align: center;
@@ -39,12 +46,12 @@ border-radius: 20px;
     }
 `
 
-export const SearchBoxContainer = styled.div`    
+export const SearchResultContainer = styled.div`    
     border-radius: 20px;
     border: 1px solid #000000;
     position: absolute;
     min-height: 6vh;
-    width: 90%;
+    width: 98%;
     margin-left: -15px;
     display: flex;
     flex-direction: column;
@@ -62,3 +69,5 @@ export const SearchBoxImg = styled.img`
     width: 75px;
     height: 125px;
 `
+
+//#endregion

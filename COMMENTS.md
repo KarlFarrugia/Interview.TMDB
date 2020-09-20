@@ -99,3 +99,4 @@ Commit Batch 9 20/09/2020
 
 Added all routes and apis
 Implemented Lazy loading and added spinners for bad internet -- tested on firefox
+Refactoring and adding comments

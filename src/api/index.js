@@ -9,6 +9,8 @@ import Api_Similar from './Similar';
 import Api_Videos from './Videos';
 import Api_TopRated from './TopRated'
 
+// Export all of the available api functions the application will be using
+
 export {
     Api_Search,
     Api_Latest,

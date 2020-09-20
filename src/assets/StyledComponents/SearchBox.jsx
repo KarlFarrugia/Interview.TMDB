@@ -1,5 +1,14 @@
+//#region Imports
+
+// Import react styled components
 import styled from 'styled-components';
+
+// @material-ui/core components
 import TextField from "@material-ui/core/TextField";
+
+//#endregion 
+
+//#region Exported Styled Components
 
 export const StyledTextField = styled(TextField)`
   #search-input,  
@@ -18,3 +27,5 @@ export const StyledTextField = styled(TextField)`
     }
   }
 `;
+
+//#endregion

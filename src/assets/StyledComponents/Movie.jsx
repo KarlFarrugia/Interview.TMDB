@@ -1,4 +1,11 @@
+//#region Imports
+
+// Import react styled components
 import styled from 'styled-components';
+
+//#endregion 
+
+//#region Exported Styled Components
 
 export const MovieContainer = styled.div` 
     margin-bottom: 50px;
@@ -127,5 +134,6 @@ export const MovieGenre = styled.div`
     display: inline-block;
     float: left;
     margin-bottom: 10px;
-
 `;
+
+//#endregion 

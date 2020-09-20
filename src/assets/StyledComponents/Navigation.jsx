@@ -1,6 +1,15 @@
+//#region Imports
+
+// Import react styled components
 import styled from 'styled-components';
+
+// @material-ui/core components
 import Select from "@material-ui/core/Select";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+//#endregion 
+
+//#region Exported Styled Components
 
 export const NavbarPosition = styled.div`
     z-index: 99999;
@@ -85,3 +94,5 @@ export const StyledFormControlLabel = styled(FormControlLabel)`
         }
     }
 `;
+
+//#endregion 

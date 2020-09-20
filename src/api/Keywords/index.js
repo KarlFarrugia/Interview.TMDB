@@ -11,25 +11,31 @@
  * -------------------------------------------------------------------------------------------------------------------------------
  */
 
+//#region Imports
+
 import axios from 'axios';
 import { config, LONG_COOKIE_EXPIRY } from '../../config';
 import { WriteToCookie, GetFromCookie } from '../../Helpers';
 import * as Sentry from "@sentry/react";
+
+//#endregion
  
 //Global Declarations
 let axiosKeywordsRequest;
-const COOKIE_PREFIX = "keywords_";
 
 /**
  * This function checks if the keywords related to a movie are present in the cookie otherwise it proceeds to get them from TMDB Web API.
  * 
+ * @name Keywords
+ * @function
  * @param {String} movie_id the id of the movie whose keywords needs to be retrieved
  * @returns {Object} the keywords of the retrieved movie
  */
 export default async function Keywords (movie_id) {
   try{
     //Retrieve values from cookie
-    const cookie_name = `${COOKIE_PREFIX}${movie_id}`;
+    const cookie_prefix = "keywords_";
+    const cookie_name = `${cookie_prefix}${movie_id}`;
     const cookie_value = GetFromCookie(cookie_name);
     
     // If cookie is not empty or undefined
