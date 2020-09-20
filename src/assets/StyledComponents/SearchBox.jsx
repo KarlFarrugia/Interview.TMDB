@@ -7,4 +7,14 @@ export const StyledTextField = styled(TextField)`
   label.MuiFormLabel-root{
     color: white !important;
   }
+
+  @media (max-width: 425px) {
+    label.MuiFormLabel-root{
+      font-size: 12px !important;
+    }
+
+    input#search-input {
+      font-size: 12px !important;
+    }
+  }
 `;

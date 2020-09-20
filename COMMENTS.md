@@ -93,7 +93,8 @@ Modified the way the __REDUX_DEVTOOLS_EXTENSION__ is declared within the store
 Created generic error page
 Created filtering by genre/language/adult content
 
+____
 
-[TODO:: close button in search]
-[TODO:: add a generic error page]
-[INVESTIGATE:: http://localhost:3000/Interview.TMDB/Movie/471707 on german and italian]
+Commit Batch 9 20/09/2020 
+
+Added all routes and apis

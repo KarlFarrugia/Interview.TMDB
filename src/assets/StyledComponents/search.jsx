@@ -44,7 +44,7 @@ export const SearchBoxContainer = styled.div`
     border: 1px solid #000000;
     position: absolute;
     min-height: 6vh;
-    width: 98.5%;
+    width: 90%;
     margin-left: -15px;
     display: flex;
     flex-direction: column;

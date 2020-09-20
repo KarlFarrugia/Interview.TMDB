@@ -1,5 +1,6 @@
 import { GENRES } from "../config";
 
+
 export function genreRetriever (id) {
     try{
         return GENRES.find(genre => genre.id === id).name;

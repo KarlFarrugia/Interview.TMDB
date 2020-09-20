@@ -22,6 +22,10 @@ export const NavigationItem = styled.span`
 
 export const NavigationLinkText = styled.span`    
     color: white;
+
+    @media (max-width: 425px) {
+        font-size: 12px;
+    }
 `;
 
 export const NavigationLine = styled.div`    
@@ -36,6 +40,24 @@ export const NavigationSpacer = styled.div`
 
 export const SecondNavigationItem = styled.div`
     float: right;
+
+    @media (max-width: 425px) {
+        font-size: 12px !important;
+    }
+`;
+
+export const AdultCheckbox = styled.div`
+    position: absolute;
+    margin-top: -35px;
+    margin-left: -40px;
+
+    @media (min-width: 2000px) {
+        margin-left: 60px;
+    }
+
+    @media (max-width: 360px) {
+        margin-left: -60px;
+    }
 `;
 
 export const StyledSelect = styled(Select)`
@@ -45,10 +67,21 @@ export const StyledSelect = styled(Select)`
     label.MuiFormLabel-root{
         color: white !important;
     }
+
+    @media (max-width: 425px) {
+        font-size: 12px !important;
+    }
 `;
 
 export const StyledFormControlLabel = styled(FormControlLabel)`
     span.MuiFormControlLabel-label{
         color: white;
+    }
+
+    @media (max-width: 425px) {
+        
+        .MuiFormControlLabel-label {
+            font-size: 12px !important;
+        }
     }
 `;

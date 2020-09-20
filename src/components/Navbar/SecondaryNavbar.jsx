@@ -4,7 +4,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import {Api_Search} from '../../api/'
 import {connect} from 'react-redux';
 import {ACTION_UPDATE_LANGUAGE, ACTION_UPDATE_LOCALE, ACTION_UPDATE_REGION, ACTION_UPDATE_GENRE, ACTION_MOVIE_SEARCH, ACTION_TOGGLE_ADULT} from '../../Store/actions/Action'
-import { SecondNavigationItem, StyledSelect, StyledFormControlLabel, } from '../../assets/StyledComponents/Navigation';
+import { SecondNavigationItem, StyledSelect, StyledFormControlLabel, AdultCheckbox } from '../../assets/StyledComponents/Navigation';
 import { GENRES, LANGUAGES } from '../../config';
 
 // multilanguage component
@@ -91,7 +91,7 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
                     <SearchBox />
                 </SecondNavigationItem>
             </GridItem>
-            <GridItem xs={3} sm={2} md={1}>
+            <GridItem xs={2} sm={2} md={1}>
                 <SecondNavigationItem>
                     <ThemeProvider theme={theme}>
                         <FormControl>
@@ -165,18 +165,20 @@ function SecondaryNavbar ({genre, language, adult, search, clear_search, update_
                 </SecondNavigationItem>
             </GridItem>
             <GridItem xs={2} sm={2} md={1}>
-                <SecondNavigationItem>
-                    <ThemeProvider theme={theme}>
-                        <StyledFormControlLabel
-                            control={<Checkbox 
-                                value={adult}
-                                onChange={() => toggle_adult()}
-                            />}
-                            label={t("common:adult")}
-                            labelPlacement="start"
-                        />
-                    </ThemeProvider>
-                </SecondNavigationItem>
+                <AdultCheckbox>
+                    <SecondNavigationItem>
+                        <ThemeProvider theme={theme}>
+                            <StyledFormControlLabel
+                                control={<Checkbox 
+                                    value={adult}
+                                    onChange={() => toggle_adult()}
+                                />}
+                                label={t("common:adult")}
+                                labelPlacement="start"
+                            />
+                        </ThemeProvider>
+                    </SecondNavigationItem>
+                </AdultCheckbox>
             </GridItem>
             <GridItem xs={12}>
                 {FetchMovies(search, adult)}

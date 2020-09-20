@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {MoviePoster, MovieTitle, MovieVideo, MovieSubTitle, MovieOverview, MovieInformation, MovieTitleInformation, MovieNumberInformation, MovieHomepage, MovieHeader, MovieGenre, MovieSectionHeader} from '../../assets/StyledComponents/Movie';
+import {MoviePoster, MovieTitle, MovieVideo, MovieSubTitle, MovieOverview, MovieInformation, MovieTitleInformation, MovieSmallText, MovieNumberInformation, MovieHomepage, MovieHeader, MovieGenre, MovieSectionHeader} from '../../assets/StyledComponents/Movie';
 import {config} from '../../config';
 import {urlCleaner, numberLocalisation} from '../../Helpers'
 import ReactPlayer from 'react-player';
@@ -49,10 +49,10 @@ function Movie({...props}) {
                     </GridItem>
                     <GridItem sm={12} md={6}>
                         <MovieTitleInformation>
-                            <FontAwesomeIcon icon={faStar}  color="darkgoldenrod" /> {props.movie.vote_average}/10 <span className="small">{props.movie.vote_count} {t("movie:voters")}</span>
+                            <FontAwesomeIcon icon={faStar}  color="darkgoldenrod" /> {props.movie.vote_average}/10 <MovieSmallText>{props.movie.vote_count} {t("movie:voters")}</MovieSmallText>
                         </MovieTitleInformation>
                         <MovieTitleInformation>
-                            <FontAwesomeIcon icon={faStopwatch} color="white"/> {props.movie.runtime} <span className="small">{t("movie:minutes")}</span>
+                            <FontAwesomeIcon icon={faStopwatch} color="white"/> {props.movie.runtime} <MovieSmallText>{t("movie:minutes")}</MovieSmallText>
                         </MovieTitleInformation>
                     </GridItem>
                     <GridItem xs={12}>

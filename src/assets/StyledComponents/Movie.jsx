@@ -52,10 +52,6 @@ export const MovieTitleInformation = styled.span`
     svg {
         margin-right: 10px;
     }
-
-    .small {
-        font-size: 12px;
-    }
 `
 
 export const MovieNumberInformation = styled.div`
@@ -90,6 +86,10 @@ export const MovieSectionHeader = styled.h1`
     color: white;
     text-align: initial;
     font-weight: 400;
+`;
+
+export const MovieSmallText = styled.span`
+    font-size: 12px;
 `;
 
 export const MovieOverview = styled.p`
