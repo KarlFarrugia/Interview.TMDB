@@ -71,7 +71,7 @@ Added Paging <br />
 Added a second navigation bar <br />
 ____
 
-Commit Batch 6 14/09/2020 
+### Commit Batch 6 14/09/2020 
 
 Added fontawesome <br />
 Streamlined some styles <br />
@@ -79,7 +79,7 @@ Added more structure to navigation bar  <br />
 Added more responsiveness <br />
 ____
 
-Commit Batch 6 16/09/2020 
+### Commit Batch 6 16/09/2020 
 
 Added more structure to the navigation bar <br />
 Added more structure to the secondary navigation bar <br />
