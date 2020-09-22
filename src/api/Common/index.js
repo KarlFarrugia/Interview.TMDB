@@ -15,7 +15,7 @@
 
 import axios from 'axios';
 import { config } from '../../config';
-import { WriteToCookie, GetFromCookie } from '../../Helpers';
+import { WriteToSession, GetFromSession } from '../../Helpers';
 import * as Sentry from "@sentry/react";
 
 //#endregion
@@ -52,7 +52,7 @@ export default async function Common_Api (api_endpoint, axios_request, action, c
     const cookie_name = `${api_endpoint}_${page}_${locale}_${region}_${genre}_${adult}`
 
     //Retrieve values from cookie
-    const cookie_value = GetFromCookie(cookie_name);
+    const cookie_value = GetFromSession(cookie_name);
     if (cookie_value === "") {
       // Cancel previous request
       if (axios_request)
@@ -74,7 +74,7 @@ export default async function Common_Api (api_endpoint, axios_request, action, c
       
       // Store the result in a cookie for subsequent requests for a day.
       // Assuming now playing movies are updated daily.
-      WriteToCookie(
+      WriteToSession(
         cookie_name,
         JSON.stringify(result.data),
         cookie_expiry

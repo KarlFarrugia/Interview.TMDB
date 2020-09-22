@@ -52,7 +52,7 @@ export default async function Videos (movie_id, locale="en", error) {
       // Store the result in a cookie for subsequent requests for a long period set in the config file
       // Long period since actual movie details do not change as often.
       WriteToCookie(
-        cookie_value,
+        cookie_name,
         JSON.stringify(result.data.results),
         LONG_COOKIE_EXPIRY
       );

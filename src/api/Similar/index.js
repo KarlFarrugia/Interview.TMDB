@@ -63,7 +63,7 @@ export default async function Similar (movie_id, locale, genre = 0, adult = fals
       // Store the result in a cookie for subsequent requests for a long period set in the config file
       // Long period since actual movie details do not change as often.
       WriteToCookie(
-        cookie_value,
+        cookie_name,
         JSON.stringify(result.data.results),
         LONG_COOKIE_EXPIRY
       );

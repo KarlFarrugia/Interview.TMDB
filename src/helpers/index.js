@@ -76,26 +76,26 @@ export function numberLocalisation (number){
 /**
  * Writes a global cookie in the browser
  * 
- * @param {String} name the name to identify the cookie
+ * @param {String} key the key to identify the cookie
  * @param {String} value the value the cookie is to store
  * @param {Int8Array} cookie_expiry_in_days the days when the cookie is set to expire
  */
-export function WriteToCookie (name, value, cookie_expiry_in_days) {
+export function WriteToCookie (key, value, cookie_expiry_in_days) {
     let expiry_date = new Date();
     expiry_date.setDate(expiry_date.getDate() + cookie_expiry_in_days);
-    document.cookie = name + "=" + value + ";expires=" + expiry_date + ";path=/";
+    document.cookie = key + "=" + value + ";expires=" + expiry_date + ";path=/";
 }
 
 /**
  * This function returns the value associated with a cookie
  * 
- * @param {String} name the name of the cookie
+ * @param {String} key the key of the cookie
  * @returns {String} the value of the cookie
  */
-export function GetFromCookie (name) {
+export function GetFromCookie (key) {
     try{
         const value = "; " + document.cookie;
-        const parts = value.split("; " + name + "=");
+        const parts = value.split("; " + key + "=");
         if (parts.length === 2) return parts.pop().split(";").shift();
         return "";
     } catch (e) {
@@ -106,8 +106,49 @@ export function GetFromCookie (name) {
 /**
  * Deletes the provided cookie from storage by setting it as expired
  * 
- * @param {String} name the name of the cookie to be deleted
+ * @param {String} key the key of the cookie to be deleted
  */
-export function DeleteCookie (name) {
-    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+export function DeleteCookie (key) {
+    document.cookie = key + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+}
+
+/**
+ * Writes a global session in the browser
+ * 
+ * @param {String} key the key to identify the session
+ * @param {String} value the value the session is to store
+ * @param {Int8Array} session_expiry_in_days the days when the session is set to expire
+ */
+export function WriteToSession (key, value, session_expiry_in_days) {
+    let expiry_date = new Date();
+    expiry_date.setDate(expiry_date.getDate() + session_expiry_in_days);
+    let newValue = {
+        value: value,
+        expirationDate: expiry_date.toISOString()
+    }
+    window.sessionStorage.setItem(key, JSON.stringify(newValue))
+}
+
+/**
+ * This function returns the value associated with a session
+ * 
+ * @param {String} key the key of the session
+ * @returns {String} the value of the session
+ */
+export function GetFromSession (key) {
+    try{
+        let stringValue = window.sessionStorage.getItem(key)
+        if (stringValue !== null) {
+        let value = JSON.parse(stringValue)
+            let expirationDate = new Date(value.expirationDate)
+            if (expirationDate > new Date()) {
+                return value.value
+            } else {
+                window.sessionStorage.removeItem(key)
+            }
+        }
+        return "";
+    } catch (e) {
+        return "";
+    }
 }
