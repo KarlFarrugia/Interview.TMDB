@@ -112,3 +112,9 @@ ____
 Added all routes and apis <br />
 Implemented Lazy loading and added spinners for bad internet -- tested on firefox <br />
 Refactoring and adding comments <br />
+____
+
+### Commit Batch 10 29/09/2020 
+
+Implemented rebounce for search <br />
+Streamlined search file names <br />

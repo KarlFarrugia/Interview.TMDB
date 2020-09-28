@@ -24,8 +24,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // Import custom components
-import SearchBox from '../SearchBox/SearchBox';
-import SearchResults from '../SearchResults/SearchResults';
+import SearchBox from '../SearchBox';
+import SearchResults from '../SearchResults';
 
 // Import custom configurations functions
 import { GENRES, LANGUAGES } from '../../config';

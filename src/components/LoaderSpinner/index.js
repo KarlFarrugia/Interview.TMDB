@@ -19,7 +19,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
  * 
  * @name LoaderSpinner
  * @function
- * @returns {StyledComponent} A styled spinner component to be used for loading 
+ * @returns {StyledComponent} A styled spinner component to be used for loading which will be automatically removed after 3 seconds
  */
 export default function LoaderSpinner (){
     return (
@@ -29,7 +29,7 @@ export default function LoaderSpinner (){
                 color="#fff"
                 height={100}
                 width={100}
-                timeout={5000}
+                timeout={3000}
             />
         </LoaderContainer>
     );
